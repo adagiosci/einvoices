@@ -29,7 +29,8 @@
 		<th>Editar</th>
 		<th>Estado</th>
 	</tr>
-	<tr tal:repeat="row aerolineas">
+	<?python color = 'trgreen2' ?>
+	<tr tal:repeat="row aerolineas" class='${color}'>
 		<td>${row.Cod_iata}</td>
 		<td>${row.Cod_oaci}</td>
 		<td>${row.Nombre_general}</td>
@@ -40,6 +41,12 @@
 		<td>Precios</td>
 		<td>Editar</td>
 		<td>Activo</td>
+		<?python
+			if color=='trgreen2':
+				color = ''
+			else:
+				color = 'trgreen2'
+		?>
 	</tr>
 </table>
 </metal:clients_list></body>

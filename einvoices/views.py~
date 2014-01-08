@@ -18,10 +18,7 @@ class ProjectorViews(Layouts):
 	@view_config(renderer="templates/clients/index.pt", name='clients')
 	def clients_view(self):
 		aerolineas = DBSession.query(Aerolinea).order_by(Aerolinea.idaerolinea)
-		for row in aerolineas:
-			 print "name:", row['idaerolinea']
-		aerolineas.close()
-		return {'aerolineas':aerolineas}
+		return {'aerolineas':aerolineas,'color':'trgreen2'}
 	@reify
 	def clients_list(self):
 		renderer = get_renderer("templates/clients/list.pt")
