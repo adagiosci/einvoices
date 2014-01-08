@@ -17,6 +17,30 @@
 		<th colspan='2'>Contrato</th>
 		<th colspan='3'>Acción</th>
 	</tr>
+	<tr class='titles'>
+		<th>IATA</th>
+		<th><a href="#">OACI</a></th>
+		<th>Nombre</th>
+		<th>Dirección</th>
+		<th>Télefono</th>
+		<th><a href="#">Desde</a></th>
+		<th><a href="#">Hasta</a></th>
+		<th>Ver</th>
+		<th>Editar</th>
+		<th>Estado</th>
+	</tr>
+	<tr tal:repeat="row aerolineas">
+		<td>${row.Cod_iata}</td>
+		<td>${row.Cod_oaci}</td>
+		<td>${row.Nombre_general}</td>
+		<td></td>
+		<td>${row.telefono_general}</td>
+		<td>${row.vigencia_inicia}</td>
+		<td>${row.vigencia_finaliza}</td>
+		<td>Precios</td>
+		<td>Editar</td>
+		<td>Activo</td>
+	</tr>
 </table>
 </metal:clients_list></body>
 </html>

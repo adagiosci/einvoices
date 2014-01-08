@@ -28,7 +28,19 @@
 		<th>Ver</th>
 		<th>Editar</th>
 		<th>Estado</th>
-	</tr>	
+	</tr>
+	<tr tal:repeat="row aerolineas">
+		<td>${row.Cod_iata}</td>
+		<td>${row.Cod_oaci}</td>
+		<td>${row.Nombre_general}</td>
+		<td>${row.direccion_general}</td>
+		<td>${row.telefono_general}</td>
+		<td>${row.vigencia_inicia}</td>
+		<td>${row.vigencia_finaliza}</td>
+		<td>Precios</td>
+		<td>Editar</td>
+		<td>Activo</td>
+	</tr>
 </table>
 </metal:clients_list></body>
 </html>

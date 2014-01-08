@@ -128,7 +128,7 @@
 		</form>
 
 	<div class='clear'></div>
-	<div class="TblList"><div metal:use-macro="view.clients_list['company_menu']"></div></div>
+	<div class="TblList"><div metal:use-macro="view.clients_list['clients_list']"></div></div>
 </div>
 </div>
 </div></div>

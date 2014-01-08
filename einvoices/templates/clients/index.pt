@@ -1,5 +1,4 @@
 <div metal:use-macro="view.global_template"><div metal:fill-slot="content" class='container'>
-<div class="container">
 <div class='center'>
 	<div class='opciones'>
 		<a href='#' class='agregar'>Nuevo</a>
@@ -129,6 +128,5 @@
 
 	<div class='clear'></div>
 	<div class="TblList"><div metal:use-macro="view.clients_list['clients_list']"></div></div>
-</div>
 </div>
 </div></div>

@@ -17,7 +17,8 @@ class ProjectorViews(Layouts):
         
 	@view_config(renderer="templates/clients/index.pt", name='clients')
 	def clients_view(self):
-		return {"page_title": "Home"}
+		aerolineas = DBSession.query(Aerolinea).order_by(Aerolinea.idaerolinea)
+		return {'aerolineas':aerolineas}
 	@reify
 	def clients_list(self):
 		renderer = get_renderer("templates/clients/list.pt")
