@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+    <title>Macros</title>
+</head>
+<body><metal:company_menu define-macro="company_menu"><div class="container">
+	<div class="img-logo"><a href='/'><img src="${request.static_url('einvoices:static/imgs/swissport_logo.gif')}" alt="swissport_logo" /></a></div>
+	<div class='questions'>
+			<p class='bold'>Para reportar cualquier Bug o aclarar alguna duda:
+				<a href='mailto:irving.sci@gmail.com'>e-mail:irving.sci@gmail.com</a>
+				<br />
+				<a href='#'>Tel. Cel. 9981259528</a>
+			</p>
+	</div>
+	<div class='clear'></div>
+	<div class='options'>
+		<a href='/catalogs/'>Catálogos</a>
+		<div class="clear"></div>
+	</div>
+	<div class='logout'>
+		<p><span>Bienvenido Usuario</span><a href='/users/logout/'>Salir</a></p>
+		<div class='clear'></div>
+
+	</div>
+	<div class='clear'></div>
+	<div class='submenu'>
+		<a class='' href='/clients/'>Clientes</a>
+		<div class="clear"></div>
+	</div>	
+
+</div></metal:company_menu></body>
+</html>

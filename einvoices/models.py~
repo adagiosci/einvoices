@@ -1,0 +1,44 @@
+from sqlalchemy import (
+    Column,
+    Index,
+    Integer,
+    Text,
+    )
+
+from sqlalchemy.ext.declarative import declarative_base
+
+from sqlalchemy.orm import (
+    scoped_session,
+    sessionmaker,
+    )
+
+from zope.sqlalchemy import ZopeTransactionExtension
+
+DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
+Base = declarative_base()
+
+
+class Aerolinea(Base):
+    __tablename__ = 'aerolineas'
+    idaerolinea = Column(Integer, primary_key=True)
+    Cod_iata = Column(Text)
+    Nombre_general = Column(Text)
+    Cod_oaci
+    direccion_general
+    estado
+    telefono_general
+    nombre_contacto
+    telefono_contacto
+    email_contacto
+    direccion_contacto
+    direccion_facturacion
+    telefono_facturacion
+    email_facturacion
+    vigencia_inicia
+    vigencia_finaliza
+    Nombre_facturacion
+    contrato
+    rampa
+    servicio
+    despacho
+    mantenimiento

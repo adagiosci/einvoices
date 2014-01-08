@@ -1,0 +1,347 @@
+@import 'reset.css';
+@import url('stickyFooter.css');
+body{font:12px arial;background-color:#E5E5E5}
+a{text-decoration:none;color:#858585}
+tr a{color:black}
+/* table{width:100%;-moz-border-radius:4px;margin-top:10px;margin:auto; border-width: 1px;border-style: outset;border-color:red} */
+table{width:100%;margin:10px auto 10px auto;border:2px solid #D3D3D3;text-align:center;border-collapse:collapse!important}
+td{background-color:white;border-left:1px solid #D3D3D3;}
+td,th{padding:10px 10px 5px 5px;vertical-align:middle}
+th{background-color:#D3DCE3;font-weight:bold;text-align:center;border:1px solid #D3D3D3}
+input,select{margin-top:5px;margin-bottom:5px;border:none;padding:2px;margin-left:2px;width:200px;background-color:white;border:1px solid #D3D3D3}
+input.middle,select.middle{width:95px}
+label{margin-top:10px}
+input{height:20px;width:200px}
+select{height:26px}
+h1{font-size:20px;font-weight:bold;text-align:center}
+h2{font-size:18px;font-weight:bold;text-align:center}
+h3{font-size:15px;font-weight:bold;text-align:center}
+h4{font-size:13px;font-weight:bold;}
+.h4{font-size:13px;font-weight:bold;}
+.submit{width:100px;height:35px;padding:0px}
+.submit2{width:100px;height:27px;padding:0px}
+.submit3{width:80px;height:27px;padding:0px}
+.edit-td{width:65px}
+.global-td{width:40px}
+.si{color:#55A847}
+.no{color:#A72112}
+.right-td,.text-right{text-align:right}
+.text-left{text-align:left!important}
+.align-center{text-align:center!important}
+.float-left{float:left;display:block}
+.bold{font-weight:bold}
+.width100{width:100px;display:block}
+.width-type{width:64px}
+.yellow-background{background-color:yellow}
+
+.loader1,.loader3{background-image:url(/imgs/loader1.gif);width:32px;height:32px;margin:100px auto;}
+.loader3{margin:50px auto!important}
+.loader2{background-image:url(/imgs/loader2.gif);width:16px;height:16px;display:block;margin-top:0px;top:0px}
+.file{width:50px;}
+
+.save{height:27px}
+.checkbox{width:13px!important;height:13px!important}
+.clear{clear:both}
+.container{min-width:920px;margin:0px auto;background-color:white;height:auto;width:93%;position:relative}
+.containersmall{width:800px;margin:auto;}
+.containersmall2{width:800px;margin:auto;}
+.containersmall2 .line-top-review{border-top:1px solid #D3D3D3}
+.hidden{display:none}
+.hidden2{display:hidden}
+.tbloverflow{width:100%;overflow:scroll;padding-bottom:30px}
+.read-line-small{width:100%;height:2px;background-color:#BC2A4D;margin:10px auto 10px auto;position:relative}
+/* .TblList{margin-top:15px}; */
+.TblList .titles{height:20px;text-align:center;}
+.TblList .titles th{padding:5px 5px 5px 5px!important}
+.TblList tr a{margin-right:10px}
+.TblList .checksheet_detail_results{border:1px solid #D3D3D3}
+.tblsmallTareas{width:425px;border:none;float:left}
+.tblsmallTareas td{border:none}
+.tblsmall {width:500px;text-align:center;float:left;border:none}
+.tblsmall.medium{width:600px}
+.tblsmall td{border:none}
+.tblsmall th{font-weight:bold;border:none;background-color:#FFF}
+.scroll-x{overflow-y:hidden;overflow-x:auto;min-width:1024px;width:100%}
+.paginator a{display:block;margin-left:5px;font-size:13px;float:left;font-weight:bold;margin-top:7px}
+.paginator .on{color:#BC2A4D}
+#num_records{float:right;margin-bottom:0px;margin-top:0px}
+input.disabled{background-color:#F7F7EF;}
+
+.error{display:block;color:#7a2324;font-weight:normal;margin-bottom:10px}
+.form-table{border:medium none}
+.form-table td{border:medium none;padding:0 10px 0px 0px!important}
+.kpis-table td{padding-top:1px;padding-bottom:0px}
+.performance-detail td{background-color:#F9F9F7}
+.performance-detail .square{display:block;width:10px;height:10px;margin-right:5px;float:left}
+.performance-detail .small-evaluators{width:250px}
+
+/* #container{height:100%;margin: 10px 30px 10px 30px;background-color:white;border:1px solid #707070;-moz-border-radius:10px 10px 10px 10px;} */
+/*#D3D3D3*/
+/*;background-color:#FFFFFF*/
+.popup_rampas{display:table/*!important;*/}
+.popup_rampas .cell .content{width:600px;}
+#popup,.popup_rampas{height:100%;width:100%;position:fixed;z-index:7;display:none;background:url("/imgs/overlay.png");top:0;left:0;}
+#popup .cell .content-popup{position:relative;z-index:2}
+#popup .cell,.popup_rampas .cell{display:table-cell;vertical-align:middle}
+#popup .cell .content-popup,.popup_rampas .cell .content{padding:10px;background-color:white;margin:0px auto;border:2px solid #BC2A4D;-moz-border-radius:10px;border-radius:10px;}
+.popup_rampas .cell .content{padding:15px 30px!important;}
+
+#popup .cell .content-popup .container,.popup_rampas .cell .content .container{width:500px;min-width:500px}
+#popup .cell .content-popup .close,.popup_rampas .cell .content .close{float:right}
+#popup .cell .content-popup h2,.popup_rampas .cell .content h2{text-align:left}
+#popup .cell .content-popup .html,.popup_rampas .cell .content .html{overflow-y:auto;}
+/*Popup comprobación de eliminar*/
+#popup .cell .content-popup .html .conteiner_p{position:relative;width:500px;text-align:center;margin:0 auto;}
+#popup .cell .content-popup .html .conteiner_p h2{font-size: 16px;}
+#popup .cell .content-popup .html .conteiner_p .ans{display:block;height: 20px;padding-top: 6px;width: 50px;margin:0 auto;float:none;color:white;font-weight:bold;margin-bottom: 10px;margin-top: 10px;border-radius:20px;}
+#popup .cell .content-popup .html .conteiner_p .ans.yes{background-color:green;}
+#popup .cell .content-popup .html .conteiner_p .ans.no{background-color:#BC2A4D;}
+#popup .click{position:fixed;width:100%;height:100%;z-index:1;top:0px}
+
+#container{min-height:600px;padding-bottom:50px;height:100%;margin: 0px 15px 0px 15px;border-radius:10px;-moz-border-radius:10px;background-color:white;border:2px;border-style:solid;border-color:#164871;}
+#red-line{min-width:920px;width:100%;height:2px;background-color:#BC2A4D;margin:10px auto 0px auto;position:relative}
+
+#message{width:90%;height:19px;padding:5px;float:right}
+#message a{float:right}
+#message p{font-size:14px;float:right;margin-right:10px}
+#message p.error,#menssage_day p.error{color:red;font-weight:bold;margin-bottom:0px!important}
+#message p.success,#menssage_day p.success{color:#57A900;font-weight:bold}
+#menssage_day{height:15px}
+#menssage_day p{float:right;width:90px}
+#menssage_day a{float:right}
+#menssage_day.loader2{float:right!important}
+
+#main{padding-bottom:0px}
+#header {height:130px;width:100%}
+#header .logout{float:right;font-size:13px;margin-top:-5px;width:290px;text-align:right;position:relative;right:0px;}
+#header .logout span{margin-right:5px;}
+#header .img-logo{width:237px;height:60px;float:left;margin-top:20px;position:relative}
+#header .questions{width:300px;height:60px;float:right;margin-top:20px;position:relative}
+#header .options{position:relative;margin-top:10px}
+#header .submenu{position:relative;display:none;}
+#header .options a, #header .submenu a,#content .menu a{color:#536482;font-weight:bold;display:block;margin-right:10px;float:left}
+#header .options a:hover, #header  .submenu a:hover{color:black}
+#header .options a.on, #header .submenu a.on,#content .menu a.on{color:#BC2A4D}
+#header .submenu.on{display:block}
+
+#content .opciones{margin-bottom:5px}
+#content .opciones a{margin-right:10px;font-weight:bold;}
+#content a.back{font-size:14px;font-weight:bold;}
+/* #content .center{margin-top:2px;width:100%;height:100%;display:table} */
+#content .center{margin-top:2px;width:100%;height:100%;display:block}
+#content .login{width:250px;height:200px;margin:auto;border:2px solid #164871;padding:50px 50px 10px 40px}
+#content .login input{padding:5px!important}
+#content .login input,#content .login label{margin-bottom:10px}
+#content .login .submit{width:100px;height:35px;padding:0px}
+#content .NewInputs,#content .EditInputs{margin: 0 auto}
+#content .EditInputs{position:absolute;}
+#content .NewInputs input,#content .NewInputs select,#content .EditInputs input,#content .EditInputs select{margin-bottom:5px;margin-right:2px;margin-left:0px}
+#content .InputsFind{width:100%;margin:0px auto 5px auto}
+#content .InputsFind .inline,#content .NewInputs .inline{display:inline;float:left;margin-right:10px}
+#content .InputsFind .middle{width:95px}
+#content .InputsFind input{border:1px solid #D3D3D3;width:150px;margin-right:10px}
+#content .InputsFind input.submit3{width:75px;height:27px;padding:0px}
+#content .InputsFind select{border:1px solid #D3D3D3;width:150px;}
+#content .EditInputs input,#content .EditInputs select{margin-bottom:4px;font-size:13px;padding-left:3px}
+#content .border th{font-weight:bold;border-left:1px;border-bottom:1px;border-style:solid;border-color:#D3D3D3}
+#content .detalles p{margin-top:5px;margin-bottom:5px;font-size:14px}
+#content .detalles h2{margin-top:10px;text-align:left}
+#content .detalles .h3{font-size:15px;font-weight:bold}
+
+/* #content .border th{font-weight:bold;color:#6F6F6F;background:url("/imgs/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #E6E6E6;border-left:1px;border-bottom:1px;border-style:solid;border-color:#D3D3D3} */
+#content{width:100%;height:auto}
+
+#content .trgreen td{background-color:#DDFFDD}
+#content .trgreen2 td{background-color:#EFFFEE}
+#content .gray-title td{background-color:#EAEAEA}
+#content .TblList tr:hover td,#content .TblList tr.hover td{background-color:#D2EAD0!important}
+
+#content .trred td{background-color:#E45C5C}
+#content .trred:hover td{background-color:#D2EAD0!important}
+
+#content .left{width:46%;height:100%;position:relative;float:left;margin-right:20px}
+.linever{width:2px;height:100%;background-color:#D3D3D3;position:relative;float:left;margin-right:20px}
+#content .right{width:46%;height:100%;float:right;position:relative}
+#content .right .seccion6 td{padding-top:5px!important;padding-bottom:5px!important;padding-left:5px!important}
+#content .Activo{font-weight:bold;}
+#content .colum1, #content .colum2, #content .colum3 {width:25%;height:100%;position:relative;float:left}
+#content .colum2 table,#content .colum3 table{width:100px!important}
+#content .colum-1, #content .colum-2{width:45%;height:100%;position:relative;float:left}
+#content .colum2 .without-top{margin-top:0px!important}
+
+#content .programacion h2{margin-top:10px;margin-bottom:10px}
+#content .programacion .right,#content .programacion .left{width:40%;margin-right:10px;float:left}
+#content .captura{width:100%;height:100%;position:relative;top:-11px}
+#content .captura p{margin-top:5px;margin-bottom:5px}
+#content .captura .left{height:100%;}
+#content .captura .right{height:100%;}
+#content .captura .form{height:100%}
+#content .captura table{margin:10px 0px 10px 0px;border:none;}
+#content .captura table.form-table{margin:10px auto}
+#content .captura table.form-table td{padding-top:5px!important;padding-bottom:5px!important}
+#content .captura td.global-td{padding-right:10px!important}
+#content .captura tr,#content .captura td{border:none;padding:0px!important;}
+#content .captura .pasajeros table td{padding:10px 10px 5px 5px!important}
+#content .captura td.align-right{text-align:right;padding-right:5px!important}
+#content .captura tr input{margin:0px!important;float:left}
+#content .captura h3,#content .captura h2{text-align:center}
+#content .captura h3{margin-bottom:10px}
+#content .captura h2{margin-bottom:10px}
+#content .captura .section3 td{padding-top:5px!important;padding-bottom:5px!important}
+#content .captura .subservice-loader{float:left}
+#content .captura input,#content .captura select,#content .captura textarea{margin-bottom:15px;margin-top:0px}
+#content textarea.small-textarea{width:300px;height:100px}
+#content .captura .tdborder{border-bottom:1px solid #D3D3D3!important;padding:5px!important}
+#content .captura td{vertical-align:middle}
+#content .captura .column60{width:60%;float:left}
+#content .captura .column65{width:65%;float:left}
+#content .captura table select{margin:0px}
+#content .captura .smalltd{width:130px}
+#content .captura .inline{display:inline;float:left;margin-right:10px}
+#save_demora_llega{display:block;border:1px solid #D3D3D3;width:55px;text-align:center}
+
+#content .servicios ul label{display:inline;width:auto;float:left}
+#content .servicios ul label.auto{display:inline;width:auto;float:left}
+#content .servicios h1{margin-bottom:15px}
+#content .servicios ul .checkbox{margin-right:10px;float:left}
+#content .servicios ul .text{width:50px;margin-right:10px;float:left}
+#content .servicios select{width:85px;float:left}
+#content .servicios .msg{float:left}
+
+select.size0{width:40px}
+select.size1{width:48px}
+select.size2{width:60px}
+input.size1{width:44px}
+input.size2{width:50px}
+#content select.size2{width:60px}
+#content input.size3, #content select.size3{width:80px}
+#content input.size5, #content select.size5{width:130px}
+#content input.size6, #content select.size6{width:140px}
+#content input.size85, #content select.size85{width:235px}
+#content select.size4{width:100px}
+#content input.size4{width:94px}
+#content input.size7, #content select.size7{width:200px}
+#content input.size12,#content select.size12{width:350px!important}
+#content input.size8, #content select.size8{width:250px!important}
+#content input.size9, #content select.size9{width:290px!important}
+#content input.size10{width:305px!important}
+#content input.size11,#content select.size11{width:320px!important}
+#content input.size12,#content select.size12{width:340px!important}
+#content input.size13,#content select.size13{width:360px!important}
+#content input.size14,#content select.size14{width:380px!important}
+#content input.size15,#content select.size15{width:400px!important}
+#content input.size16, #content select.size16{width:420px!important}
+#content textarea{width:100%;height:150px}
+
+#content .export .inline,#content .graph .inline{display:inline;float:left;margin-right:10px}
+#content .export .options,#content .graph .options{float:left!important}
+#content .menu{position:relative;top:-10px}
+#content .menu.menu-captura{width:200px;float:left;display:block;padding-left:10px}
+#content .numero-fcs{width:114px;float:left;display:block;position:relative;top:auto}
+#content .export .fields,#content .graph .fields{display:none}
+#content .export .select-multiple1,#content .graph .select-multiple1{height:200px}
+#content .export .select-multiple2,#content .graph .select-multiple2{height:230px}
+
+#content .graph .result{width:940px;height:700px;overflow:auto;display:relative}
+#content table .float-left{margin-bottom:10px}
+
+#content .tblservicios{float:right;width:300px;border:none}
+#content .tblservicios th,#content .tblservicios td{background-color:white!important;border:none;padding:0px!important}
+
+#content .menu-resumen li{font-size:14px;line-height:22px}
+
+#content  .form ul input{margin:0px 5px 0px 0px;vertical-align:middle;}
+#content  .form ul{float:left}
+#content  .form ul ul{float:none}
+#content  .form ul label{margin-top:0px;margin-bottom:0px;vertical-align:middle;font-size:14px}
+#content  .form ul li{line-height:22px}
+#content  .form ul li ul{margin-left:20px;margin-bottom:20px}
+#content .content-tabs-datas{background:url(/imgs/side_rule.gif) repeat-y scroll 230px 0 transparent;border-top: 1px solid #DDDDDD;margin:0px 0px}
+#content .content-tabs-datas .tabs{width:229px;float:left;font-size:14px;padding-top:5px}
+#content .content-tabs-datas .tabs li{margin:8px 0px}
+#content .content-tabs-datas .tabs li a:hover{background:none repeat scroll 00 #F1F1F1;}
+#content .content-tabs-datas .tabs a{color:#536482;font-size:14px;display:block;padding:11px 10px 9px 10px;border:1px solid transparent;border-bottom-left-radius:4px;border-top-left-radius:4px}
+#content .content-tabs-datas .tabs a.selected{color:#BC2A4D;font-weight:bold;background:url(/imgs/sidebar_selected.gif) repeat-x scroll 0 0 transparent!important;border-color:#DDDDDD -moz-use-text-color #DDDDDD #DDDDDD;border-style:solid none solid solid;border-width:1px medium 1px 1px;text-shadow:1px 1px 0 #FFFFFF}
+#content .content-tabs-datas .content-tabs{display:none;float:left;width:629px;margin-left:20px;margin-top:9px}
+#content .content-tabs-datas .content-tabs.on{display:block}
+#content span.acceped{background-image:url(/imgs/accept.png);width:24px;height:24px;display:block;float:left}
+#content input.input-aeopuerto{float:left}
+#content .captura h3.tiempo-total{float:left;text-align:left}
+#content .tbl-reportes{width:600px;float:left}
+#content .detalles_QMS{border:none}
+#content .detalles_QMS td{border:none}
+
+#form_export{float:left;position:relative;}
+#form_export input.export{border:none;float:left;width:80px;margin-top:-1px;text-align:left;margin-left:0px;padding:0px;font-size:12px;cursor:pointer}
+#form_export input.p{float:left}
+#form_import{float:left;position:relative;margin-right:20px;}
+#form_import input.import{border:none;float:left;width:80px;text-align:left;margin-left:0px;padding:0px;font-size:12px;cursor:pointer}
+#descripcion-reporte{width:350px;height:200px}/*#save-box-reporte*/
+#table-preview-reportes{width:100%;overflow:hidden;height:1000px;overflow:auto}
+.checksheets_details{width:988px;}
+.checksheets_details .information td,.checksheets_details2 .information td{border-top:1px solid #D3D3D3}
+.checksheets_details2  .totals{width:100px}
+.checksheets_details2 .checksheets_details{width:100%}
+h3.title_condiciones{text-align:left}
+a.title_tabs_campos{float:left;margin-left:10px;font-size:14;color:black;font-weight:bold;margin-bottom:20px}
+a.title_tabs_campos.on{color:#BC2A4D}
+
+/* background-color:#EFFFEE */
+#tbl_demoras_llega,#tbl_demoras_sale{overflow-y:auto;overflow-x:hidden;max-height:200px;margin-bottom:10px}
+#content .imprimir_manifiesto{background:url(/imgs/printer.jpg) no-repeat scroll 0 center ;padding-left:21px;top:10px;position:relative}
+.ui-autocomplete {
+	max-height: 250px;
+        overflow-y: auto;
+	/* prevent horizontal scrollbar */
+        overflow-x: hidden;
+        /* add padding to account for vertical scrollbar */
+       padding-right: 10px;
+}
+#empleado_agreado_rampas{width:580px;height:100px;display:block;border:2px solid #D3D3D3;overflow-y:auto}
+
+/*Grupos*/
+table.grupos_rampas{border:none;min-width:800px;max-width:1024px;float:left}
+#popup table.grupos_rampas{max-width:650px;min-width:650px}
+table.grupos_rampas .gray{background-color:#F2F2F2}
+table.grupos_rampas th{background-color:white;border:none;border-bottom:1px solid #D3D3D3}
+table.grupos_rampas td{border:none}
+table.grupos_rampas a.delete1{color:#EAA770}
+table.grupos_rampas a.delete2,#empleado_agreado_rampas table a.delete2{color:#BC2A4D}
+table.grupos_rampas .edit_group{cursor:pointer;color:#EAA770}
+
+/*Tareas*/
+table.tareas{border:none;width:auto;float:left}
+table.tareas td.tareas{width:140px}
+table.tareas td, table.tareas th{border:none}
+table.tbl_type{width:200px;float:left;margin-right:30px;border:4px solid #D3D3D3}
+table.tbl_type td, table.tbl_type th{border:none}
+table.tbl_type:last-child{margin-right:0px}
+
+/*Crear grupos*/
+#empleado_agreado_rampas table{margin:0px auto}
+#empleado_agreado_rampas table td{padding:5px}
+#empleado_agreado_rampas table,#empleado_agreado_rampas table td{border:none}
+
+
+/*Modulo de rampas*/
+.asignacion_box{font-size:14px}
+.asignacion_box label{margin-bottom:5px;font-weight:bold;margin-right:10px}
+.asignacion_box a{color:#EAA770;font-weight:bold}
+.asignacion_box .asignacion{display:block;border:2px solid #D3D3D3;height:40px;width:100%;overflow-y:auto;font-weight:normal;font-size:12px;padding:5px}
+.add_group_this_flight{color:#EAA770;font-weight:bold;font-size:14px}
+.captura .flight_times{float:left;position:absolute;top:130px;font-size:14px}
+.captura .flight_times p{border-bottom-left-radius:4px;border-top-left-radius:4px;width:218px;height:25px;border-top:1px solid #D3D3D3;border-bottom:1px solid #D3D3D3;border-left:1px solid #D3D3D3;padding-top:10px;padding-left:10px}
+.captura .flight_times.flight_times-fixed{position:fixed;top:0px}
+.lista_asignaciones_vuelos{float:left;width:450px;}
+.lista_asignaciones_vuelos .nombre{width:70px}
+.lista_asignaciones_vuelos.big{width:550px}
+.lista_asignaciones_vuelos th{border:none;background-color:white}
+.lista_asignaciones_vuelos,.lista_asignaciones_vuelos td{border:none}
+.lista_asignaciones_vuelos .add{background:url(/imgs/addminus.png) -3px -3px;width:27px;height:28px;display:block}
+.lista_asignaciones_vuelos .minus{background:url(/imgs/addminus.png) -32px -3px;width:27px;height:28px;display:block}
+.lista_asignaciones_vuelos .vuelodetalle{padding:5px}
+.lista_asignaciones_vuelos .vuelodetalle,.lista_asignaciones_vuelos .vuelodetalle table td{background-color:#E3EEF7;}
+.lista_asignaciones_vuelos .vuelodetalle table{border:none;margin:0px}
+#flight_groups{max-height:300px;overflow-y:auto}
+
+.listas_tareas .nombre{width:100px}

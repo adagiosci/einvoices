@@ -1,0 +1,181 @@
+<div class="container">
+	<div class="img-logo"><a href='/'><img src="/imgs/swissport_logo.gif" alt="swissport_logo" /></a></div>
+	<div class='questions'>
+			<p class='bold'>Para reportar cualquier Bug o aclarar alguna duda:
+				<a href='mailto:irving.sci@gmail.com'>e-mail:irving.sci@gmail.com</a>
+				<br />
+				<a href='#'>Tel. Cel. 9981259528</a>
+			</p>
+	</div>
+	<div class='clear'></div>
+	<div class='options'>
+		<a href='/aerolineas/' <?php echo ($this->menu =='lists')?"class='on'":'' ?> >Catálogos</a>
+		<a href='/slots/' <?php echo ($this->menu =='slots')?"class='on'":'' ?> >Slots</a>
+
+
+		<?php if($this->acl->isAllowed($this->role,null,"capturas_index")){?>
+			<a href='/capturas/' <?php echo ($this->controller =='capturas')?"class='on'":'' ?> >Despacho</a>
+		<?php }?>
+
+		<?php if($this->acl->isAllowed($this->role,null,"rampas_index")){?>
+			<a href='/rampas/' <?php echo ($this->controller =='rampas')?"class='on'":'' ?> >Rampa</a>
+		<?php } ?>
+
+		<a href='/asignaciones/' <?php echo ($this->controller =='asignaciones')?"class='on'":'' ?> >Asignaciones</a>
+		<a href='/encuestas/' <?php echo ($this->menu =='calidad')?"class='on'":'' ?> >Gestión de la Calidad</a>
+		<a href='/empleos/' <?php echo ($this->menu =='empleos' || $this->controller =='empleos')?"class='on'":'' ?> >Empleos</a>
+		<a href='/reportes/' <?php echo ($this->menu =='reportes' || $this->controller =='checksheets')?"class='on'":'' ?> >Reportes</a>
+		<div class="clear"></div>
+	</div>
+
+	<div class='logout'>
+		<p><span><?php echo "Bienvenido ".$this->names_user ?></span><a href='/usuarios/logout/'>Salir</a></p>
+		<div class='clear'></div>
+
+	</div>
+	<div class='clear'></div>
+
+	<div class='submenu <?php echo ($this->menu =='lists')?'on':'' ?>'>
+		<?php
+		if($this->acl->isAllowed($this->role,null,"aerolineas_index")){?>
+			<a href='/aerolineas/' class="<?php echo ($this->controller=='aerolineas')?'on':'' ?>">Aerolineas</a>
+		<?php }?>
+
+		<?php if($this->acl->isAllowed($this->role,null,"aeropuertos_index")){?>
+			<a href='/aeropuertos/' class="<?php echo ($this->controller=='aeropuertos')?'on':'' ?>" >Aeropuertos</a>
+		<?php }?>
+
+		<?php if($this->acl->isAllowed($this->role,null,"aeronaves_index")){?>
+			<a href='/aeronaves/' class="<?php echo ($this->controller=='aeronaves')?'on':'' ?>" >Matriculas</a>
+		<?php }?>
+
+		<?php if($this->acl->isAllowed($this->role,null,"servicios_index")){?>
+			<a href='/servicios/' class="<?php echo ($this->controller=='servicios')?'on':'' ?>" >Servicios</a>
+		<?php }?>
+
+		<?php if($this->acl->isAllowed($this->role,null,"coddemoras_index")){?>
+			<a href='/coddemoras/' class="<?php echo ($this->controller=='coddemoras')?'on':'' ?>" >Demoras</a>
+		<?php }?>
+
+		<?php if($this->acl->isAllowed($this->role,null,"pilotos_index")){?>
+			<a href='/pilotos/' class="<?php echo ($this->controller=='pilotos')?'on':'' ?>" >Crew</a>
+		<?php }?>		
+
+		<?php if($this->acl->isAllowed($this->role,null,"empleados_index")){?>
+			<a href='/empleados/' class="<?php echo ($this->controller=='empleados')?'on':'' ?>">Empleados</a>
+		<?php }?>
+		
+		<?php if($this->acl->isAllowed($this->role,null,"tareas_index")){?>
+			<a href='/tareas/' class="<?php echo ($this->controller=='tareas')?'on':'' ?>">Tareas</a>
+		<?php }?>
+		
+		<div class="clear"></div>
+	</div>
+
+	<div class='submenu <?php echo ($this->menu =='slots')?'on':'' ?>'>
+
+		<?php if($this->acl->isAllowed($this->role,null,"slots_index")){?>
+			<a href='/slots/' class="<?php echo ($this->controller=='slots')?'on':'' ?>" >Listas</a>
+		<?php }?>
+		<?php if($this->acl->isAllowed($this->role,null,"programaciones_index")){?>
+			<a href='/programaciones/' class="<?php echo ($this->controller=='programaciones')?'on':'' ?>" >Programaciones</a>
+		<?php }?>
+		<div class="clear"></div>
+<!-- 		<a href='/slots/historial/' class="<?php echo ($this->controller=='historial')?'on':'' ?>" >Historiales</a> -->
+	</div>
+
+	<div class='submenu <?php echo ($this->menu =='capturas')?'on':'' ?>'>
+		<?php if($this->acl->isAllowed($this->role,null,"capturas_index")){?>
+			<!--<a href='/capturas/' class="<?php echo ($this->resource=='capturas_index')?"on":""?>">Grupos</a>-->
+		<?php }?>
+		
+		<?php if($this->acl->isAllowed($this->role,null,"capturas_index")){?>
+			<a href='/capturas/' class="<?php echo ($this->resource=='capturas_index')?"on":""?>">Hoy</a>
+		<?php }?>
+
+		<?php if($this->acl->isAllowed($this->role,null,"capturas_lista")){?>
+			<a href='/capturas/lista/' class="<?php echo ($this->resource=='capturas_lista')?"on":""?>" >Listados</a>
+		<?php }?>
+
+		<div class="clear"></div>
+	</div>
+	
+	<?php if($this->acl->isAllowed($this->role,null,"rampas_index")){?>
+	
+	<div class='submenu <?php echo ($this->menu =='rampas')?'on':'' ?>'>
+
+		<?php if($this->acl->isAllowed($this->role,null,'rampas_asignaciones')){?>
+<!-- 			<a href='/asignaciones/' class="<?php echo ($this->resource=='asignaciones_index') || ($this->resource=='asignaciones_editar')?"on":""?>">Asignaciones</a> -->
+		<?php }?>
+		
+		<?php if($this->acl->isAllowed($this->role,null,"rampas_index")){?>
+			<a href='/rampas/' class="<?php echo ($this->resource=='rampas_index')?'on':''?>">Hoy</a>
+		<?php }?>
+
+		<?php if($this->acl->isAllowed($this->role,null,"rampas_lista")){?>
+			<a href='/rampas/lista/' class="<?php echo ($this->resource=='rampas_lista')?"on":""?>" >Listados</a>
+		<?php }?>
+
+		<?php if($this->acl->isAllowed($this->role,null,"rampas_asignaciones") && $this->resource== 'rampas_asignaciones' ){?>
+			<a href='#' class="<?php echo ($this->resource=='rampas_asignaciones')?"on":""?>" >Asignar</a>
+		<?php }?>
+		
+		<div class="clear"></div>
+	</div>
+	
+	<?php }?>
+	
+	<div class='submenu <?php echo ($this->menu =='asignaciones')?'on':'' ?>'>
+		
+		<?php if($this->acl->isAllowed($this->role,null,'asignaciones_grupos')){?>
+			<a href='/asignaciones/grupos/' class="<?php echo ($this->resource=='asignaciones_grupos')?'on':''?>">Grupos</a>
+		<?php }?>
+		
+		<a href='/asignaciones/porvuelo/' class="<?php echo ($this->resource=='asignaciones_porvuelo' || $this->resource=='asignaciones_porempleado' )?"on":""?>" >Roles</a>
+		<div class="clear"></div>
+	</div>
+	
+	
+	<div class='submenu <?php echo ($this->menu =='calidad')?'on':'' ?>'>
+		<?php if($this->acl->isAllowed($this->role,null,"encuestas_index")){?>
+			<a href='/encuestas/kpis/' class="<?php echo ($this->resource=='encuestas_kpis')?'on':'' ?>" >Procesos &amp; KPI's</a>
+<!-- 			<a href='/encuestas/' class="<?php echo ($this->resource=='encuestas_index')?'on':'' ?>" >Encuestas</a> -->
+<!-- 			<a href='/desempenos/' class="<?php echo ($this->resource=='desempenos_index') || ($this->resource=='desempenos_evaluados') || ($this->resource=='desempenos_evaluadores') || ($this->resource=='desempenos_resultados') || ($this->resource =='desempenos_detalles') ?'on':'' ?>" >Desempeos</a> -->
+		<?php }?>
+		<div class="clear"></div>
+	</div>
+	<div class='submenu <?php echo ($this->menu =='empleos')?'on':'' ?>'>
+		<?php if($this->acl->isAllowed($this->role,null,"reportes_index")){?>
+			<a href='/empleos/cvs' class="<?php echo ($this->resource =='empleos_cvs')?'on':'' ?>" >Curriculums</a>
+		<?php }?>		
+		<div class="clear"></div>
+	</div>	
+	<div class='submenu <?php echo ($this->menu =='reportes')?'on':'' ?>'>
+		<?php if($this->acl->isAllowed($this->role,null,"reportes_index")){?>
+			<a href='/reportes/' class="<?php echo ($this->resource =='reportes_index' || $this->resource =='reportes_campos' || $this->resource =='reportes_condiciones' || $this->resource =='reportes_preview')?'on':'' ?>" >Capturas</a>
+		<?php }?>
+
+		<?php if($this->acl->isAllowed($this->role,null,"reportes_graficas")){?>
+			<a href='/reportes/graficas' class="<?php echo ($this->controller=='graficas')?'on':'' ?>" >Graficas</a>
+		<?php }?>
+
+		<?php if($this->acl->isAllowed($this->role,null,"checksheets_index")){?>
+			<a href='/checksheets/' class="<?php echo ($this->resource == "checksheets_index")?"on":"" ?>" >Check Sheets</a>
+		<?php }?>
+		
+		<div class="clear"></div>
+	</div>
+
+	<div class='clear'></div>
+	<div id='red-line'></div>
+	<div id='message'>
+		<?php
+			if($this->type_message_action == "success"){
+				echo "<a href='#'>X</a><p class='success'>".$this->action("getmessagesuccess",$this->controller,null,array('m' => $this->request->getParam('m')))."</p>";
+			}elseif($this->type_message_action == "error"){
+				echo "<a href='#'>X</a><p class='error'>".$this->action("getmessageerror",$this->controller,null,array("e"=>$this->request->getParam('e')))."</p>";
+			}
+		?>
+	</div>
+	<div class='clear'></div>
+</div>
