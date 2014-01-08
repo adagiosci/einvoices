@@ -149,7 +149,7 @@ input.disabled{background-color:#F7F7EF;}
 #content .detalles .h3{font-size:15px;font-weight:bold}
 
 /* #content .border th{font-weight:bold;color:#6F6F6F;background:url("/imgs/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #E6E6E6;border-left:1px;border-bottom:1px;border-style:solid;border-color:#D3D3D3} */
-#content{width:100%;height:100%}
+#content{width:100%;height:auto}
 
 #content .trgreen td{background-color:#DDFFDD}
 #content .trgreen2 td{background-color:#EFFFEE}

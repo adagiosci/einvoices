@@ -23,17 +23,17 @@
 		<select name="SlcFiltro1" id='SlcFiltro1'>
 			<option value=''>Filtrar por</option>
 		</select>
-		<input type="text" name="TxtFiltro1" id='TxtFiltro1' class='filters' value="<?php echo isset($_GET['val1'])?$_GET['val1']:"" ?>"/>
+		<input type="text" name="TxtFiltro1" id='TxtFiltro1' class='filters' value=""/>
 
 		<select name="SlcFiltro2" id='SlcFiltro2'>
 			<option value=''>Filtrar por</option>
 		</select>
-		<input type="text" name="TxtFiltro2" id='TxtFiltro2' class='filters' value="<?php echo isset($_GET['val2'])?$_GET['val2']:"" ?>"/>
+		<input type="text" name="TxtFiltro2" id='TxtFiltro2' class='filters' value=""/>
 
 		<select name="SlcFiltro3" id='SlcFiltro3'>
 			<option value=''>Filtrar por</option>
 		</select>
-		<input type="text" name="TxtFiltro3" id='TxtFiltro3' class='filters' value="<?php echo isset($_GET['val3'])?$_GET['val3']:"" ?>"/>
+		<input type="text" name="TxtFiltro3" id='TxtFiltro3' class='filters' value=""/>
 
 		<input type="hidden" name='controller' id="controller" value='aerolineas'>
 	</div>
@@ -128,9 +128,7 @@
 		</form>
 
 	<div class='clear'></div>
-	<div class="TblList">
-		<?php require_once("listas.phtml") ?>
-	</div>
+	<div class="TblList"><div metal:use-macro="view.clients_list['clients_list']"></div></div>
 </div>
 </div>
 </div></div>

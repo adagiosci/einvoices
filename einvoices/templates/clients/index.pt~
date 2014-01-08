@@ -23,17 +23,17 @@
 		<select name="SlcFiltro1" id='SlcFiltro1'>
 			<option value=''>Filtrar por</option>
 		</select>
-		<input type="text" name="TxtFiltro1" id='TxtFiltro1' class='filters' value="<?php echo isset($_GET['val1'])?$_GET['val1']:"" ?>"/>
+		<input type="text" name="TxtFiltro1" id='TxtFiltro1' class='filters' value=""/>
 
 		<select name="SlcFiltro2" id='SlcFiltro2'>
 			<option value=''>Filtrar por</option>
 		</select>
-		<input type="text" name="TxtFiltro2" id='TxtFiltro2' class='filters' value="<?php echo isset($_GET['val2'])?$_GET['val2']:"" ?>"/>
+		<input type="text" name="TxtFiltro2" id='TxtFiltro2' class='filters' value=""/>
 
 		<select name="SlcFiltro3" id='SlcFiltro3'>
 			<option value=''>Filtrar por</option>
 		</select>
-		<input type="text" name="TxtFiltro3" id='TxtFiltro3' class='filters' value="<?php echo isset($_GET['val3'])?$_GET['val3']:"" ?>"/>
+		<input type="text" name="TxtFiltro3" id='TxtFiltro3' class='filters' value=""/>
 
 		<input type="hidden" name='controller' id="controller" value='aerolineas'>
 	</div>
@@ -112,7 +112,7 @@
 	<select id='num_records' name='num_records' class='size6'>
 		<option value='20'>Registros</option>
 	</select>
-	<?php if($this->acl->isAllowed($this->role,null,"aerolineas_exportcsv")){ ?>
+
 		<form  action='/aerolineas/exportcsv/' id='form_export' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<p><input type='hidden' name='estado' id='export_estado' value='Activo'></p>
 			<p><input type='hidden' name='SlcFiltro1' id='export_SlcFiltro1' value=''></p>
@@ -126,11 +126,9 @@
 			<p><input type='hidden' name='controller' id='export_controller' value='aerolineas'></p>
 			<p class='export'><input type='submit' value='Exportar'  class='export'/></p>
 		</form>
-	<?php } ?>
+
 	<div class='clear'></div>
-	<div class="TblList">
-		<?php require_once("listas.phtml") ?>
-	</div>
+	<div class="TblList"><div metal:use-macro="view.clients_list['company_menu']"></div></div>
 </div>
 </div>
 </div></div>
