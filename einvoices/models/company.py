@@ -3,19 +3,13 @@ from sqlalchemy import (
     Index,
     Integer,
     Text,
+    String,
     )
 
-from sqlalchemy.ext.declarative import declarative_base
-
-from sqlalchemy.orm import (
-    scoped_session,
-    sessionmaker,
-    )
-
-from zope.sqlalchemy import ZopeTransactionExtension
-
-DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
-Base = declarative_base()
+from .meta import (
+	Base,
+	DBSession,
+)
 
 class Company(Base):
     __tablename__ = 'companies'

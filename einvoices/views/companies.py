@@ -9,7 +9,7 @@ from sqlalchemy.exc import DBAPIError
 
 from einvoices.models.company import (
     DBSession,
-    Company
+    Company,
     )
 
 class ProjectorCompanies(Layouts):
@@ -17,9 +17,9 @@ class ProjectorCompanies(Layouts):
 		self.request = request
         
 	@view_config(renderer=BASE_TMPL  + "companies/index.pt", name='companies')
-	def index_view(self):
-		companies = DBSession.query(Company).order_by(Company.id)
-		return {'aerolineas':aerolineas.all()}
+	def companies_view(self):
+		companies = DBSession.query(Company)
+		return {'companies':companies.all()}
 	@reify
 	def companies_list(self):
 		renderer = get_renderer(BASE_TMPL  + "companies/list.pt")

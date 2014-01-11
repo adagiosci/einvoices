@@ -10,10 +10,10 @@ class TestMyViewSuccessCondition(unittest.TestCase):
     def setUp(self):
         self.config = testing.setUp()
         from sqlalchemy import create_engine
-        engine = create_engine('mysql://')
+        engine = create_engine('sqlite://')
         from .models import (
             Base,
-            einvoices.models.models,
+            MyModel,
             )
         DBSession.configure(bind=engine)
         Base.metadata.create_all(engine)
@@ -40,7 +40,7 @@ class TestMyViewFailureCondition(unittest.TestCase):
         engine = create_engine('msyql://')
         from .models import (
             Base,
-            einvoices.models.models,
+            MyModel,
             )
         DBSession.configure(bind=engine)
 

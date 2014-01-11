@@ -17,6 +17,7 @@ from einvoices.models.models import (
     Base,
     )
 
+from einvoices.models.company import Company
 
 def usage(argv):
     cmd = os.path.basename(argv[0])
