@@ -9,7 +9,7 @@ done < backup.txt
 rm backup.txt
 
 
-find  ./ -iname "*~" > backup.txt
+find  ./ -iname "*pyc" > backup.txt
 while read line
 do
 	echo -e "$line\n"

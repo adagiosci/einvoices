@@ -17,7 +17,6 @@ from zope.sqlalchemy import ZopeTransactionExtension
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
-
 class Aerolinea(Base):
     __tablename__ = 'aerolineas'
     idaerolinea = Column(Integer, primary_key=True)
