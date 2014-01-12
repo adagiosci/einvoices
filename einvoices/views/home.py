@@ -13,15 +13,14 @@ from einvoices.models.company import (
     Company,
     )
 
-class ProjectorCompanies(Layouts):
+class ProjectorHome(Layouts):
 	def __init__(self, request):
 		self.request = request
         
-	@action(renderer=BASE_TMPL  + "companies/index.pt")
+	@action(renderer=BASE_TMPL  + "home/index.pt")
 	def index(self):
-		companies = DBSession.query(Company)
-		return {'companies':companies.all()}
-	@reify
-	def companies_list(self):
-		renderer = get_renderer(BASE_TMPL  + "companies/list.pt")
-		return renderer.implementation().macros
+		return {}
+	#@reify
+	#def companies_list(self):
+		#renderer = get_renderer(BASE_TMPL  + "companies/list.pt")
+		#return renderer.implementation().macros

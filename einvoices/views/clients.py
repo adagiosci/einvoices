@@ -14,7 +14,7 @@ from einvoices.models.models import (
     Aerolinea
     )
 
-class ClientsViews(Layouts):
+class ProjectorClients(Layouts):
 	def __init__(self, request):
 		self.request = request
         

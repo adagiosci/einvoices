@@ -9,7 +9,7 @@ from sqlalchemy.exc import DBAPIError
 
 from einvoices.models.user import (
     DBSession,
-    Users,
+    User,
     )
 
 class LoginViews(Layouts):
@@ -18,5 +18,5 @@ class LoginViews(Layouts):
 	
 	@view_config(renderer=BASE_TMPL + "login/login.pt", name='login')
 	def login_view (self):
-		users = DBSession.query(Users)
+		users = DBSession.query(User)
 		return {"users": users.all()}
