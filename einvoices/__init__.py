@@ -6,6 +6,8 @@ from models.meta import (
     Base
     )
 
+from views.companies import  ProjectorCompanies    
+    
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
@@ -13,8 +15,11 @@ def main(global_config, **settings):
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
     config = Configurator(settings=settings)
+    config.include('pyramid_handlers')
     config.include('pyramid_chameleon')
     config.add_static_view('static', 'static', cache_max_age=3600)
-    config.add_route('home', '/')
-    config.scan()
+    config.add_handler('companies', '/companies', handler= ProjectorCompanies, action='index')
+    #config.add_handler('companies', '/companies/{action}', handler= ProjectorCompanies)
+    #config.scan()
+    
     return config.make_wsgi_app()
