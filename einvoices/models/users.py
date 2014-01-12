@@ -11,7 +11,7 @@ from .meta import (
 	DBSession,
 )
 
-class Company(Base):
+class Users(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     email = Column(String(45))
