@@ -16,8 +16,8 @@ class Products_Services(Base):
 	id = Column(Integer, primary_key=True)
 	name = Column(String(100))
 	key = Column(String(45))
-	price = 
-	status = 
-	idcompany = 
-	idunidad =
+	#price = 
+	#status = 
+	#idcompany = 
+	#idunidad =
 	

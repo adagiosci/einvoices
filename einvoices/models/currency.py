@@ -11,5 +11,3 @@ from .meta import (
 	DBSession,
 )
 
-class Currency(Base):
-	
