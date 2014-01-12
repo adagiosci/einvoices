@@ -1,0 +1,33 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> -->
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:define-macro="layout">
+<head>
+	<link rel="stylesheet" href="/static/css/stylelogin.css"/>
+	<link rel="stylesheet" href="/static/css/library/jquery.ui.all.css"/>
+	<link rel="stylesheet" href="/static/css/library/jquery.jscrollpane.css"/>
+	<link rel="stylesheet" href="/static/css/library/upload/uploadify.css"/>
+	<script type="text/javascript" src="/static/js/library/jquery.js"></script>
+	<script type="text/javascript" src="/static/js/library/jquery.ui.core.js"></script>
+	<script type="text/javascript" src="/static/js/library/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="/static/js/library/jquery.ui.position.js"></script>
+	<script type="text/javascript" src="/static/js/library/jquery.autocomplete.js"></script>
+	<script type="text/javascript" src="/static/js/library/jquery.ui.datepicker.js"></script>
+	<script type="text/javascript" src="/static/js/library/jquery.uploadify-3.1.js"></script>
+	<script type="text/javascript" src="/static/js/library/jquery.validate.js"></script>
+	<script type="text/javascript" src="/static/js/library/fileuploader.js"></script>
+	<script type="text/javascript" src="/static/js/interactions.js"></script>
+	<title>Facturación Electronica</title>
+</head>
+<body>
+	<section class="container">
+	  <div class ="login">
+		<form method="post" action="index.html">
+			<p>Usuario:    <input type="text" name="username" value ="" placeholder="Username or Email"></p>
+			<p>Contraseña: <input type="password" name="contrasenia" value = "" placeholder="password"><br>
+			<p><input type="submit" value="Login">
+		</form>
+	  </div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<div metal:use-macro="view.global_template">
+    <div metal:fill-slot="content">
+        <p>Projector is a simple project management tool capable of hosting
+            multiple projects for multiple independent companies,
+            sharing a developer pool between autonomous companies.</p>
+            Usuario:    <input type="text" name="username"><br>
+            Contraseña: <input type="password" name="contrasenia"><br>
+            <input type="submit" value="Aceptar">
+           
+    </div>
+</div>
