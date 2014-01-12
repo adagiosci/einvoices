@@ -7,12 +7,12 @@ BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
 
-from einvoices.models.users import (
+from einvoices.models.user import (
     DBSession,
     Users,
     )
 
-class ProjectorLogin(Layouts):
+class LoginViews(Layouts):
 	def __init__(self, request):
 		self.request = request
 	
