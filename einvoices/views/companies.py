@@ -20,6 +20,8 @@ class ProjectorCompanies(Layouts):
 	@action(renderer=BASE_TMPL  + "companies/index.pt")
 	def index(self):
 		companies = DBSession.query(Company)
+		company = DBSession.query(Company).first()
+		print company.name
 		return {'companies':companies.all()}
 	@reify
 	def companies_list(self):

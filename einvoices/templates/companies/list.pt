@@ -11,19 +11,31 @@
 <div class='clear'></div>
 <table>
 	<tr class='titles'>
-		<th colspan='5'>Generales</th>
-		<th colspan='2'>Contrato</th>
-		<th colspan='3'>Acción</th>
+		<th colspan='7'>Generales</th>
+		<th colspan='2'>Acción</th>
 	</tr>
 	<tr class='titles'>
-		<th>Name</th>
-		<th>Ver</th>
+		<th>Id</th>
+		<th>Nombre</th>
+		<th>RFC</th>
+		<th>Dirección</th>
+		<th>CP</th>
+		<th>Razon Social</th>
+		<th>CURP</th>
 		<th>Editar</th>
 		<th>Estado</th>
 	</tr>
 	<?python color = 'trgreen2' ?>
 	<tr tal:repeat="row companies" class='${color}'>
+		<td>${row.id}</td>
 		<td>${row.name}</td>
+		<td>${row.rfc}</td>
+		<td>${row.address}</td>
+		<td>${row.cp}</td>
+		<td>${row.corporateName}</td>
+		<td>${row.curp}</td>
+		<td><a href='/companies/edit/${row.id}'>Editar</a></td>
+		<td><a href='/companies/delete/${row.id}'>Eliminar<a></td>
 		<?python
 			if color=='trgreen2':
 				color = ''
