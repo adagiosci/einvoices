@@ -13,7 +13,7 @@ from einvoices.models.company import (
     Company,
     )
 
-class ProjectorCompanies(Layouts):
+class CompaniesViews(Layouts):
 	def __init__(self, request):
 		self.request = request
 		
