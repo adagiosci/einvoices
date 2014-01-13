@@ -3,6 +3,7 @@ from pyramid_handlers import action
 from pyramid.response import Response
 from pyramid.decorator import reify
 from pyramid.view import view_config
+from pyramid.httpexceptions import HTTPFound
 from layouts import Layouts
 BASE_TMPL = 'einvoices:templates/'
 
@@ -27,3 +28,16 @@ class ProjectorCompanies(Layouts):
 	def companies_list(self):
 		renderer = get_renderer(BASE_TMPL  + "companies/list.pt")
 		return renderer.implementation().macros
+		
+	@action()
+	def insert(self):
+		company = Company(name = self.request.POST['name'] 
+				,rfc = self.request.POST['rfc']
+				,address = self.request.POST['address']
+				,cp = self.request.POST['cp']
+				,corporateName = self.request.POST['corporateName']
+				,curp = self.request.POST['curp']
+			)
+		DBSession.add(company)
+		#DBSession.commit()
+		return HTTPFound(location='/companies')

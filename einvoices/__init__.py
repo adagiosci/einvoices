@@ -21,7 +21,8 @@ def main(global_config, **settings):
     config.include('pyramid_chameleon')
     config.add_static_view('static', 'static', cache_max_age=3600)
     config.add_handler('home', '/', handler= ProjectorHome, action='index')
-    config.add_handler('companies', '/companies', handler= ProjectorCompanies, action='index')
+    config.add_handler('companies_index', '/companies', handler= ProjectorCompanies, action='index')
+    config.add_handler('companies_insert', '/companies/insert', handler= ProjectorCompanies, action='insert')
     #config.add_handler('companies', '/companies/{action}', handler= ProjectorCompanies)
     #config.scan()
     
