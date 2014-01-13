@@ -28,8 +28,10 @@
 	<div class='clear'></div>
 	<div class='submenu'>
 		<a class='' href='/companies'>Companias</a>
+		<a class='' href='/users'>Usuarios</a>
 		<div class="clear"></div>
 	</div>
+	
 	
 	<div class='clear'></div>
 	<div id='red-line'></div>
