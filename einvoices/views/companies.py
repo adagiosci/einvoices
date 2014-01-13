@@ -41,4 +41,10 @@ class ProjectorCompanies(Layouts):
 		DBSession.add(company)
 		#DBSession.commit()
 		return HTTPFound(location='/companies')
-	def remove
+		
+	@action()
+	def delete(self):
+		company_id = self.request.GET['id']; 
+		company = DBSession.query(Company).filter_by(id=company_id)
+		DBSession.delete(company)
+		return HTTPFound(location='/companies')	
