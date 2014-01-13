@@ -5,7 +5,7 @@ from models.meta import (
     DBSession,
     Base
     )
-
+    
 from views.companies import  ProjectorCompanies
 from views.home import  ProjectorHome
     
@@ -22,11 +22,12 @@ def main(global_config, **settings):
     config.add_static_view('static', 'static', cache_max_age=3600)
     
     #home URL's
-    
     config.add_handler('home', '/', handler= ProjectorHome, action='index')
     
     #companies URL's
-    config.add_handler('companies_index', '/companies', handler= ProjectorCompanies, action='index')    
+    config.add_handler('companies_index', '/companies', handler= ProjectorCompanies, action='index')
+    config.add_handler('companies_indexm', '/companies/m={m}', handler= ProjectorCompanies, action='index') 
+    config.add_handler('companies_indexe', '/companies/e={e}', handler= ProjectorCompanies, action='index')
     config.add_handler('companies_action', '/companies/{action}', handler= ProjectorCompanies)
     config.add_handler('companies_action_id', '/companies/{action}/{id}', handler= ProjectorCompanies)
        

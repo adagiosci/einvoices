@@ -33,7 +33,8 @@
 	<div class='clear'></div>
 	<div id='red-line'></div>
 	<div id='message'>
-
+		<a tal:condition="msj['s']" href='#'>X</a><p class='success'>${msj['s']}</p>
+		<a tal:condition="msj['e']" href='#'>X</a><p class='error'>${msj['e']}</p>
 	</div>
 	<div class='clear'></div>	
 
