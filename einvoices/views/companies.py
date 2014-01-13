@@ -21,9 +21,15 @@ class ProjectorCompanies(Layouts):
 	@action(renderer=BASE_TMPL  + "companies/index.pt")
 	def index(self):
 		companies = DBSession.query(Company)
-		company = DBSession.query(Company).first()
-		print company.name
 		return {'companies':companies.all()}
+		
+	@action(renderer=BASE_TMPL  + "companies/edit.pt")
+	def edit(self):
+		companies = DBSession.query(Company)
+		company_id = self.request.matchdict['id']
+		entry = DBSession.query(Company).filter_by(id=company_id).first()
+		return {'entry':entry,'companies':companies}
+	
 	@reify
 	def companies_list(self):
 		renderer = get_renderer(BASE_TMPL  + "companies/list.pt")
@@ -41,10 +47,21 @@ class ProjectorCompanies(Layouts):
 		DBSession.add(company)
 		#DBSession.commit()
 		return HTTPFound(location='/companies')
-		
+	@action()
+	def update(self):
+		company = DBSession.query(Company).filter_by(id=self.request.POST['company_id']).update({
+													 'name': self.request.POST['name']
+													,'rfc': self.request.POST['rfc']
+													,'address': self.request.POST['address']
+													,'cp': self.request.POST['cp']
+													,'corporateName': self.request.POST['corporateName']
+													,'curp': self.request.POST['curp']
+													})
+		return HTTPFound(location='/companies')
+	
 	@action()
 	def delete(self):
-		company_id = self.request.GET['id']; 
-		company = DBSession.query(Company).filter_by(id=company_id)
-		DBSession.delete(company)
+		company_id = self.request.matchdict['id'] 
+		company = DBSession.query(Company).filter_by(id=company_id).delete()
+		#DBSession.delete(company)
 		return HTTPFound(location='/companies')	
