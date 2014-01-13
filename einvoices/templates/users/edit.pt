@@ -1,0 +1,99 @@
+<div metal:use-macro="view.global_template"><div metal:fill-slot="content" class='container'>
+<div class='center'>
+	<div class='opciones'>
+		<a href='#' class='agregar'>Nuevo</a>
+		<a href='#' class='filtrar'>Filtrar</a>
+	</div>
+	<div class='clear'></div>
+	<div class="InputsFind hidden">
+
+		<div class='inline'>
+			<p><label for='estado'>Estado</label></p>
+			<p>
+				<select id='estado' name='estado'>
+					<option value='Activo'>Activo</option>
+					<option value='Inactivo'>Inactivo</option>
+					<option value='IAll'>Todos</option>
+				</select>
+			</p>
+		</div>
+		<div class='clear'></div>
+
+		<select name="SlcFiltro1" id='SlcFiltro1'>
+			<option value=''>Filtrar por</option>
+		</select>
+		<input type="text" name="TxtFiltro1" id='TxtFiltro1' class='filters' value=""/>
+
+		<select name="SlcFiltro2" id='SlcFiltro2'>
+			<option value=''>Filtrar por</option>
+		</select>
+		<input type="text" name="TxtFiltro2" id='TxtFiltro2' class='filters' value=""/>
+
+		<select name="SlcFiltro3" id='SlcFiltro3'>
+			<option value=''>Filtrar por</option>
+		</select>
+		<input type="text" name="TxtFiltro3" id='TxtFiltro3' class='filters' value=""/>
+
+		<input type="hidden" name='controller' id="controller" value='aerolineas'>
+	</div>
+	<div class='clear'></div>
+	<div class="NewInputs">
+		<form class="form" action='/users/update' method='post' accept-charset='utf-8' enctype="multipart/form-data">
+			<div class='colum1'>
+
+				<p><label for='email'>Email*</label></p>
+				<p><input type="text" name="email" id='email' value="${entry.email}" class="required"/></p>
+				
+				<p><label for='password'>PAssword*</label></p>
+				<p><input type="text" name="password" value="${entry.password}" id='password' class="required"/></p>
+
+				<p><label for='first_name'>First-Name*</label></p>
+				<p><input type="text" name="first_name" value="${entry.first_name}" id='first_name' class="required"/></p>
+
+				<p><label for='second_name'>Second Name*</label></p>
+				<p><input type="text" name="second_name" value="${entry.second_name}" id='second_name' class="required"/></p>
+
+			</div>
+			<div class='colum2'>
+
+				<p><label for='last_name'>Last Name*</label></p>
+				<p><input type="text" name="last_name" id='last_name' value="${entry.last_name}" class="required"/></p>
+				
+				<p><label for='mother_name'>Mother Name*</label></p>
+				<p><input type="text" name="mother_name" id='mother_name' value="${entry.mother_name}" class="required"/></p>
+				
+				<p><input type='hidden' value='${entry.id}' name='user_id' id='user_id' /></p>
+				<p><input type="submit" value="Guardar" class="new submit"/></p>
+			
+			</div>
+			<div class='colum3'>
+
+			</div>
+			<div class='colum3'>
+
+			</div>
+		</form>
+	</div>
+	<div class='clear'></div>
+	<select id='num_records' name='num_records' class='size6'>
+		<option value='20'>Registros</option>
+	</select>
+
+		<form  action='/aerolineas/exportcsv/' id='form_export' method='post' accept-charset='utf-8' enctype="multipart/form-data">
+			<p><input type='hidden' name='estado' id='export_estado' value='Activo'></p>
+			<p><input type='hidden' name='SlcFiltro1' id='export_SlcFiltro1' value=''></p>
+			<p><input type='hidden' name='TxtFiltro1' id='export_TxtFiltro1' value=''></p>
+			<p><input type='hidden' name='SlcFiltro2' id='export_SlcFiltro2' value=''></p>
+			<p><input type='hidden' name='TxtFiltro2' id='export_TxtFiltro2' value=''></p>
+			<p><input type='hidden' name='SlcFiltro3' id='export_SlcFiltro3' value=''></p>
+			<p><input type='hidden' name='TxtFiltro3' id='export_TxtFiltro3' value=''></p>
+			<p><input type='hidden' name='desde' id='export_desde' value=''></p>
+			<p><input type='hidden' name='hasta' id='export_hasta' value=''></p>
+			<p><input type='hidden' name='controller' id='export_controller' value='aerolineas'></p>
+			<p class='export'><input type='submit' value='Exportar'  class='export'/></p>
+		</form>
+
+	<div class='clear'></div>
+	<div class="TblList"><div metal:use-macro="view.users_list['users_list']"></div></div>
+</div>
+</div></div>

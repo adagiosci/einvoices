@@ -8,8 +8,7 @@ from models.meta import (
     
 from views.companies import  ProjectorCompanies
 from views.home import  ProjectorHome
-from views.users import ProjectorUsers
-
+    
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
@@ -25,18 +24,17 @@ def main(global_config, **settings):
     #home URL's
     config.add_handler('home', '/', handler= ProjectorHome, action='index')
     
-    #users URL's
-    config.add_handler('users_index','/users', handler = ProjectorUsers, action='index')
-    config.add_handler('users_indexm','/users/m={m}', handler = ProjectorUsers, action = 'index')
-    config.add_handler('users_indexe', '/users/e={e}', handler = ProjectorUsers, action = 'index')
-    config.add_handler('users_action','/users/{action}', handler = ProjectorUsers)
-    config.add_handler('users_action_id','/users/{action}/{id}', handler = ProjectorUsers)
-    
     #companies URL's
     config.add_handler('companies_index', '/companies', handler= ProjectorCompanies, action='index')
     config.add_handler('companies_indexm', '/companies/m={m}', handler= ProjectorCompanies, action='index') 
     config.add_handler('companies_indexe', '/companies/e={e}', handler= ProjectorCompanies, action='index')
     config.add_handler('companies_action', '/companies/{action}', handler= ProjectorCompanies)
     config.add_handler('companies_action_id', '/companies/{action}/{id}', handler= ProjectorCompanies)
-       
-    return config.make_wsgi_app()
+    #users URL's
+    #config.add_handler('users_index','/users', handler = ProjectorUsers, action = 'index')
+    #config.add_handler('users_indexm','/users/m={m}', handler = ProjectorUsers, action = 'index')
+    #config.add_handler('users_indexe','/users/e={e}', handler = ProjectorUsers, action = 'index')
+    #config.add_handler('users_action', '/users/{action}', handler = ProjectorUsers)
+    #config.add_handler('users_action_id','/users/{action}/{id}', handler = ProjectorUsers)
+    
+    return config.wake_wsgi_app()
