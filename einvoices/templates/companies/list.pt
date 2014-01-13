@@ -22,8 +22,8 @@
 		<th>CP</th>
 		<th>Razon Social</th>
 		<th>CURP</th>
-		<th>Editar</th>
-		<th>Estado</th>
+		<th class='global-td'>Editar</th>
+		<th class='global-td'>Estado</th>
 	</tr>
 	<?python color = 'trgreen2' ?>
 	<tr tal:repeat="row companies" class='${color}'>
