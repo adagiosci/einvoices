@@ -4,6 +4,7 @@ from pyramid.response import Response
 from pyramid.decorator import reify
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
+import webhelpers.paginate
 from layouts import Layouts
 BASE_TMPL = 'einvoices:templates/'
 
@@ -18,11 +19,24 @@ class ProjectorCompanies(Layouts):
 	def __init__(self, request):
 		self.request = request
                 
+        def insertdb(self):
+		for i in range(100000):
+			company = Company(name = 'manglesoft' 
+				,rfc = 'x'
+				,address = 'x'
+				,cp = 'x'
+				,corporateName = 'x'
+				,curp = 'x'
+			)			
+			DBSession.add(company)
+                
 	@action(renderer=BASE_TMPL  + "companies/index.pt")
 	def index(self):
+		#self.insertdb()
 		msj = self.message();
 		companies = DBSession.query(Company)
-		return {'companies':companies.all(),'msj':msj}
+		page2 = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
+		return {'companies':page2,'msj':msj}
 		
 	@action(renderer=BASE_TMPL  + "companies/edit.pt")
 	def edit(self):
@@ -30,7 +44,8 @@ class ProjectorCompanies(Layouts):
 		companies = DBSession.query(Company)
 		company_id = self.request.matchdict['id']
 		entry = DBSession.query(Company).filter_by(id=company_id).first()
-		return {'entry':entry,'companies':companies,'msj':msj}
+		page2 = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
+		return {'entry':entry,'companies':page2,'msj':msj}
 	
 	@reify
 	def companies_list(self):
@@ -65,7 +80,6 @@ class ProjectorCompanies(Layouts):
 	def delete(self):
 		company_id = self.request.matchdict['id'] 
 		company = DBSession.query(Company).filter_by(id=company_id).delete()
-		#DBSession.delete(company)
 		return HTTPFound(location='/companies/m=rdc')
 		
 	def errormsj(self,code):
@@ -81,6 +95,7 @@ class ProjectorCompanies(Layouts):
 		message['ric'] = "El registro se inserto exitosamente"
 		message['rdc'] = "El registro se elimino exitosamente"
 		return message[code]
+		
 	def message(self):
 		msj = {}
 		msj['e'] = ''

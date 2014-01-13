@@ -7,13 +7,13 @@
     <title>Macros</title>
 </head>
 <body><metal:company_menu define-macro="company_menu"><div class="container">
-	<div class="img-logo"><a href='/'><img src="${request.static_url('einvoices:static/imgs/swissport_logo.gif')}" alt="swissport_logo" /></a></div>
+	<div class="img-logo"><a href='/'>FACTURACIÓN ELECTRONICA</a></div>
 	<div class='questions'>
-			<p class='bold'>Para reportar cualquier Bug o aclarar alguna duda:
-				<a href='mailto:irving.sci@gmail.com'>e-mail:irving.sci@gmail.com</a>
-				<br />
-				<a href='#'>Tel. Cel. 9981259528</a>
-			</p>
+<!-- 			<p class='bold'>Para reportar cualquier Bug o aclarar alguna duda: -->
+<!-- 				<a href='mailto:irving.sci@gmail.com'>e-mail:irving.sci@gmail.com</a> -->
+<!-- 				<br /> -->
+<!-- 				<a href='#'>Tel. Cel. 9981259528</a> -->
+<!-- 			</p> -->
 	</div>
 	<div class='clear'></div>
 	<div class='options'>

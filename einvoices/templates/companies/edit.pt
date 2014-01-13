@@ -1,7 +1,7 @@
 <div metal:use-macro="view.global_template"><div metal:fill-slot="content" class='container'>
 <div class='center'>
 	<div class='opciones'>
-		<a href='#' class='agregar'>Nuevo</a>
+		<a href='#' class='agregar'>Editar</a>
 		<a href='#' class='filtrar'>Filtrar</a>
 	</div>
 	<div class='clear'></div>
@@ -63,7 +63,7 @@
 				<p><input type="text" name="curp" id='curp' value="${entry.curp}" class="required"/></p>
 				
 				<p><input type='hidden' value='${entry.id}' name='company_id' id='company_id' /></p>
-				<p><input type="submit" value="Guardar" class="new submit"/></p>
+				<p><input type="submit" value="Guardar" class="new submit"/> <a href="/companies" class='back'>Cancelar</a> </p>
 			
 			</div>
 			<div class='colum3'>
