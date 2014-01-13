@@ -30,7 +30,7 @@ class ProjectorCompanies(Layouts):
 		return renderer.implementation().macros
 		
 	@action()
-	def insert(self):
+	def create(self):
 		company = Company(name = self.request.POST['name'] 
 				,rfc = self.request.POST['rfc']
 				,address = self.request.POST['address']
@@ -41,3 +41,4 @@ class ProjectorCompanies(Layouts):
 		DBSession.add(company)
 		#DBSession.commit()
 		return HTTPFound(location='/companies')
+	def remove

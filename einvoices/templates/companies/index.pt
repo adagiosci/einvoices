@@ -38,7 +38,7 @@
 	</div>
 	<div class='clear'></div>
 	<div class="NewInputs hidden">
-		<form class="form" action='/companies/insert' method='post' accept-charset='utf-8' enctype="multipart/form-data">
+		<form class="form" action='/companies/create' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
 
 				<p><label for='name'>Nombre*</label></p>
