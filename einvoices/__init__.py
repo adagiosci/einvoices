@@ -5,7 +5,7 @@ from models.meta import (
     DBSession,
     Base
     )
-    
+from views.unidades import ProjectorUnidades     
 from views.companies import  ProjectorCompanies
 from views.home import  ProjectorHome
 from views.users import ProjectorUsers
@@ -38,5 +38,12 @@ def main(global_config, **settings):
     config.add_handler('companies_indexe', '/companies/e={e}', handler= ProjectorCompanies, action='index')
     config.add_handler('companies_action', '/companies/{action}', handler= ProjectorCompanies)
     config.add_handler('companies_action_id', '/companies/{action}/{id}', handler= ProjectorCompanies)
+    
+    #unidades URL's
+    config.add_handler('unidades_index','/unidades', handler = ProjectorUnidades, action='index')
+    config.add_handler('unidades_indexm','/unidades/m={m}', handler = ProjectorUnidades, action = 'index')
+    config.add_handler('unidades_indexe', '/unidades/e={e}', handler = ProjectorUnidades, action = 'index')
+    config.add_handler('unidades_action','/unidades/{action}', handler = ProjectorUnidades)
+    config.add_handler('unidades_action_id','/unidades/{action}/{id}', handler = ProjectorUnidades)
        
     return config.make_wsgi_app()

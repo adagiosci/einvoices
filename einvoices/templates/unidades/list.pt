@@ -4,7 +4,7 @@
 <head>
     <title>Macros</title>
 </head>
-<body><metal:users_list define-macro="users_list">
+<body><metal:unidades_list define-macro="unidades_list">
 <div class='clear'></div>
 <br />
 <p class='text-right'><span class='bold'>10</span> registros de <span class='bold'>100</span> registros encontrados</p>
@@ -16,24 +16,19 @@
 	</tr>
 	<tr class='titles'>
 		<th>Id</th>
-		<th>Email</th>
-		<th>PAssword</th>
-		<th>First Name</th>
-		<th>SEcond Name</th>
-		<th>Last Name</th>
-		<th>Mother Name</th>
+		<th>Clave</th>
+		<th>Descripcion</th>
+		<th>IDCompany</th>
+		
 		<th class='global-td'>Editar</th>
 		<th class='global-td'>Estado</th>
 	</tr>
 	<?python color = 'trgreen2' ?>
-	<tr tal:repeat="row users" class='${color}'>
+	<tr tal:repeat="row unidades" class='${color}'>
 		<td>${row.id}</td>
-		<td>${row.email}</td>
-		<td>${row.password}</td>
-		<td>${row.first_name}</td>
-		<td>${row.second_name}</td>
-		<td>${row.last_name}</td>
-		<td>${row.mother_name}</td>
+		<td>${row.clave}</td>
+		<td>${row.description}</td>
+		<td>${row.idcompany}</td>
 		
 		<td><a href='/users/edit/${row.id}'>Editar</a></td>
 		<td><a href='/users/delete/${row.id}'>Eliminar<a></td>
@@ -42,9 +37,8 @@
 				color = ''
 			else:
 				color = 'trgreen2'
-		?> 
-		
+		?>
 	</tr>
 </table>
-</metal:users_list></body>
+</metal:unidades_list></body>
 </html>
