@@ -11,14 +11,14 @@
 <div class='clear'></div>
 <table>
 	<tr class='titles'>
-		<th colspan='7'>Generales</th>
+		<th colspan='4'>Generales</th>
 		<th colspan='2'>Acción</th>
 	</tr>
 	<tr class='titles'>
 		<th>Id</th>
 		<th>Clave</th>
+		<th>Empresa</th>
 		<th>Descripcion</th>
-		<th>IDCompany</th>
 		
 		<th class='global-td'>Editar</th>
 		<th class='global-td'>Estado</th>

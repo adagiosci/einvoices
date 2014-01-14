@@ -45,7 +45,7 @@ class ProjectorUnidades(Layouts):
 	@action()
 	def create(self):
 		unidad = Unidad(clave = self.request.POST['clave'] 
-				,desciption = self.request.POST['description']
+				,description = self.request.POST['description']
 				,idcompany = self.request.POST['idcompany']
 			)
 		DBSession.add(unidad)

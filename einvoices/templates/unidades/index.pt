@@ -43,15 +43,16 @@
 
 				<p><label for='clave'>Clave*</label></p>
 				<p><input type="text" name="clave" id='clave' value="" class="required"/></p>
-				
-				<p><label for='description'>Descripcion*</label></p>
-				<p><input type="text" name="description" value="" id='description' class="required"/></p>
-				
-				<p><label for='idcompany'>ID Company*</label></p>
-				
-				<select name='idcompany' id='idcompany'>
+								
+				<p><label for='idcompany'>Empresa*</label></p>
+				<select name='idcompany' id='idcompany' class='required'>
+					<option value=''></option>
 					<option tal:repeat="row companies" value="${row.id}">${row.name}</option>
 				</select>
+				
+				<p><label for='description'>Descripcion*</label></p>
+				<p><input type='text' name="description" id='description' class="required" /></p>
+				
 			<p><input type="submit" value="Guardar" class="new submit"/></p>	
 			</div>
 			
