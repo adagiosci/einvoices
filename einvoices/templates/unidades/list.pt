@@ -27,8 +27,8 @@
 	<tr tal:repeat="row unidades" class='${color}'>
 		<td>${row.id}</td>
 		<td>${row.clave}</td>
+		<td>${row.company.name}</td>
 		<td>${row.description}</td>
-		<td>${row.idcompany}</td>
 		
 		<td><a href='/users/edit/${row.id}'>Editar</a></td>
 		<td><a href='/users/delete/${row.id}'>Eliminar<a></td>

@@ -4,12 +4,14 @@ from sqlalchemy import (
     Integer,
     Text,
     String,
+    ForeignKey,
     )
 
 from .meta import (
 	Base,
 	DBSession,
 )
+from sqlalchemy.orm import relationship, backref
 
 class Company(Base):
     __tablename__ = 'companies'
@@ -20,3 +22,4 @@ class Company(Base):
     cp = Column(String(10))
     corporateName = Column(String(100))
     curp = Column(String(45))
+

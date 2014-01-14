@@ -14,7 +14,6 @@ from einvoices.models.company import (
 from einvoices.models.unidad import (
     DBSession,
     Unidad,
-    
     )
 
 class ProjectorUnidades(Layouts):

@@ -14,7 +14,6 @@ from einvoices.models.company import (
     DBSession,
     Company,
     )
-
 class ProjectorCompanies(Layouts):
 	def __init__(self, request):
 		self.request = request
@@ -35,8 +34,8 @@ class ProjectorCompanies(Layouts):
 		#self.insertdb()
 		msj = self.message();
 		companies = DBSession.query(Company)
-		page2 = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
-		return {'companies':page2,'msj':msj}
+		page = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
+		return {'companies':page,'msj':msj}
 		
 	@action(renderer=BASE_TMPL  + "companies/edit.pt")
 	def edit(self):
@@ -44,8 +43,8 @@ class ProjectorCompanies(Layouts):
 		companies = DBSession.query(Company)
 		company_id = self.request.matchdict['id']
 		entry = DBSession.query(Company).filter_by(id=company_id).first()
-		page2 = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
-		return {'entry':entry,'companies':page2,'msj':msj}
+		page = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
+		return {'entry':entry,'companies':page,'msj':msj}
 	
 	@reify
 	def companies_list(self):

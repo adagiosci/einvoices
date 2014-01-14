@@ -28,7 +28,6 @@
 	<?python color = 'trgreen2' ?>
 	<tr tal:repeat="row companies" class='${color}'>
 		<td>${row.id}</td>
-		<td>${row.name}</td>
 		<td>${row.rfc}</td>
 		<td>${row.address}</td>
 		<td>${row.cp}</td>
