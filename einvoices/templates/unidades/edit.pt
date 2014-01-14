@@ -41,19 +41,19 @@
 		<form class="form" action='/unidades/update' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
 
-				<p><label for='clave'>clave*</label></p>
+				<p><label for='clave'>Clave*</label></p>
 				<p><input type="text" name="clave" id='clave' value="${entry.clave}" class="required"/></p>
+								
+				<p><label for='idcompany'>Empresa*</label></p>
+				<select name='idcompany' id='idcompany' class='required'>
+					<option value=''></option>
+					<option tal:repeat="entry companies" value="${entry.id}">${entry.name}</option>
+				</select>
 				
 				<p><label for='description'>Descripcion*</label></p>
-				<p><input type="text" name="description" value="${entry.description}" id='password' class="required"/></p>
-
-				<select>
-					<option value="${entry.companies_id}">${entry.companies_id}</option>option>
-				</select>
-
-			</div>
-			
-
+				<p><input type='text' name="description" value="${entry.description}" id='description' class="required" /></p>
+					
+				<p><input type="submit" value="Guardar" class="new submit"/></p>	
 			</div>
 		</form>
 	</div>
