@@ -9,6 +9,7 @@ from views.unidades import ProjectorUnidades
 from views.companies import  ProjectorCompanies
 from views.home import  ProjectorHome
 from views.users import ProjectorUsers
+from views.suppliers import ProjectorSuppliers
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
@@ -45,5 +46,13 @@ def main(global_config, **settings):
     config.add_handler('unidades_indexe', '/unidades/e={e}', handler = ProjectorUnidades, action = 'index')
     config.add_handler('unidades_action','/unidades/{action}', handler = ProjectorUnidades)
     config.add_handler('unidades_action_id','/unidades/{action}/{id}', handler = ProjectorUnidades)
+    
+    #suppliers URL's
+    #companies URL's
+    config.add_handler('suppliers_index', '/suppliers', handler= ProjectorSuppliers, action='index')
+    config.add_handler('suppliers_indexm', '/suppliers/m={m}', handler= ProjectorSuppliers, action='index') 
+    config.add_handler('suppliers_indexe', '/suppliers/e={e}', handler= ProjectorSuppliers, action='index')
+    config.add_handler('suppliers_action', '/suppliers/{action}', handler= ProjectorSuppliers)
+    config.add_handler('suppliers_action_id', '/suppliers/{action}/{id}', handler= ProjectorSuppliers)
        
     return config.make_wsgi_app()
