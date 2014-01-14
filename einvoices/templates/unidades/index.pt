@@ -49,10 +49,8 @@
 				
 				<p><label for='idcompany'>ID Company*</label></p>
 				
-				<select>
-				<tr tal:repeat="row companies">
-					<option value="${row.id}">${row.id}</option>option>
-					</tr>
+				<select name='idcompany' id='idcompany'>
+					<option tal:repeat="row companies" value="${row.id}">${row.name}</option>
 				</select>
 			<p><input type="submit" value="Guardar" class="new submit"/></p>	
 			</div>
