@@ -22,4 +22,5 @@ class Company(Base):
     cp = Column(String(10))
     corporateName = Column(String(100))
     curp = Column(String(45))
+    #units = relationship("Unidad", order_by="Unidad.id", backref="company") relacion uno a muchos
 

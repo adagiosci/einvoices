@@ -14,8 +14,11 @@ class ProjectorHome(Layouts):
         
 	@action(renderer=BASE_TMPL  + "home/index.pt")
 	def index(self):
-		return {}
-	#@reify
-	#def companies_list(self):
-		#renderer = get_renderer(BASE_TMPL  + "companies/list.pt")
-		#return renderer.implementation().macros
+		msj = self.message()
+		return {'msj':msj}
+		
+	def message(self):
+		msj = {}
+		msj['e'] = ''
+		msj['s'] = ''			
+		return msj

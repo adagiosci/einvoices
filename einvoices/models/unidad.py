@@ -22,5 +22,5 @@ class Unidad(Base):
 	clave = Column(String(20))
 	description = Column(Text)
 	idcompany = Column(Integer,ForeignKey('companies.id'))
-	company = relationship("Company", backref=backref('units', order_by=id))
+	company = relationship("Company", backref=backref('units', order_by=id)) #relacion muchos a uno
 
