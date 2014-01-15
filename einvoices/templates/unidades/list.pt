@@ -30,8 +30,8 @@
 		<td>${row.company.name}</td>
 		<td>${row.description}</td>
 		
-		<td><a href='/users/edit/${row.id}'>Editar</a></td>
-		<td><a href='/users/delete/${row.id}'>Eliminar<a></td>
+		<td><a href='/unidades/edit/${row.id}'>Editar</a></td>
+		<td><a href='/unidades/delete/${row.id}'>Eliminar<a></td>
 		<?python
 			if color=='trgreen2':
 				color = ''

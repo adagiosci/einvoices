@@ -37,23 +37,63 @@
 		<input type="hidden" name='controller' id="controller" value='aerolineas'>
 	</div>
 	<div class='clear'></div>
-	<div class="NewInputs">
-		<form class="form" action='/unidades/update' method='post' accept-charset='utf-8' enctype="multipart/form-data">
+	<div class="NewInputs hidden">
+		<form class="form" action='/suppliers/create' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
 
-				<p><label for='clave'>Clave*</label></p>
-				<p><input type="text" name="clave" id='clave' value="${entry.clave}" class="required"/></p>
-								
-				<p><label for='idcompany'>Empresa*</label></p>
-				<select name='idcompany' id='idcompany' class='required'>
-					<option value=''></option>
-					<option tal:repeat="entry companies" value="${entry.id}">${entry.name}</option>
-				</select>
+				<p><label for='rfc'>RFC*</label></p>
+				<p><input type="text" name="rfc" id='rfc' value="" class="required"/></p>
 				
-				<p><label for='description'>Descripcion*</label></p>
-				<p><input type='text' name="description" value="${entry.description}" id='description' class="required" /></p>
-					
-				<p><input type="submit" value="Guardar" class="new submit"/></p>	
+				<p><label for='contacto'>Contacto*</label></p>
+				<p><input type="text" name="contacto" value="" id='contacto' class="required"/></p>
+
+				<p><label for='noExterior'>No. Exterior*</label></p>
+				<p><input type="text" name="noExterior" value="" id='noExterior' class="required"/></p>
+
+				<p><label for='colonia'>Colonia*</label></p>
+				<p><input type="text" name="colonia" value="" id='colonia' class="required"/></p>
+				
+				<p><label for='localidad'>Localidad*</label></p>
+				<p><input type="text" name="localidad" value="" id='localidad' class="required"/></p>
+				
+				<p><label for='pais'>Pais*</label></p>
+				<p><input type="text" name="pais" value="" id='pais' class="required"/></p>
+				
+				<p><label for='cp'>C.P.*</label></p>
+				<p><input type="text" name="cp" value="" id='cp' class="required"/></p>
+
+			</div>
+			<div class='colum2'>
+
+				<p><label for='razonsocial'>Razon Social*</label></p>
+				<p><input type="text" name="razonsocial" id='razonsocial' value="" class="required"/></p>
+				
+				<p><label for='calle'>Calle*</label></p>
+				<p><input type="text" name="calle" id='calle' value="" class="required"/></p>
+				
+				<p><label for='noInterior'>No. Interior*</label></p>
+				<p><input type="text" name="noInterior" value="" id='noInterior' class="required"/></p>
+				
+				<p><label for='referencia'>Referencia*</label></p>
+				<p><input type="text" name="referencia" value="" id='referencia' class="required"/></p>
+				
+				<p><label for='municipio'>Municipio*</label></p>
+				<p><input type="text" name="municipio" value="" id='municipio' class="required"/></p>
+				
+				<p><label for='estado'>Estado*</label></p>
+				<p><input type="text" name="estado" value="" id='estado' class="required"/></p>
+				
+				<p><label for='email'>Email*</label></p>
+				<p><input type="text" name="email" value="" id='email' class="required"/></p>
+				
+				<p><input type="submit" value="Guardar" class="new submit"/></p>
+			
+			</div>
+			<div class='colum3'>
+
+			</div>
+			<div class='colum3'>
+
 			</div>
 		</form>
 	</div>
@@ -77,6 +117,6 @@
 		</form>
 
 	<div class='clear'></div>
-	<div class="TblList"><div metal:use-macro="view.unidades_list['unidades_list']"></div></div>
+	<div class="TblList"><div metal:use-macro="view.supp_list['supp_list']"></div></div>
 </div>
 </div></div>
