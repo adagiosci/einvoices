@@ -18,7 +18,10 @@ requires = [
     'zope.sqlalchemy',
     'waitress',
     'mysql-python',
-    'pyramid_handlers'
+    'pyramid_handlers',
+    'WebTest',
+    'nose',
+    'webhelpers'
     ]
 
 setup(name='einvoices',
