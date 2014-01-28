@@ -17,7 +17,8 @@ requires = [
     'transaction',
     'zope.sqlalchemy',
     'waitress',
-    'mysql-python'
+    'mysql-python',
+    'pyramid_handlers'
     ]
 
 setup(name='einvoices',
