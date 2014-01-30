@@ -40,27 +40,32 @@
 	<div class="NewInputs">
 		<form class="form" action='/companies/update' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
-
+			
 				<p><label for='name'>Nombre*</label></p>
 				<p><input type="text" name="name" id='name' value="${entry.name}" class="required"/></p>
 				
+				<p><label for='cp'>Razón Social*</label></p>
+				<p><input type="text" name="corporateName" value="${entry.corporateName}" id='cp' class="required"/></p>
+				
 				<p><label for='rfc'>RFC*</label></p>
 				<p><input type="text" name="rfc" value="${entry.rfc}" id='rfc' class="required"/></p>
+				
+				<p><label for='curp'>CURP*</label></p>
+				<p><input type="text" name="curp" value="${entry.address}" id='curp' class="required"/></p>
 
 				<p><label for='address'>Dirección*</label></p>
 				<p><input type="text" name="address" value="${entry.address}" id='address' class="required"/></p>
 
 				<p><label for='cp'>CP*</label></p>
 				<p><input type="text" name="cp" value="${entry.cp}" id='cp' class="required"/></p>
+				
+				<p><label for='phone'>Teléfono*</label></p>
+				<p><input type="text" name="telephone" value="${entry.telephone}" id='telephone' class="required"/></p>
 
 			</div>
 			<div class='colum2'>
 
-				<p><label for='corporateName'>Razon Social*</label></p>
-				<p><input type="text" name="corporateName" id='corporateName' value="${entry.corporateName}" class="required"/></p>
-				
-				<p><label for='curp'>CURP*</label></p>
-				<p><input type="text" name="curp" id='curp' value="${entry.curp}" class="required"/></p>
+
 				
 				<p><input type='hidden' value='${entry.id}' name='company_id' id='company_id' /></p>
 				<p><input type="submit" value="Guardar" class="new submit"/> <a href="/companies" class='back'>Cancelar</a> </p>

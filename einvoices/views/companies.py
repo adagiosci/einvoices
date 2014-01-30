@@ -73,6 +73,7 @@ class ProjectorCompanies(Layouts):
 													,'cp': self.request.POST['cp']
 													,'corporateName': self.request.POST['corporateName']
 													,'curp': self.request.POST['curp']
+													,'telephone': self.request.POST['telephone']
 													})
 		return HTTPFound(location='/companies/m=rec')
 	

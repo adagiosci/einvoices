@@ -45,7 +45,7 @@
 				<p><input type="text" name="name" id='name' value="" class="required"/></p>
 				
 				<p><label for='cp'>Razón Social*</label></p>
-				<p><input type="text" name="" value="" id='cp' class="required"/></p>				
+				<p><input type="text" name="corporateName" value="" id='cp' class="required"/></p>				
 				
 				<p><label for='rfc'>RFC*</label></p>
 				<p><input type="text" name="rfc" value="" id='rfc' class="required"/></p>
@@ -59,72 +59,76 @@
 				<p><label for='cp'>CP*</label></p>
 				<p><input type="text" name="cp" value="" id='cp' class="required"/></p>
 				
-				<p><label for='cp'>Teléfono*</label></p>
-				<p><input type="text" name="" value="" id='cp' class="required"/></p>				
+				<p><label for='phone'>Teléfono*</label></p>
+				<p><input type="text" name="phone" value="" id='phone' class="required"/></p>				
 				
 			</div>
 			<div class='colum2'>
 			
-				<p><label for='cp'>Representante legal*</label></p>
-				<p><input type="text" name="" value="" id='cp' class="required"/></p>	
+				<p><label for='legalRepresentative'>Representante legal*</label></p>
+				<p><input type="text" name="legalRepresentative" value="" id='legalRepresentative' class="required"/></p>	
 
-				<p><label for='cp'>Puesto*</label></p>
-				<p><input type="text" name="" value="" id='cp' class="required"/></p>				
+				<p><label for='position'>Puesto*</label></p>
+				<p><input type="text" name="positionlegalRepresentative" value="" id='positionlegalRepresentative' class="required"/></p>				
 								
-				<p><label for='cp'>RFC*</label></p>
-				<p><input type="text" name="" value="" id='cp' class="required"/></p>
+				<p><label for='rfcLegalRepresentative'>RFC*</label></p>
+				<p><input type="text" value="" name="rfcLegalRepresentative" id='rfcLegalRepresentative' class="required"/></p>
 				
-				<p><label for='cp'>CURP*</label></p>
-				<p><input type="text" name="" value="" id='cp' class="required"/></p>				
+				<p><label for='curpLegalRepresentative'>CURP*</label></p>
+				<p><input type="text" value="" name="curpLegalRepresentative" id='curpLegalRepresentative' class="required"/></p>				
 				
-				<p><label for='cp'>Identificación*</label></p>
-				<p><input type="text" name="" value="" id='cp' class="required"/></p>
+				<p><label for='idLegalRepresentative'>Identificación*</label></p>
+				<p><input type="text" value="" name="idLegalRepresentative" id='idLegalRepresentative' class="required"/></p>
 				
-				<p><label for='cp'>Email*</label></p>
-				<p><input type="text" name="" value="" id='cp' class="required"/></p>				
+				<p><label for='emailLegalRepresentative'>Email*</label></p>
+				<p><input type="text" value='' name="emailLegalRepresentative" id='emailLegalRepresentative' class="required"/></p>				
 			
-				<p><label for='corporateName'>Datos Legales*</label></p>
-				<p><input type="text" name="" id='corporateName' value="" class="required"/></p>
+				<p><label for='datasdatasLegalRepresentative'>Datos Legales*</label></p>
+				<p><input type="text" value='' name="datasLegalRepresentative" id='datasLegalRepresentative' class="required"/></p>
 							
 			</div>
 			<div class='colum3'>
-				<p><label for='corporateName'>Atenderá Régimen Fiscal*</label></p>
-				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>
+				<p><label for='taxRegime'>Atenderá Régimen Fiscal*</label></p>
+				<p><select name="taxRegime" id='taxRegime' class="required">
+				</select></p>
 				
-				<p><label for='corporateName'>Atenderá Régimen Laboral*</label></p>
-				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
+				<p><label for='labourSystem'>Atenderá Régimen Laboral*</label></p>
+				<p><select  name="labourSystem" id='labourSystem' class="required">
+				</select></p>
+							
+				<p><label for='financialInformation'>Atenderá información financiera*</label></p>
+				<p><select name="financialInformation" id='financialInformation' class="required">
+				</select></p>
 				
-				<p><label for='corporateName'>Atenderá información financiera*</label></p>
-				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>
-				
-				<p><label for='corporateName'>Supervisará*</label></p>
-				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
+				<p><label for='supervise'>Supervisará*</label></p>
+				<p><select name="supervise" id='supervise' class="required">
+				</select></p>
 			
-				<p><label for='corporateName'>Clave CIEC*</label></p>
-				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>
+				<p><label for='ciecKey'>Clave CIEC*</label></p>
+				<p><input type="text" value='' name="ciecKey" id='ciecKey' class="required"/></p>
 				
-				<p><label for='corporateName'>Clave FIEL*</label></p>
-				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
+				<p><label for='fielKey'>Clave FIEL*</label></p>
+				<p><input type="text" value='' name="fielKey" id='fielKey' class="required"/></p>				
 
-				<p><label for='corporateName'>Clave IMSS*</label></p>
-				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>
+				<p><label for='imssKey'>Clave IMSS*</label></p>
+				<p><input type="text" value='' name="imssKey" id='imssKey' class="required"/></p>
 			</div>
 			<div class='colum3'>
 				
-				<p><label for='corporateName'>Clave Sello digital*</label></p>
-				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
+				<p><label for='digitalSignature'>Clave Sello digital*</label></p>
+				<p><input type="text" value='' name="digitalSignature" id='digitalSignature' class="required"/></p>
 
-				<p><label for='corporateName'>Cuenta Contable*</label></p>
-				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
+				<p><label for='accountNumber'>Cuenta Contable*</label></p>
+				<p><input type="text" value="" name="accountNumber" id='accountNumber' class="required"/></p>				
 				
 				<p><label for='corporateName'>Inicio de Obligaciones*</label></p>
-				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>
+				<p><input type="text" value="" name="start_date" id='start_date' class="required"/></p>
 				
 				<p><label for='corporateName'>Fin de Obligaciones*</label></p>
-				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
+				<p><input type="text" value="" name="end_date" id='end_date' class="required"/></p>				
 
 				<p><label for='corporateName'>Servicios*</label></p>
-				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
+				<p><input type="text" value="" name="services" id='services' class="required"/></p>				
 								
 				<p><input type="submit" value="Guardar" class="new submit"/></p>
 			</div>
