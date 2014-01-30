@@ -9,11 +9,15 @@ from layouts import Layouts
 BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
-
+from einvoices.models.user import (
+    User,
+    )
+	
 from einvoices.models.company import (
     DBSession,
     Company,
     )
+
 class ProjectorCompanies(Layouts):
 	def __init__(self, request):
 		self.request = request
@@ -35,8 +39,9 @@ class ProjectorCompanies(Layouts):
 		msj = self.message();
 		companies = DBSession.query(Company)
 		page = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
-		companies = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
-		return {'companies':page,'msj':msj}
+		#companies = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
+		users = DBSession.query(User)
+		return {'users':users,'companies':page,'msj':msj}
 		
 	@action(renderer=BASE_TMPL  + "companies/edit.pt")
 	def edit(self):
@@ -45,7 +50,11 @@ class ProjectorCompanies(Layouts):
 		company_id = self.request.matchdict['id']
 		entry = DBSession.query(Company).filter_by(id=company_id).first()
 		page = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
-		return {'entry':entry,'companies':page,'msj':msj}
+		users = DBSession.query(User)
+		return {'entry':entry
+			,'companies':page
+			,'users':users.all()
+			,'msj':msj}
 	
 	@reify
 	def companies_list(self):

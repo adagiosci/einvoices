@@ -90,18 +90,26 @@
 			<div class='colum3'>
 				<p><label for='taxRegime'>Atenderá Régimen Fiscal*</label></p>
 				<p><select name="taxRegime" id='taxRegime' class="required">
+					<option></option>
+					<option tal:repeat="row users" value="${row.id}">${row.first_name} ${row.second_name} ${row.last_name} ${row.mother_name}</option>
 				</select></p>
 				
 				<p><label for='labourSystem'>Atenderá Régimen Laboral*</label></p>
 				<p><select  name="labourSystem" id='labourSystem' class="required">
+					<option></option>
+					<option tal:repeat="row users" value="${row.id}">${row.first_name} ${row.second_name} ${row.last_name} ${row.mother_name}</option>				
 				</select></p>
 							
 				<p><label for='financialInformation'>Atenderá información financiera*</label></p>
 				<p><select name="financialInformation" id='financialInformation' class="required">
+					<option></option>
+					<option tal:repeat="row users" value="${row.id}">${row.first_name} ${row.second_name} ${row.last_name} ${row.mother_name}</option>		
 				</select></p>
 				
 				<p><label for='supervise'>Supervisará*</label></p>
 				<p><select name="supervise" id='supervise' class="required">
+					<option></option>
+					<option tal:repeat="row users" value="${row.id}">${row.first_name} ${row.second_name} ${row.last_name} ${row.mother_name}</option>				
 				</select></p>
 			
 				<p><label for='ciecKey'>Clave CIEC*</label></p>
