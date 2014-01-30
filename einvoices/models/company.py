@@ -23,6 +23,7 @@ class Company(Base):
     corporateName = Column(String(100))
     curp = Column(String(45))
     telephone = Column(String(15))
+    legalRepresentative = Column(String(150))
     positionlegalRepresentative = Column(String(200))
     rfcLegalRepresentative = Column(String(20))
     curpLegalRepresentative = Column(String(20))
@@ -37,5 +38,10 @@ class Company(Base):
     start_date = Column(String(10))
     end_date = Column(String(10))
     
+    taxRegime = Column(Integer)
+    labourSystem = Column(Integer)
+    financialInformation = Column(Integer)
+    supervise = Column(Integer)
+    services = Column(Integer)
     #units = relationship("Unidad", order_by="Unidad.id", backref="company") relacion uno a muchos
 

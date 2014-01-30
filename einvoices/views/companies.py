@@ -63,12 +63,33 @@ class ProjectorCompanies(Layouts):
 		
 	@action()
 	def create(self):
-		company = Company(name = self.request.POST['name'] 
+		company = Company(
+				 name = self.request.POST['name']
 				,rfc = self.request.POST['rfc']
 				,address = self.request.POST['address']
 				,cp = self.request.POST['cp']
 				,corporateName = self.request.POST['corporateName']
 				,curp = self.request.POST['curp']
+				,telephone = self.request.POST['telephone']
+				,legalRepresentative = self.request.POST['legalRepresentative']
+				,positionlegalRepresentative = self.request.POST['positionlegalRepresentative']
+				,rfcLegalRepresentative = self.request.POST['rfcLegalRepresentative']
+				,curpLegalRepresentative = self.request.POST['curpLegalRepresentative']
+				,idLegalRepresentative = self.request.POST['idLegalRepresentative']
+				,emailLegalRepresentative = self.request.POST['emailLegalRepresentative']
+				,datasLegalRepresentative = self.request.POST['datasLegalRepresentative']
+				,taxRegime = self.request.POST['taxRegime']
+				,labourSystem = self.request.POST['labourSystem']
+				,financialInformation = self.request.POST['financialInformation']
+				,supervise = self.request.POST['supervise']
+				,ciecKey = self.request.POST['ciecKey']
+				,fielKey = self.request.POST['fielKey']
+				,imssKey = self.request.POST['imssKey']
+				,digitalSignature = self.request.POST['digitalSignature']
+				,accountNumber = self.request.POST['accountNumber']
+				,start_date = self.request.POST['start_date']
+				,end_date = self.request.POST['end_date']
+				,services = self.request.POST['services']
 			)
 		DBSession.add(company)
 		return HTTPFound(location='/companies/m=ric')
@@ -83,6 +104,25 @@ class ProjectorCompanies(Layouts):
 													,'corporateName': self.request.POST['corporateName']
 													,'curp': self.request.POST['curp']
 													,'telephone': self.request.POST['telephone']
+													,'legalRepresentative': self.request.POST['legalRepresentative']
+													,'positionlegalRepresentative': self.request.POST['positionlegalRepresentative']
+													,'rfcLegalRepresentative': self.request.POST['rfcLegalRepresentative']
+													,'curpLegalRepresentative': self.request.POST['curpLegalRepresentative']
+													,'idLegalRepresentative': self.request.POST['idLegalRepresentative']
+													,'emailLegalRepresentative': self.request.POST['emailLegalRepresentative']
+													,'datasLegalRepresentative': self.request.POST['datasLegalRepresentative']
+													,'taxRegime': self.request.POST['taxRegime']
+													,'labourSystem': self.request.POST['labourSystem']
+													,'financialInformation': self.request.POST['financialInformation']
+													,'supervise': self.request.POST['supervise']
+													,'ciecKey': self.request.POST['ciecKey']
+													,'fielKey': self.request.POST['fielKey']
+													,'imssKey': self.request.POST['imssKey']
+													,'digitalSignature': self.request.POST['digitalSignature']
+													,'accountNumber': self.request.POST['accountNumber']
+													,'start_date': self.request.POST['start_date']
+													,'end_date': self.request.POST['end_date']
+													,'services': self.request.POST['services']
 													})
 		return HTTPFound(location='/companies/m=rec')
 	
