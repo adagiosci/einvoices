@@ -44,32 +44,89 @@
 				<p><label for='name'>Nombre*</label></p>
 				<p><input type="text" name="name" id='name' value="" class="required"/></p>
 				
+				<p><label for='cp'>Razón Social*</label></p>
+				<p><input type="text" name="" value="" id='cp' class="required"/></p>				
+				
 				<p><label for='rfc'>RFC*</label></p>
 				<p><input type="text" name="rfc" value="" id='rfc' class="required"/></p>
+				
+				<p><label for='cp'>CURP*</label></p>
+				<p><input type="text" name="" value="" id='cp' class="required"/></p>				
 
 				<p><label for='address'>Dirección*</label></p>
 				<p><input type="text" name="address" value="" id='address' class="required"/></p>
 
 				<p><label for='cp'>CP*</label></p>
 				<p><input type="text" name="cp" value="" id='cp' class="required"/></p>
-
+				
+				<p><label for='cp'>Teléfono*</label></p>
+				<p><input type="text" name="" value="" id='cp' class="required"/></p>				
+				
 			</div>
 			<div class='colum2'>
+			
+				<p><label for='cp'>Representante legal*</label></p>
+				<p><input type="text" name="" value="" id='cp' class="required"/></p>	
 
-				<p><label for='corporateName'>Razon Social*</label></p>
+				<p><label for='cp'>Puesto*</label></p>
+				<p><input type="text" name="" value="" id='cp' class="required"/></p>				
+								
+				<p><label for='cp'>RFC*</label></p>
+				<p><input type="text" name="" value="" id='cp' class="required"/></p>
+				
+				<p><label for='cp'>CURP*</label></p>
+				<p><input type="text" name="" value="" id='cp' class="required"/></p>				
+				
+				<p><label for='cp'>Identificación*</label></p>
+				<p><input type="text" name="" value="" id='cp' class="required"/></p>
+				
+				<p><label for='cp'>Email*</label></p>
+				<p><input type="text" name="" value="" id='cp' class="required"/></p>				
+			
+				<p><label for='corporateName'>Datos Legales*</label></p>
+				<p><input type="text" name="" id='corporateName' value="" class="required"/></p>
+							
+			</div>
+			<div class='colum3'>
+				<p><label for='corporateName'>Atenderá Régimen Fiscal*</label></p>
 				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>
 				
-				<p><label for='curp'>CURP*</label></p>
-				<p><input type="text" name="curp" id='curp' value="" class="required"/></p>
+				<p><label for='corporateName'>Atenderá Régimen Laboral*</label></p>
+				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
 				
-				<p><input type="submit" value="Guardar" class="new submit"/></p>
+				<p><label for='corporateName'>Atenderá información financiera*</label></p>
+				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>
+				
+				<p><label for='corporateName'>Supervisará*</label></p>
+				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
 			
+				<p><label for='corporateName'>Clave CIEC*</label></p>
+				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>
+				
+				<p><label for='corporateName'>Clave FIEL*</label></p>
+				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
+
+				<p><label for='corporateName'>Clave IMSS*</label></p>
+				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>
 			</div>
 			<div class='colum3'>
+				
+				<p><label for='corporateName'>Clave Sello digital*</label></p>
+				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
 
-			</div>
-			<div class='colum3'>
+				<p><label for='corporateName'>Cuenta Contable*</label></p>
+				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
+				
+				<p><label for='corporateName'>Inicio de Obligaciones*</label></p>
+				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>
+				
+				<p><label for='corporateName'>Fin de Obligaciones*</label></p>
+				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
 
+				<p><label for='corporateName'>Servicios*</label></p>
+				<p><input type="text" name="corporateName" id='corporateName' value="" class="required"/></p>				
+								
+				<p><input type="submit" value="Guardar" class="new submit"/></p>
 			</div>
 		</form>
 	</div>
