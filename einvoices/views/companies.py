@@ -35,6 +35,7 @@ class ProjectorCompanies(Layouts):
 		msj = self.message();
 		companies = DBSession.query(Company)
 		page = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
+		companies = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
 		return {'companies':page,'msj':msj}
 		
 	@action(renderer=BASE_TMPL  + "companies/edit.pt")
