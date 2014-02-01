@@ -6,6 +6,10 @@ from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 import webhelpers.paginate
 from layouts import Layouts
+from main import main
+#from einvoices.library.main import (
+	#main,
+#)
 BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
@@ -18,21 +22,8 @@ from einvoices.models.company import (
     Company,
     )
 
-class ProjectorCompanies(Layouts):
-	def __init__(self, request):
-		self.request = request
-                
-        def insertdb(self):
-		for i in range(100000):
-			company = Company(name = 'manglesoft' 
-				,rfc = 'x'
-				,address = 'x'
-				,cp = 'x'
-				,corporateName = 'x'
-				,curp = 'x'
-			)			
-			DBSession.add(company)
-                
+class ProjectorCompanies(Layouts,main):
+                                
 	@action(renderer=BASE_TMPL  + "companies/index.pt")
 	def index(self):
 		#self.insertdb()
