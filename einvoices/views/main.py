@@ -69,5 +69,24 @@ class Main(Layouts):
 				menu['current'] = False
 		return new_menu
 		
-	def paginator(self):
-		pass
+	def _pagination(self,page):
+		paginator  = {}
+		for i in range(page.page_count):
+			paginator[i + 1] = False
+		
+		#if(isset($this->infopaginator->previous)){
+			#$paginator.= "<a href='/{$this->view->controller}/$action?p={$this->infopaginator->first}{$param}'>&lt;&lt</a>";
+			#$paginator.= "<a href='/{$this->view->controller}/$action?p={$this->infopaginator->previous}{$param}'>Prev</a>";
+		#}
+		#foreach($this->infopaginator->pagesInRange as $r){
+			#$on = ($r == $this->infopaginator->current)?"class='on'":"";
+			#$paginator.="<a $on href='/{$this->view->controller}/$action?p=$r{$param}'>".$r."</a>";
+		#}
+		#if(isset($this->infopaginator->next)){
+			#$paginator.="<a href='/{$this->view->controller}/$action?p={$this->infopaginator->next}{$param}'>Next</a>";
+			#$paginator.="<a href='/{$this->view->controller}/$action?p={$this->infopaginator->last}{$param}'>&gt;&gt;</a>";
+		#}
+		#$this->view->totalItemCount = $this->infopaginator->totalItemCount;
+		#$this->view->lastItemNumber = $this->infopaginator->lastItemNumber;
+		#$this->view->pagination = $paginator;
+		return paginator

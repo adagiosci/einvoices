@@ -6,6 +6,11 @@
 </head>
 <body><metal:companies_list define-macro="companies_list">
 <div class='clear'></div>
+<p class='paginator' >
+	<tal:block tal:repeat="page pagination">
+		<a href='#'>${page}</a>
+	</tal:block>
+</p>
 <br />
 <p class='text-right'><span class='bold'>${companies.last_item}</span> registros de <span class='bold'>${companies.item_count}</span> registros encontrados</p>
 <div class='clear'></div>

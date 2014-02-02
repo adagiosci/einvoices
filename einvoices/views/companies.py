@@ -35,7 +35,9 @@ class ProjectorCompanies(Main):
 		companies = DBSession.query(Company)
 		page = webhelpers.paginate.Page(companies, page=1, items_per_page=1)
 		users = DBSession.query(User)
-		return {'users':users,'companies':page,'msj':msj}
+		_pagination = self._pagination(page)
+		#_pagination = "Hola mundo"
+		return {'users':users,'companies':page,'msj':msj,'pagination':_pagination}
 		
 	@action(renderer=BASE_TMPL  + "companies/edit.pt")
 	def edit(self):
