@@ -9,11 +9,20 @@ from pyramid.security import (
     remember,
     forget,
     )
+from pyramid.decorator import reify
 from pyramid.security import authenticated_userid
 from einvoices.models.user import (
     DBSession,
     User,
     )
+    
+SITE_MENU = [
+        {'href': '/companies', 'title': 'Empresas'},
+        {'href': '/unidades', 'title': 'Unidades'},
+        {'href': '/users', 'title': 'Usuarios'},
+        {'href': '/suppliers', 'title': 'Provedores'},
+]    
+    
 BASE_TMPL = 'einvoices:templates/'
 import cPickle as pickle
 class Main(Layouts):
@@ -47,3 +56,14 @@ class Main(Layouts):
 	def logout(self):
 		headers = forget(self.request)
 		return HTTPFound(location='/main/login', headers=headers)
+	
+	@reify
+	def site_menu(self):
+		new_menu = SITE_MENU[:]
+		url = self.request.url
+		for menu in new_menu:
+			if menu['title'] == 'Home':
+				menu['current'] = url.endswith('/')
+			else:
+				menu['current'] = url.endswith(menu['href'])
+		return new_menu
