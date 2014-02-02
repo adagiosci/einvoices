@@ -7,3 +7,7 @@ transaction
 zope.sqlalchemy
 waitress
 mysql-python
+pyramid_handlers
+WebTest
+nose
+webhelpers

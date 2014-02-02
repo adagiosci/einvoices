@@ -17,7 +17,9 @@ from einvoices.models.cliente import (
 
 class ProjectorClientes(Main):
 	def __init__(self, request):
-		self.request = request
+		self.config_view_name = 'clients'
+		super(ProjectorClientes,self).__init__(request)
+		
                 
 	@action(renderer=BASE_TMPL  + "clients/index.pt")
 	def index(self):
