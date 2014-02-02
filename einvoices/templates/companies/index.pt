@@ -144,7 +144,7 @@
 	</div>
 	<div class='clear'></div>
 	<select id='num_records' name='num_records' class='size6'>
-		<option tal:repeat="item range(0,201,10)" value='${item}'>${item}</option>
+		<option tal:repeat="item range(20,201,10)" value='${item}'>${item}</option>
 	</select>
 
 		<form  action='/aerolineas/exportcsv/' id='form_export' method='post' accept-charset='utf-8' enctype="multipart/form-data">
