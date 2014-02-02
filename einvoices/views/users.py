@@ -16,8 +16,10 @@ from einvoices.models.user import (
     )
 
 class ProjectorUsers(Main):
-	def __init__(self, request):
-		self.request = request
+	
+        def __init__(self, request):
+		self.config_view_name = 'users'
+		super(ProjectorUsers,self).__init__(request)	
                 
 	@action(renderer=BASE_TMPL  + "users/index.pt")
 	def index(self):

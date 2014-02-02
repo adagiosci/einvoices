@@ -17,11 +17,11 @@ from einvoices.models.user import (
     )
     
 SITE_MENU = [
-        {'href': '/companies', 'title': 'Empresas'},
-        {'href': '/unidades', 'title': 'Unidades'},
-        {'href': '/users', 'title': 'Usuarios'},
-        {'href': '/suppliers', 'title': 'Provedores'},
-        {'href': '/clients', 'title': 'Clientes'},
+        {'view':'companies','href': '/companies', 'title': 'Empresas'},
+        {'view':'units','href': '/unidades', 'title': 'Unidades'},
+        {'view':'users','href': '/users', 'title': 'Usuarios'},
+        {'view':'suppliers','href': '/suppliers', 'title': 'Provedores'},
+        {'view':'clients','href': '/clients', 'title': 'Clientes'},
 ]    
     
 BASE_TMPL = 'einvoices:templates/'
@@ -31,7 +31,6 @@ class Main(Layouts):
 		self.request = request
 		self.session = session(request)
 		user_id = authenticated_userid(self.request)
-		print user_id
 		path = self.request.path
 		if (user_id == None and path != '/main/login'):
 			raise HTTPFound(location='/main/login')
@@ -63,8 +62,8 @@ class Main(Layouts):
 		new_menu = SITE_MENU[:]
 		url = self.request.url
 		for menu in new_menu:
-			if menu['title'] == '':
-				menu['current'] = url.endswith('/')
+			if menu['view'] == self.config_view_name:
+				menu['current'] = True
 			else:
-				menu['current'] = url.endswith(menu['href'])
+				menu['current'] = False
 		return new_menu

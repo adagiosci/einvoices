@@ -15,9 +15,11 @@ from einvoices.models.models import (
     )
 
 class ProjectorClients(Main):
-	def __init__(self, request):
-		self.request = request
-        
+	
+        def __init__(self, request):
+		self.config_view_name = 'clients'
+		super(ProjectorClients,self).__init__(request)
+		
 	@view_config(renderer=BASE_TMPL  + "clients/index.pt")
 	def clients_view(self):
 		aerolineas = DBSession.query(Aerolinea).order_by(Aerolinea.idaerolinea)

@@ -15,9 +15,11 @@ from einvoices.models.supplier import (
     )
 
 class ProjectorSuppliers(Main):
-	def __init__(self, request):
-		self.request = request
-                
+
+        def __init__(self, request):
+		self.config_view_name = 'suppliers'
+		super(ProjectorSuppliers,self).__init__(request)
+
 	@action(renderer=BASE_TMPL  + "suppliers/index.pt")
 	def index(self):
 		msj = self.message();

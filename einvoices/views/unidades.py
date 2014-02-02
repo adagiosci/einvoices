@@ -17,8 +17,10 @@ from einvoices.models.unidad import (
     )
 
 class ProjectorUnidades(Main):
-	def __init__(self, request):
-		self.request = request
+	
+        def __init__(self, request):
+		self.config_view_name = 'units'
+		super(ProjectorUnidades,self).__init__(request)
                 
 	@action(renderer=BASE_TMPL  + "unidades/index.pt")
 	def index(self):
