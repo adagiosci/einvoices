@@ -40,27 +40,23 @@
 	<div class="NewInputs hidden">
 		<form class="form" action='/users/create' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
+				<p><label for='names'>Nombres*</label></p>
+				<p><input type="text" name="names" value="" id='names' class="required"/></p>
+				
+				<p><label for='mother_name'>Apellido Materno*</label></p>
+				<p><input type="text" name="mother_name" id='mother_name' value="" class="required"/></p>
+				
+				<p><label for='last_name'>Apellido Paterno*</label></p>
+				<p><input type="text" name="last_name" id='last_name' value="" class="required"/></p>				
+				
+			</div>
+			<div class='colum2'>
 
 				<p><label for='email'>Email*</label></p>
 				<p><input type="text" name="email" id='email' value="" class="required"/></p>
 				
 				<p><label for='password'>Password*</label></p>
 				<p><input type="text" name="password" value="" id='password' class="required"/></p>
-
-				<p><label for='first_name'>First-Name*</label></p>
-				<p><input type="text" name="first_name" value="" id='first_name' class="required"/></p>
-
-				<p><label for='second_name'>Second-Name*</label></p>
-				<p><input type="text" name="second_name" value="" id='second_name' class="required"/></p>
-
-			</div>
-			<div class='colum2'>
-
-				<p><label for='last_name'>Last-Name*</label></p>
-				<p><input type="text" name="last_name" id='last_name' value="" class="required"/></p>
-				
-				<p><label for='mother_name'>Mother-Name*</label></p>
-				<p><input type="text" name="mother_name" id='mother_name' value="" class="required"/></p>
 				
 				<p><input type="submit" value="Guardar" class="new submit"/></p>
 			

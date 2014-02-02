@@ -1,4 +1,5 @@
 #from einvoices.library.security import security
+import hashlib
 from pyramid.httpexceptions import HTTPFound
 from einvoices.library.session import session
 from pyramid_handlers import action
@@ -31,7 +32,11 @@ class Main(Layouts):
 			user_name = self.request.POST.get('username', '')
 			passwd = self.request.POST.get('password', '')
 			try:
-				user = DBSession.query(User).filter_by(email=user_name,password=passwd).first()
+				md5 = hashlib.md5()
+				md5.update(passwd)
+				password = md5.hexdigest()
+				print password
+				user = DBSession.query(User).filter_by(email=user_name,password=password).first()
 				headers = remember(self.request, user.id, max_age='86400')
 				return HTTPFound(location='/companies', headers=headers)
 			except Exception, e:

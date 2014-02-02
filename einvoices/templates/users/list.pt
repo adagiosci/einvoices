@@ -11,30 +11,25 @@
 <div class='clear'></div>
 <table>
 	<tr class='titles'>
-		<th colspan='7'>Generales</th>
+		<th colspan='5'>Generales</th>
 		<th colspan='2'>Acción</th>
 	</tr>
 	<tr class='titles'>
 		<th>Id</th>
+		<th>Nombres</th>
+		<th>Apellido Paterno</th>
+		<th>Apellido Materno</th>
 		<th>Email</th>
-		<th>PAssword</th>
-		<th>First Name</th>
-		<th>SEcond Name</th>
-		<th>Last Name</th>
-		<th>Mother Name</th>
 		<th class='global-td'>Editar</th>
 		<th class='global-td'>Estado</th>
 	</tr>
 	<?python color = 'trgreen2' ?>
 	<tr tal:repeat="row users" class='${color}'>
 		<td>${row.id}</td>
-		<td>${row.email}</td>
-		<td>${row.password}</td>
-		<td>${row.first_name}</td>
-		<td>${row.second_name}</td>
+		<td>${row.names}</td>
 		<td>${row.last_name}</td>
 		<td>${row.mother_name}</td>
-		
+		<td>${row.email}</td>
 		<td><a href='/users/edit/${row.id}'>Editar</a></td>
 		<td><a href='/users/delete/${row.id}'>Eliminar<a></td>
 		<?python

@@ -1,7 +1,7 @@
 <div metal:use-macro="view.global_template"><div metal:fill-slot="content" class='container'>
 <div class='center'>
 	<div class='opciones'>
-		<a href='#' class='agregar'>Nuevo</a>
+		<a href='#' class='agregar'>Editar</a>
 		<a href='#' class='filtrar'>Filtrar</a>
 	</div>
 	<div class='clear'></div>
@@ -41,29 +41,24 @@
 		<form class="form" action='/users/update' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
 
-				<p><label for='email'>Email*</label></p>
-				<p><input type="text" name="email" id='email' value="${entry.email}" class="required"/></p>
+				<p><label for='names'>Nombres*</label></p>
+				<p><input type="text" name="names" value="${entry.names}" id='names' class="required"/></p>
 				
-				<p><label for='password'>PAssword*</label></p>
-				<p><input type="text" name="password" value="${entry.password}" id='password' class="required"/></p>
-
-				<p><label for='first_name'>First-Name*</label></p>
-				<p><input type="text" name="first_name" value="${entry.first_name}" id='first_name' class="required"/></p>
-
-				<p><label for='second_name'>Second Name*</label></p>
-				<p><input type="text" name="second_name" value="${entry.second_name}" id='second_name' class="required"/></p>
+				<p><label for='mother_name'>Apellido Materno*</label></p>
+				<p><input type="text" name="mother_name" id='mother_name' value="${entry.mother_name}" class="required"/></p>
+				
+				<p><label for='last_name'>Apellido Paterno*</label></p>
+				<p><input type="text" name="last_name" id='last_name' value="${entry.last_name}" class="required"/></p>
 
 			</div>
 			<div class='colum2'>
 
-				<p><label for='last_name'>Last Name*</label></p>
-				<p><input type="text" name="last_name" id='last_name' value="${entry.last_name}" class="required"/></p>
-				
-				<p><label for='mother_name'>Mother Name*</label></p>
-				<p><input type="text" name="mother_name" id='mother_name' value="${entry.mother_name}" class="required"/></p>
+				<p><label for='email'>Email*</label></p>
+				<p><input type="text" name="email" id='email' value="${entry.email}" class="required"/></p>
 				
 				<p><input type='hidden' value='${entry.id}' name='user_id' id='user_id' /></p>
-				<p><input type="submit" value="Guardar" class="new submit"/></p>
+				
+				<p><input type="submit" value="Guardar" class="new submit"/> <a href="/users" class='back'>Cancelar</a> </p>
 			
 			</div>
 			<div class='colum3'>

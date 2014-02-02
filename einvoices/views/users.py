@@ -1,3 +1,4 @@
+import hashlib
 from pyramid.renderers import get_renderer
 from pyramid_handlers import action
 from pyramid.response import Response
@@ -39,10 +40,12 @@ class ProjectorUsers(Main):
 		
 	@action()
 	def create(self):
+		md5 = hashlib.md5()
+		md5.update(self.request.POST['password'])
+		password = md5.hexdigest()
 		user = User(email = self.request.POST['email'] 
-				,password = self.request.POST['password']
-				,first_name = self.request.POST['first_name']
-				,second_name = self.request.POST['second_name']
+				,password = password
+				,names = self.request.POST['names']
 				,last_name = self.request.POST['last_name']
 				,mother_name = self.request.POST['mother_name']
 			)
@@ -51,11 +54,12 @@ class ProjectorUsers(Main):
 		
 	@action()
 	def update(self):
+		#md5 = hashlib.md5()
+		#md5.update(self.request.POST['password'])
+		#password = md5.hexdigest()
 		user = DBSession.query(User).filter_by(id=self.request.POST['user_id']).update({
 													 'email': self.request.POST['email']
-													,'password': self.request.POST['password']
-													,'first_name': self.request.POST['first_name']
-													,'second_name': self.request.POST['second_name']
+													,'names': self.request.POST['names']
 													,'last_name': self.request.POST['last_name']
 													,'mother_name': self.request.POST['mother_name']
 													})
