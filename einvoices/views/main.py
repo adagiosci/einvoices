@@ -71,6 +71,7 @@ class Main(Layouts):
 		
 	def _pagination(self,page):
 		paginator  = {}
+		objectx = object()
 		for i in range(page.page_count):
 			paginator[i + 1] = False
 		
