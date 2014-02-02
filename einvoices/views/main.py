@@ -63,7 +63,7 @@ class Main(Layouts):
 		new_menu = SITE_MENU[:]
 		url = self.request.url
 		for menu in new_menu:
-			if menu['title'] == 'Home':
+			if menu['title'] == '':
 				menu['current'] = url.endswith('/')
 			else:
 				menu['current'] = url.endswith(menu['href'])

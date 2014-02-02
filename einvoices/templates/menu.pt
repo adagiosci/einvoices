@@ -17,7 +17,7 @@
 	</div>
 	<div class='clear'></div>
 	<div class='options'>
-		<a href='/catalogs/'>Catálogos</a>
+		<a href='/catalogs/' class='on'>Catálogos</a>
 		<div class="clear"></div>
 	</div>
 	<div class='logout'>
@@ -26,7 +26,7 @@
 
 	</div>
 	<div class='clear'></div>
-	<div class='submenu'>
+	<div class='submenu on'>
 		<tal:block tal:repeat="menu view.site_menu">
 			<tal:block tal:condition="menu.current">
 				<a  class='on' href='${menu.href}'>${menu.title}</a>
