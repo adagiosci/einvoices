@@ -1,7 +1,7 @@
 <div metal:use-macro="view.global_template"><div metal:fill-slot="content" class='container'>
 <div class='center'>
 	<div class='opciones'>
-		<a href='#' class='agregar'>Nuevo</a>
+		<a href='#' class='agregar'>Edit</a>
 		<a href='#' class='filtrar'>Filtrar</a>
 	</div>
 	<div class='clear'></div>
