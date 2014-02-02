@@ -3,7 +3,7 @@ from pyramid_handlers import action
 from pyramid.response import Response
 from pyramid.decorator import reify
 from pyramid.view import view_config
-from layouts import Layouts
+from main import Main
 
 BASE_TMPL = 'einvoices:templates/'
 
@@ -14,7 +14,7 @@ from einvoices.models.models import (
     Aerolinea
     )
 
-class ProjectorClients(Layouts):
+class ProjectorClients(Main):
 	def __init__(self, request):
 		self.request = request
         

@@ -4,7 +4,7 @@ from pyramid.response import Response
 from pyramid.decorator import reify
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
-from layouts import Layouts
+from main import Main
 BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
@@ -16,7 +16,7 @@ from einvoices.models.unidad import (
     Unidad,
     )
 
-class ProjectorUnidades(Layouts):
+class ProjectorUnidades(Main):
 	def __init__(self, request):
 		self.request = request
                 

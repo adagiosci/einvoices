@@ -8,24 +8,34 @@ from pyramid.security import (
     remember,
     forget,
     )
+from pyramid.security import authenticated_userid
+from einvoices.models.user import (
+    DBSession,
+    User,
+    )
 BASE_TMPL = 'einvoices:templates/'
 import cPickle as pickle
 class Main(Layouts):
 	def __init__(self, request):
 		self.request = request
 		self.session = session(request)
+		user_id = authenticated_userid(self.request)
+		print user_id
 		path = self.request.path
-		#print request.route_url(suppliers_index)
-		#result = self.session.verify_login()
+		if (user_id == None and path != '/main/login'):
+			raise HTTPFound(location='/main/login')
 		
 	@action(renderer=BASE_TMPL  + "main/login.pt")
 	def login(self):
-		#if 'submit' in self.request.POST:
-			#print 'Hello world'
-		login = self.request.POST.get('login', '')
-		passwd = self.request.POST.get('passwd', '')
-		headers = remember(self.request, login)
-		#return HTTPFound(location='/companies', headers=headers)
+		if 'username' in self.request.POST and 'password' in self.request.POST:
+			user_name = self.request.POST.get('username', '')
+			passwd = self.request.POST.get('password', '')
+			try:
+				user = DBSession.query(User).filter_by(email=user_name,password=passwd).first()
+				headers = remember(self.request, user.id, max_age='86400')
+				return HTTPFound(location='/companies', headers=headers)
+			except Exception, e:
+				return HTTPFound(location='/main/login')
 		return {}
 		
 	@action()
