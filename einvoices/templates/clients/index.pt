@@ -38,72 +38,34 @@
 	</div>
 	<div class='clear'></div>
 	<div class="NewInputs hidden">
-		<form class="form" action='/aerolineas/insertar/' method='post' accept-charset='utf-8' enctype="multipart/form-data">
+		<form class="form" action='/clients/create' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
-				<h2>Generales</h2>
-
-				<p><label>Código IATA*</label></p>
-				<p><input type="text" name="Cod_iata" value="" class="required"/></p>
-				<p><label>Código OACI*</label></p>
-				<p><input type="text" name="Cod_oaci" value="" class="required"/></p>
-
-				<p><label>Nombre*</label></p>
-				<p><input type="text" name="Nombre_general" value="" class="required"/></p>
-
-				<p><label>Dirección*</label></p>
-				<p><input type="text" name="direccion_general" value="" class="required"/></p>
-
-				<p><label>Télefono*</label></p>
-				<p><input type="text" name="telefono_general" value="" class="required"/></p>
-
+				<p><label for='RFC'>FRC*</label></p>
+				<p><input type="text" name="RFC" value="" id='RFC' class="required"/></p>
+				
+				<p><label for='RazonSocial'>Razon Social*</label></p>
+				<p><input type="text" name="RazonSocial" id='RazonSocial' value="" class="required"/></p>
+				
+				<p><label for='Direccion'>Direccion*</label></p>
+				<p><input type="text" name="Direccion" id='Direccion' value="" class="required"/></p>				
+				
 			</div>
 			<div class='colum2'>
-				<h2>Datos contacto</h2>
 
-				<p><label>Nombre*</label></p>
-				<p><input type="text" name="nombre_contacto" value="" class="required"/></p>
-
-				<p><label>Dirección*</label></p>
-				<p><input type="text" name="direccion_contacto" value="" class="required"/></p>
-
-				<p><label>Telefono*</label></p>
-				<p><input type="text" name="telefono_contacto" value="" class="required"/></p>
-
-				<p><label>Email</label></p>
-				<p><input type="text" name="email_contacto" value="" class="email"/></p>
+				<p><label for='id_Empresa'>id_Empresa*</label></p>
+				<p><input type="text" name="id_Empresa" id='id_Empresa' value="" class="required"/></p>
+				
+				<p><label for='id_Sucursal'>id_Sucursal*</label></p>
+				<p><input type="text" name="id_Sucursal" value="" id='id_Sucursal' class="required"/></p>
+				
+				<p><input type="submit" value="Guardar" class="new submit"/></p>
 			
 			</div>
 			<div class='colum3'>
-				<h2>Datos facturación</h2>
 
-				<p><label>Razon social*</label></p>
-				<p><input type="text" name="nombre_facturacion" value="" class="required"/></p>
-
-				<p><label>Dirección*</label></p>
-				<p><input type="text" name="direccion_facturacion" value="" class="required"/></p>
-
-				<p><label>Télefono*</label></p>
-				<p><input type="text" name="telefono_facturacion" value="" class="required"/></p>
-
-				<p><label>Email</label></p>
-				<p><input type="text" name="email_facturacion" value="" class="email"/></p>
 			</div>
 			<div class='colum3'>
-				<h2>Datos de Contrato</h2>
-				<p><label>Con contrato</label></p>
-				<p><input type='checkbox' class='checkbox' id='contrato' name='contrato' value='no' ></p>
-				<p><label>Vigencia</label></p>
-				<div class='left'>
-					<p><label for='vigencia_inicia_fake'>Desde*</label></p>
-					<p><input type='text' disabled='disabled' name='vigencia_inicia_fake' id='vigencia_inicia_fake' class="middle disabled Vigencia_UTC_llegada_fake"/></p>
-					<p><input type='hidden' name='vigencia_inicia' id='vigencia_inicia' class="middle Vigencia_UTC_llegada"/></p>
-				</div>
-				<div class='right'>
-					<p><label for='vigencia_finaliza_fake'>Hasta*</label></p>
-					<p><input type='text' disabled='disabled' name='vigencia_finaliza_fake' id='vigencia_finaliza_fake' class="middle disabled Vigencia_UTC_salida_fake"/></p>
-					<p><input type='hidden' name='vigencia_finaliza' id='vigencia_finaliza' class="middle Vigencia_UTC_salida"/></p>
-				</div>
-				<p><input type="submit" value="Guardar" class="new submit"/> o <a href="/aerolineas/?p=" class='back'>Cancelar</a></p>
+
 			</div>
 		</form>
 	</div>
@@ -127,6 +89,6 @@
 		</form>
 
 	<div class='clear'></div>
-	<div class="TblList"><div metal:use-macro="view.clients_list['clients_list']"></div></div>
+	<div class="TblList"><div metal:use-macro="view.clientes_list['clientes_list']"></div></div>
 </div>
 </div></div>

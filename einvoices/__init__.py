@@ -11,6 +11,7 @@ from views.unidades import ProjectorUnidades
 from views.companies import  ProjectorCompanies
 from views.home import  ProjectorHome
 from views.users import ProjectorUsers
+from views.clientes import ProjectorClientes
 from views.suppliers import ProjectorSuppliers
 from views.main import Main
 
@@ -48,6 +49,13 @@ def main(global_config, **settings):
     config.add_handler('users_indexe', '/users/e={e}', handler = ProjectorUsers, action = 'index')
     config.add_handler('users_action','/users/{action}', handler = ProjectorUsers)
     config.add_handler('users_action_id','/users/{action}/{id}', handler = ProjectorUsers)
+    
+    #clients URL's
+    config.add_handler('clients_index','/clients', handler = ProjectorClientes, action='index')
+    config.add_handler('clients_indexm','/clients/m={m}', handler = ProjectorClientes, action = 'index')
+    config.add_handler('clients_indexe', '/clients/e={e}', handler = ProjectorClientes, action = 'index')
+    config.add_handler('clients_action','/clients/{action}', handler = ProjectorClientes)
+    config.add_handler('clients_action_id','/clients/{action}/{id}', handler = ProjectorClientes)
     
     #companies URL's
     config.add_handler('companies_index', '/companies', handler= ProjectorCompanies, action='index')

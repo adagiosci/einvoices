@@ -21,6 +21,7 @@ SITE_MENU = [
         {'href': '/unidades', 'title': 'Unidades'},
         {'href': '/users', 'title': 'Usuarios'},
         {'href': '/suppliers', 'title': 'Provedores'},
+        {'href': '/clients', 'title': 'Clientes'},
 ]    
     
 BASE_TMPL = 'einvoices:templates/'
