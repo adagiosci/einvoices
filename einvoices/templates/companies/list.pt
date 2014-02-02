@@ -8,7 +8,12 @@
 <div class='clear'></div>
 <p class='paginator' >
 	<tal:block tal:repeat="page pagination">
-		<a href='#'>${page}</a>
+		<tal:block tal:condition="page.current">
+			<a href='${page.url}' class='on'>${page.index}</a>
+		</tal:block>
+		<tal:block tal:condition="not page.current">
+			<a href='${page.url}'>${page.index}</a>
+		</tal:block>		
 	</tal:block>
 </p>
 <br />

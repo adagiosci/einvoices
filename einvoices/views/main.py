@@ -26,6 +26,10 @@ SITE_MENU = [
     
 BASE_TMPL = 'einvoices:templates/'
 import cPickle as pickle
+
+class Object(object):
+    pass
+
 class Main(Layouts):
 	def __init__(self, request):
 		self.request = request
@@ -70,11 +74,20 @@ class Main(Layouts):
 		return new_menu
 		
 	def _pagination(self,page):
-		paginator  = {}
-		objectx = object()
+		paginator  = []
+		index = int(self.request.GET.get('p','1'))
+
 		for i in range(page.page_count):
-			paginator[i + 1] = False
-		
+			objectx = Object()
+			objectx.index = i + 1
+			objectx.url = self.request.path  + '?p='  + str(objectx.index)
+			if (index == objectx.index):
+				objectx.current = True
+			else:
+				objectx.current = False
+				
+			paginator.append(objectx)
+			
 		#if(isset($this->infopaginator->previous)){
 			#$paginator.= "<a href='/{$this->view->controller}/$action?p={$this->infopaginator->first}{$param}'>&lt;&lt</a>";
 			#$paginator.= "<a href='/{$this->view->controller}/$action?p={$this->infopaginator->previous}{$param}'>Prev</a>";
