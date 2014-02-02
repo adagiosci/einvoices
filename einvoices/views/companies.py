@@ -6,7 +6,7 @@ from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 import webhelpers.paginate
 from layouts import Layouts
-from main import main
+from main import Main
 #from einvoices.library.main import (
 	#main,
 #)
@@ -22,7 +22,7 @@ from einvoices.models.company import (
     Company,
     )
 
-class ProjectorCompanies(Layouts,main):
+class ProjectorCompanies(Main):
                                 
 	@action(renderer=BASE_TMPL  + "companies/index.pt")
 	def index(self):

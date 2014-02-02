@@ -1,5 +1,7 @@
 from pyramid.config import Configurator
 from sqlalchemy import engine_from_config
+from pyramid.authentication import AuthTktAuthenticationPolicy
+from pyramid.authorization import ACLAuthorizationPolicy
 
 from models.meta import (
     DBSession,
@@ -10,18 +12,32 @@ from views.companies import  ProjectorCompanies
 from views.home import  ProjectorHome
 from views.users import ProjectorUsers
 from views.suppliers import ProjectorSuppliers
+from views.main import Main
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
+    
+    authn_policy = AuthTktAuthenticationPolicy(
+        'session_id',
+    )
+    authz_policy = ACLAuthorizationPolicy()
+    
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
-    config = Configurator(settings=settings)
+    config = Configurator(
+        settings=settings,
+        authentication_policy=authn_policy,
+        authorization_policy=authz_policy,
+    )
     #config.scan()
     config.include('pyramid_handlers')
     config.include('pyramid_chameleon')
     config.add_static_view('static', 'static', cache_max_age=3600)
+    
+    #login URL's
+    config.add_handler('main_login', '/main/login', handler= Main, action='login')
     
     #home URL's
     config.add_handler('home', '/', handler= ProjectorHome, action='index')
