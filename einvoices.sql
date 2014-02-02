@@ -115,7 +115,7 @@ CREATE TABLE `Cliente` (
   `id_Empresa` int(11) DEFAULT NULL,
   `id_Sucursal` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,6 +124,7 @@ CREATE TABLE `Cliente` (
 
 LOCK TABLES `Cliente` WRITE;
 /*!40000 ALTER TABLE `Cliente` DISABLE KEYS */;
+INSERT INTO `Cliente` VALUES (1,'gas9234568s3s','Grupo Asesores Sistemas y Comunicaciones S.A. de C.V.','Av. Kabah # 74 ext a PB',1,1);
 /*!40000 ALTER TABLE `Cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,6 +246,26 @@ CREATE TABLE `companies` (
   `cp` varchar(10) DEFAULT NULL,
   `corporateName` varchar(100) DEFAULT NULL,
   `curp` varchar(45) DEFAULT NULL,
+  `telephone` varchar(15) DEFAULT NULL,
+  `legalRepresentative` varchar(150) DEFAULT NULL,
+  `positionlegalRepresentative` varchar(200) DEFAULT NULL,
+  `rfcLegalRepresentative` varchar(20) DEFAULT NULL,
+  `curpLegalRepresentative` varchar(20) DEFAULT NULL,
+  `idLegalRepresentative` varchar(50) DEFAULT NULL,
+  `emailLegalRepresentative` varchar(70) DEFAULT NULL,
+  `datasLegalRepresentative` varchar(500) DEFAULT NULL,
+  `taxRegime` int(11) DEFAULT NULL,
+  `labourSystem` int(11) DEFAULT NULL,
+  `financialInformation` int(11) DEFAULT NULL,
+  `supervise` int(11) DEFAULT NULL,
+  `ciecKey` varchar(250) DEFAULT NULL,
+  `fielKey` varchar(200) DEFAULT NULL,
+  `imssKey` varchar(200) DEFAULT NULL,
+  `digitalSignature` varchar(250) DEFAULT NULL,
+  `accountNumber` varchar(40) DEFAULT NULL,
+  `start_date` int(11) NOT NULL,
+  `end_date` date DEFAULT NULL,
+  `services` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -255,8 +276,34 @@ CREATE TABLE `companies` (
 
 LOCK TABLES `companies` WRITE;
 /*!40000 ALTER TABLE `companies` DISABLE KEYS */;
-INSERT INTO `companies` VALUES (2,'Lorenzo','maal820513612','conocida','77028','Lorenzo Martinez Aguilar','maal8205132'),(3,'dos','maal820513612','conocida','43295','Lorenzo Martinez Aguilar','maal8205132'),(4,'ManaTips','maal820513612','conocida','43295','Lorenzo Martinez Aguilar','maal8205132');
+INSERT INTO `companies` VALUES (2,'Lorenzo','maal820513612','conocida','77028','Lorenzo Martinez Aguilar','conocida','1234','1','tt','tt','tt','1234','1234','1234',1,1,1,1234,'1234','1234','1234','1234','1234',1234,'0000-00-00','1234'),(3,'dos','maal820513612','conocida','43295','Lorenzo Martinez Aguilar','maal8205132',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL),(4,'ManaTips','maal820513612','conocida','43295','Lorenzo Martinez Aguilar','maal8205132',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL);
 /*!40000 ALTER TABLE `companies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sessions`
+--
+
+DROP TABLE IF EXISTS `sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sessions` (
+  `session_id` varchar(20) NOT NULL,
+  `data` binary(200) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `expiration` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  UNIQUE KEY `session_id` (`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sessions`
+--
+
+LOCK TABLES `sessions` WRITE;
+/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
+INSERT INTO `sessions` VALUES ('KZ57RiVhfRMsWHp3OJie','(dp1\nS\'user_id\'\np2\nS\'505PRKXnLg\'\np3\ns.\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','2014-02-01 08:41:07','2014-02-01 08:41:07');
+/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -317,7 +364,7 @@ CREATE TABLE `unidades` (
 
 LOCK TABLES `unidades` WRITE;
 /*!40000 ALTER TABLE `unidades` DISABLE KEYS */;
-INSERT INTO `unidades` VALUES (1,'AL0013970','cuenta de correo o lo que sea',3),(2,'asdwsd','Cupones más cerca de ti...',3),(5,'dsfsjfls','compras por pagar',4),(6,'AALA','sda',4);
+INSERT INTO `unidades` VALUES (1,'AL0013970','cuenta de correo o lo que sea',3),(2,'asdwsd','Cupones más cerca de ti...',3),(5,'dsfsjfls','compras por pagar',4),(6,'AALA','sda',2);
 /*!40000 ALTER TABLE `unidades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -330,14 +377,13 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `email` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
-  `second_name` varchar(100) DEFAULT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `mother_name` varchar(100) DEFAULT NULL,
+  `email` varchar(45) CHARACTER SET utf8 NOT NULL,
+  `password` mediumtext CHARACTER SET utf8 NOT NULL,
+  `names` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `last_name` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `mother_name` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,6 +392,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'irving_sci@hotmail.com','1234','Irving','Sulub','Ch'),(2,'irving.sci@gmail.com','90b0cfe1e13b2f9e0c2908b448400c47','irving','Chan','Sulub'),(3,'lo@hot.com','1111','','',NULL),(4,'lo@hot.com','1111','','',NULL),(5,'lo@hot.com','81dc9bdb52d04dc20036dbd8313ed055','','',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -358,4 +405,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-29 22:46:02
+-- Dump completed on 2014-02-02  0:01:57
