@@ -33,7 +33,7 @@ class ProjectorCompanies(Main):
 		#self.insertdb()
 		msj = self.message();
 		companies = DBSession.query(Company)
-		page = webhelpers.paginate.Page(companies, page=1, items_per_page=1)
+		page = webhelpers.paginate.Page(companies, page=1, items_per_page=20)
 		users = DBSession.query(User)
 		_pagination = self._pagination(page)
 		#_pagination = "Hola mundo"
