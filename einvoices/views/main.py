@@ -68,3 +68,6 @@ class Main(Layouts):
 			else:
 				menu['current'] = False
 		return new_menu
+		
+	def paginator(self):
+		pass

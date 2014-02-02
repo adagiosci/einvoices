@@ -33,8 +33,7 @@ class ProjectorCompanies(Main):
 		#self.insertdb()
 		msj = self.message();
 		companies = DBSession.query(Company)
-		page = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
-		#companies = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
+		page = webhelpers.paginate.Page(companies, page=1, items_per_page=1)
 		users = DBSession.query(User)
 		return {'users':users,'companies':page,'msj':msj}
 		

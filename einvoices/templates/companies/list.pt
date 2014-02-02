@@ -7,7 +7,7 @@
 <body><metal:companies_list define-macro="companies_list">
 <div class='clear'></div>
 <br />
-<p class='text-right'><span class='bold'>10</span> registros de <span class='bold'>100</span> registros encontrados</p>
+<p class='text-right'><span class='bold'>${companies.last_item}</span> registros de <span class='bold'>${companies.item_count}</span> registros encontrados</p>
 <div class='clear'></div>
 <table>
 	<tr class='titles'>
@@ -26,7 +26,7 @@
 		<th class='global-td'>Estado</th>
 	</tr>
 	<?python color = 'trgreen2' ?>
-	<tr tal:repeat="row companies" class='${color}'>
+	<tr tal:repeat="row companies.items" class='${color}'>
 		<td>${row.id}</td>
 		<td>${row.name}</td>
 		<td>${row.rfc}</td>
