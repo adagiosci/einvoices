@@ -8,7 +8,12 @@ BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
 
-class ProjectorHome(Main):        
+class ProjectorHome(Main):
+	
+        def __init__(self, request):
+		self.config_view_name = 'home'
+		super(ProjectorHome,self).__init__(request)	
+	
 	@action(renderer=BASE_TMPL  + "home/index.pt")
 	def index(self):
 		msj = self.message()

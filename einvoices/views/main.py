@@ -34,6 +34,7 @@ class Main(Layouts):
 		path = self.request.path
 		if (user_id == None and path != '/main/login'):
 			raise HTTPFound(location='/main/login')
+		self.__user__ = DBSession.query(User).filter_by(id=user_id).first()
 		
 	@action(renderer=BASE_TMPL  + "main/login.pt")
 	def login(self):
