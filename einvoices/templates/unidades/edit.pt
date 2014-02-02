@@ -43,11 +43,20 @@
 
 				<p><label for='clave'>Clave*</label></p>
 				<p><input type="text" name="clave" id='clave' value="${entry.clave}" class="required"/></p>
-								
+				
 				<p><label for='idcompany'>Empresa*</label></p>
 				<select name='idcompany' id='idcompany' class='required'>
 					<option value=''></option>
-					<option tal:repeat="entry companies" value="${entry.id}">${entry.name}</option>
+					<tal:block tal:repeat="entry2 companies">
+						<tal:block tal:condition="entry.company.name == entry2.name">
+							<option selected='selected' value="${entry2.id}">${entry2.name}</option>
+						</tal:block>
+						<tal:block tal:condition="entry.company.name != entry2.name">
+							<option value="${entry2.id}">${entry2.name}</option>
+						</tal:block>						
+					</tal:block>
+					
+					
 				</select>
 				
 				<p><label for='description'>Descripcion*</label></p>

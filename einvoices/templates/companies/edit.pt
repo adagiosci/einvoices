@@ -96,6 +96,7 @@
 					<option tal:repeat="row users" value="${row.id}">${row.names} ${row.last_name} ${row.mother_name}</option>
 				</select></p>
 				
+				
 				<p><label for='labourSystem'>Atenderá Régimen Laboral*</label></p>
 				<p><select  name="labourSystem" id='labourSystem' class="required">
 					<option></option>

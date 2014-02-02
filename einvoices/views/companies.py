@@ -36,7 +36,6 @@ class ProjectorCompanies(Main):
 		page = webhelpers.paginate.Page(companies, page=1, items_per_page=20)
 		users = DBSession.query(User)
 		_pagination = self._pagination(page)
-		#_pagination = "Hola mundo"
 		return {'users':users,'companies':page,'msj':msj,'pagination':_pagination}
 		
 	@action(renderer=BASE_TMPL  + "companies/edit.pt")
@@ -47,10 +46,13 @@ class ProjectorCompanies(Main):
 		entry = DBSession.query(Company).filter_by(id=company_id).first()
 		page = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
 		users = DBSession.query(User)
+		_pagination = self._pagination(page)
 		return {'entry':entry
 			,'companies':page
 			,'users':users.all()
-			,'msj':msj}
+			,'msj':msj
+			,'pagination':_pagination
+		}
 	
 	@reify
 	def companies_list(self):

@@ -39,9 +39,13 @@ class Company(Base):
     end_date = Column(String(10))
     
     taxRegime = Column(Integer)
-    labourSystem = Column(Integer)
+    labourSystem = Column(Integer,ForeignKey('users.id'))
     financialInformation = Column(Integer)
     supervise = Column(Integer)
     services = Column(Integer)
+    
+    #relationships
+    #labourSystems = relationship("User", order_by="User.id", backref="user")
+    
     #units = relationship("Unidad", order_by="Unidad.id", backref="company") relacion uno a muchos
 
