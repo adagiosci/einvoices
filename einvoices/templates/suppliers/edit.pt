@@ -85,8 +85,12 @@
 				
 				<p><label for='email'>Email*</label></p>
 				<p><input type="text" name="email" value="${entry.email}" id='email' class="required"/></p>
+				
+					<p><input type='hidden' value='${entry.id}' name='supplier_id' id='supplier_id' /></p>
+				
+				<p><input type="submit" value="Guardar" class="new submit"/> <a href="/suppliers" class='back'>Cancelar</a> </p>
 
-				<p><input type="submit" value="Guardar" class="new submit"/></p>
+			
 			
 			</div>
 			<div class='colum3'>

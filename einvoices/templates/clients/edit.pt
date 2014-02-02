@@ -1,7 +1,7 @@
 <div metal:use-macro="view.global_template"><div metal:fill-slot="content" class='container'>
 <div class='center'>
 	<div class='opciones'>
-		<a href='#' class='agregar'>Nuevo</a>
+		<a href='#' class='agregar'>Editar</a>
 		<a href='#' class='filtrar'>Filtrar</a>
 	</div>
 	<div class='clear'></div>
@@ -38,25 +38,33 @@
 	</div>
 	<div class='clear'></div>
 	<div class="NewInputs">
-		<form class="form" action='/unidades/update' method='post' accept-charset='utf-8' enctype="multipart/form-data">
+		<form class="form" action='/clients/update' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
 
-				<p><label for='clave'>Clave*</label></p>
-				<p><input type="text" name="clave" id='clave' value="${entry.clave}" class="required"/></p>
-								
-				<p><label for='idcompany'>Empresa*</label></p>
-				<select name='idcompany' id='idcompany' class='required'>
-					<option value=''></option>
-					<option tal:repeat="entry companies" value="${entry.id}">${entry.name}</option>
-				</select>
+				<p><label for='RFC'>RFC*</label></p>
+				<p><input type="text" name="RFC" value="${entry.RFC}" id='RFC' class="required"/></p>
 				
-				<p><label for='description'>Descripcion*</label></p>
-				<p><input type='text' name="description" value="${entry.description}" id='description' class="required" /></p>
-					
-				<p><input type='hidden' value='${entry.id}' name='unidad_id' id='unidad_id' /></p>
-					
-					<p><input type="submit" value="Guardar" class="new submit"/> <a href="/unidades" class='back'>Cancelar</a> </p>
+				<p><label for='RazonSocial'>Razon Social*</label></p>
+				<p><input type="text" name="RazonSocial" id='RazonSocial' value="${entry.RazonSocial}" class="required"/></p>
+				
+				<p><label for='Direccion'>Direccion*</label></p>
+				<p><input type="text" name="Direccion" id='Direccion' value="${entry.Direccion}" class="required"/></p>
+
 			</div>
+			<div class='colum2'>
+
+				<p><label for='id_Empresa'>ID Empresa*</label></p>
+				<p><input type="text" name="id_Empresa" id='id_Empresa' value="${entry.id_Empresa}" class="required"/></p>
+				
+				<p><label for='id_Sucursal'>ID Sucursal*</label></p>
+				<p><input type="text" name="id_Sucursal" id='id_Sucursal' value="${entry.id_Sucursal}" class="required"/></p>
+				
+				<p><input type='hidden' value='${entry.id}' name='cliente_id' id='cliente_id' /></p>
+				
+				<p><input type="submit" value="Guardar" class="new submit"/> <a href="/clients" class='back'>Cancelar</a> </p>
+			
+			</div>
+		
 		</form>
 	</div>
 	<div class='clear'></div>
@@ -79,6 +87,6 @@
 		</form>
 
 	<div class='clear'></div>
-	<div class="TblList"><div metal:use-macro="view.unidades_list['unidades_list']"></div></div>
+	<div class="TblList"><div metal:use-macro="view.clientes_list['clientes_list']"></div></div>
 </div>
 </div></div>
