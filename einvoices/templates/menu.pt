@@ -21,7 +21,7 @@
 		<div class="clear"></div>
 	</div>
 	<div class='logout'>
-		<p><span>Bienvenido Usuario</span><a href='/users/logout/'>Salir</a></p>
+		<p><span>Bienvenido Usuario</span><a href='/main/logout'>Salir</a></p>
 		<div class='clear'></div>
 
 	</div>

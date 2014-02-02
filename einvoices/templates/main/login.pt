@@ -22,10 +22,11 @@
 <body>
 	<section class="container">
 	  <div class ="login">
-		<form method="post" action="index.html">
+		<form method="post" action="/main/login">
 			<p>Usuario:    <input type="text" name="username" value ="" placeholder="Username or Email"></p>
-			<p>Contraseña: <input type="password" name="contrasenia" value = "" placeholder="password"><br>
-			<p><input type="submit" value="Login">
+			<p>Contraseña: <input type="password" name="contrasenia" value = "" placeholder="password"><br></p>
+			<p><input type='hidden' name='submit' value='submit'></p>
+			<p><input type="submit" value="Login"></p>
 		</form>
 	  </div>
 	</section>

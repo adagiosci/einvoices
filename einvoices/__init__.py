@@ -38,7 +38,7 @@ def main(global_config, **settings):
     
     #login URL's
     config.add_handler('main_login', '/main/login', handler= Main, action='login')
-    
+    config.add_handler('main_logout', '/main/logout', handler= Main, action='logout')
     #home URL's
     config.add_handler('home', '/', handler= ProjectorHome, action='index')
     
