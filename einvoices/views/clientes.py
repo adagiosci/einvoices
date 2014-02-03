@@ -44,6 +44,13 @@ class ProjectorClientes(Main):
 		companies = DBSession.query(Company)
 		_pagination = self._pagination(pages)
 		return {'entry':entry,'clientes':clientes,'msj':msj,'companies':companies.all(),'pagination':_pagination}
+		
+	@action(renderer=BASE_TMPL  + "clients/list.pt")
+	def filter(self):
+		clientes = DBSession.query(Cliente)
+		pages = webhelpers.paginate.Page(clientes, page=self.request.GET.get('p',1), items_per_page=20)
+		_pagination = self._pagination(pages)
+		return {'clientes':pages,'pagination':_pagination}		
 	
 	@reify
 	def clientes_list(self):
