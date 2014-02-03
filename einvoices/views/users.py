@@ -4,6 +4,7 @@ from pyramid_handlers import action
 from pyramid.response import Response
 from pyramid.decorator import reify
 from pyramid.view import view_config
+import webhelpers.paginate
 from pyramid.httpexceptions import HTTPFound
 from main import Main
 BASE_TMPL = 'einvoices:templates/'
@@ -25,15 +26,26 @@ class ProjectorUsers(Main):
 	def index(self):
 		msj = self.message();
 		users = DBSession.query(User)
-		return {'users':users.all(),'msj':msj}
+		pages = webhelpers.paginate.Page(users, page=self.request.GET.get('p',1), items_per_page=20)
+		_pagination = self._pagination(pages)
+		return {'users':pages,'msj':msj,'pagination':_pagination}
 	#aqui me quede	
 	@action(renderer=BASE_TMPL  + "users/edit.pt")
 	def edit(self):
 		msj = self.message();
 		users = DBSession.query(User)
+		pages = webhelpers.paginate.Page(users, page=self.request.GET.get('p',1), items_per_page=20)
 		user_id = self.request.matchdict['id']
 		entry = DBSession.query(User).filter_by(id=user_id).first()
-		return {'entry':entry,'users':users,'msj':msj}
+		_pagination = self._pagination(pages)
+		return {'entry':entry,'users':pages,'msj':msj,'pagination':_pagination}
+		
+	@action(renderer=BASE_TMPL  + "users/list.pt")
+	def filter(self):
+		users = DBSession.query(User)
+		pages = webhelpers.paginate.Page(users, page=self.request.GET.get('p',1), items_per_page=20)
+		_pagination = self._pagination(pages)
+		return {'users':pages,'pagination':_pagination}	
 	
 	@reify
 	def users_list(self):

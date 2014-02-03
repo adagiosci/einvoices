@@ -884,7 +884,7 @@ function filter(){
 	$(".TblList").addClass("loader1");
 	$(".TblList").html("");
 	setFiltersExport();
-	$.post("/"+controller+"/filtrar/",{
+	$.post("/"+controller+"/filter",{
 		SlcFiltro1:$("#SlcFiltro1").val()
 		,TxtFiltro1:$("#TxtFiltro1").val()
 		,SlcFiltro2:$("#SlcFiltro2").val()
@@ -895,6 +895,7 @@ function filter(){
 	        ,hasta:$(".InputsFind .hasta").val()
 		,estado:$("#estado").val()
 	        ,num_records: $("#num_records").val()
+		,path: $("#path").val()
 	},function(data){
 		$(".TblList").removeClass("loader1");
 		$(".TblList").html(data);

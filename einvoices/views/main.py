@@ -35,7 +35,6 @@ class Main(Layouts):
 		self.request = request
 		self.session = session(request)
 		user_id = authenticated_userid(self.request)
-		path = self.request.path
 		if (user_id == None and path != '/main/login'):
 			raise HTTPFound(location='/main/login')
 		self.__user__ = DBSession.query(User).filter_by(id=user_id).first()
@@ -80,7 +79,8 @@ class Main(Layouts):
 		for i in range(page.page_count):
 			objectx = Object()
 			objectx.index = i + 1
-			objectx.url = self.request.path  + '?p='  + str(objectx.index)
+			path = self.request.POST.get('path',self.request.path)
+			objectx.url = path  + '?p='  + str(objectx.index)
 			if (index == objectx.index):
 				objectx.current = True
 			else:

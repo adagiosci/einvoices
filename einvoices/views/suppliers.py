@@ -3,6 +3,7 @@ from pyramid_handlers import action
 from pyramid.response import Response
 from pyramid.decorator import reify
 from pyramid.view import view_config
+import webhelpers.paginate
 from pyramid.httpexceptions import HTTPFound
 from main import Main
 BASE_TMPL = 'einvoices:templates/'
@@ -24,15 +25,27 @@ class ProjectorSuppliers(Main):
 	def index(self):
 		msj = self.message();
 		suppliers = DBSession.query(Supplier)
-		return {'suppliers':suppliers.all(),'msj':msj}
-	#aqui me quede	
+		pages = webhelpers.paginate.Page(suppliers, page=self.request.GET.get('p',1), items_per_page=20)
+		_pagination = self._pagination(pages)
+		return {'suppliers':pages,'msj':msj,'pagination':_pagination}
+	#aqui me quede
+	
 	@action(renderer=BASE_TMPL  + "suppliers/edit.pt")
 	def edit(self):
 		msj = self.message();
 		suppliers = DBSession.query(Supplier)
+		pages = webhelpers.paginate.Page(suppliers, page=self.request.GET.get('p',1), items_per_page=20)
 		supplier_id = self.request.matchdict['id']
 		entry = DBSession.query(Supplier).filter_by(id=supplier_id).first()
-		return {'entry':entry,'suppliers':suppliers,'msj':msj}
+		_pagination = self._pagination(pages)
+		return {'entry':entry,'suppliers':pages,'msj':msj,'pagination':_pagination}
+
+	@action(renderer=BASE_TMPL  + "suppliers/list.pt")
+	def filter(self):
+		suppliers = DBSession.query(Supplier)
+		pages = webhelpers.paginate.Page(suppliers, page=self.request.GET.get('p',1), items_per_page=20)
+		_pagination = self._pagination(pages)
+		return {'suppliers':pages,'pagination':_pagination}		
 	
 	@reify
 	def supp_list(self):

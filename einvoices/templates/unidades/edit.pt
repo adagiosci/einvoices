@@ -34,7 +34,8 @@
 		</select>
 		<input type="text" name="TxtFiltro3" id='TxtFiltro3' class='filters' value=""/>
 
-		<input type="hidden" name='controller' id="controller" value='aerolineas'>
+		<input type="hidden" name='controller' id="controller" value='unidades'>
+		<input type="hidden" name='path' id="path" value='${view.request.path}'>
 	</div>
 	<div class='clear'></div>
 	<div class="NewInputs">
@@ -62,7 +63,7 @@
 	</div>
 	<div class='clear'></div>
 	<select id='num_records' name='num_records' class='size6'>
-		<option value='20'>Registros</option>
+		<option tal:repeat="item range(20,201,10)" value='${item}'>${item}</option>
 	</select>
 
 		<form  action='/aerolineas/exportcsv/' id='form_export' method='post' accept-charset='utf-8' enctype="multipart/form-data">

@@ -4,6 +4,7 @@ from pyramid_handlers import action
 from pyramid.response import Response
 from pyramid.decorator import reify
 from pyramid.view import view_config
+import webhelpers.paginate
 from pyramid.httpexceptions import HTTPFound
 from main import Main
 BASE_TMPL = 'einvoices:templates/'
@@ -27,18 +28,22 @@ class ProjectorClientes(Main):
 	def index(self):
 		msj = self.message();
 		clientes = DBSession.query(Cliente)
+		pages = webhelpers.paginate.Page(clientes, page=self.request.GET.get('p',1), items_per_page=20)
 		companies = DBSession.query(Company)
-		return {'clientes':clientes.all(),'msj':msj,'companies':companies.all()}
+		_pagination = self._pagination(pages)
+		return {'clientes':pages,'msj':msj,'companies':companies.all(),'pagination':_pagination}
 		
 	#aqui me quede
 	@action(renderer=BASE_TMPL  + "clients/edit.pt")
 	def edit(self):
 		msj = self.message();
 		clientes = DBSession.query(Cliente)
+		pages = webhelpers.paginate.Page(clientes, page=self.request.GET.get('p',1), items_per_page=20)
 		cliente_id = self.request.matchdict['id']
 		entry = DBSession.query(Cliente).filter_by(id=cliente_id).first()
 		companies = DBSession.query(Company)
-		return {'entry':entry,'clientes':clientes,'msj':msj,'companies':companies.all()}
+		_pagination = self._pagination(pages)
+		return {'entry':entry,'clientes':clientes,'msj':msj,'companies':companies.all(),'pagination':_pagination}
 	
 	@reify
 	def clientes_list(self):

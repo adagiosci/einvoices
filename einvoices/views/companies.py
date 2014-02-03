@@ -33,10 +33,10 @@ class ProjectorCompanies(Main):
 		#self.insertdb()
 		msj = self.message();
 		companies = DBSession.query(Company)
-		page = webhelpers.paginate.Page(companies, page=1, items_per_page=20)
+		pages = webhelpers.paginate.Page(companies, page=self.request.GET.get('p',1), items_per_page=20)
 		users = DBSession.query(User)
-		_pagination = self._pagination(page)
-		return {'users':users,'companies':page,'msj':msj,'pagination':_pagination}
+		_pagination = self._pagination(pages)
+		return {'users':users,'companies':pages,'msj':msj,'pagination':_pagination}
 		
 	@action(renderer=BASE_TMPL  + "companies/edit.pt")
 	def edit(self):
@@ -53,6 +53,13 @@ class ProjectorCompanies(Main):
 			,'msj':msj
 			,'pagination':_pagination
 		}
+	
+	@action(renderer=BASE_TMPL  + "companies/list.pt")
+	def filter(self):
+		companies = DBSession.query(Company)
+		page = webhelpers.paginate.Page(companies, page=self.request.GET.get('p',1), items_per_page=20)
+		_pagination = self._pagination(page)
+		return {'companies':page,'pagination':_pagination}
 	
 	@reify
 	def companies_list(self):

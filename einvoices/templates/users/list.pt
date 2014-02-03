@@ -6,8 +6,18 @@
 </head>
 <body><metal:users_list define-macro="users_list">
 <div class='clear'></div>
+<p class='paginator' >
+	<tal:block tal:repeat="page pagination">
+		<tal:block tal:condition="page.current">
+			<a href='${page.url}' class='on'>${page.index}</a>
+		</tal:block>
+		<tal:block tal:condition="not page.current">
+			<a href='${page.url}'>${page.index}</a>
+		</tal:block>		
+	</tal:block>
+</p>
 <br />
-<p class='text-right'><span class='bold'>10</span> registros de <span class='bold'>100</span> registros encontrados</p>
+<p class='text-right'><span class='bold'>${users.last_item}</span> registros de <span class='bold'>${users.item_count}</span> registros encontrados</p>
 <div class='clear'></div>
 <table>
 	<tr class='titles'>

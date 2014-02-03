@@ -21,20 +21,24 @@
 
 		<select name="SlcFiltro1" id='SlcFiltro1'>
 			<option value=''>Filtrar por</option>
+			<option value='companies.name'>Nombre</option>
 		</select>
 		<input type="text" name="TxtFiltro1" id='TxtFiltro1' class='filters' value=""/>
 
 		<select name="SlcFiltro2" id='SlcFiltro2'>
 			<option value=''>Filtrar por</option>
+			<option value='companies.name'>Nombre</option>
 		</select>
 		<input type="text" name="TxtFiltro2" id='TxtFiltro2' class='filters' value=""/>
 
 		<select name="SlcFiltro3" id='SlcFiltro3'>
 			<option value=''>Filtrar por</option>
+			<option value='companies.name'>Nombre</option>
 		</select>
 		<input type="text" name="TxtFiltro3" id='TxtFiltro3' class='filters' value=""/>
 
-		<input type="hidden" name='controller' id="controller" value='aerolineas'>
+		<input type="hidden" name='controller' id="controller" value='companies'>
+		<input type="hidden" name='path' id="path" value='${view.request.path}'>
 	</div>
 	<div class='clear'></div>
 	<div class="NewInputs hidden">

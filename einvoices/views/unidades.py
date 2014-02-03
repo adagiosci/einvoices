@@ -3,6 +3,7 @@ from pyramid_handlers import action
 from pyramid.response import Response
 from pyramid.decorator import reify
 from pyramid.view import view_config
+import webhelpers.paginate
 from pyramid.httpexceptions import HTTPFound
 from main import Main
 BASE_TMPL = 'einvoices:templates/'
@@ -27,16 +28,28 @@ class ProjectorUnidades(Main):
 		msj = self.message();
 		unidades = DBSession.query(Unidad)
 		companies = DBSession.query(Company)
-		return {'unidades':unidades.all(),'msj':msj, 'companies':companies.all()}
-	#aqui me quede	
+		pages = webhelpers.paginate.Page(unidades, page=self.request.GET.get('p',1), items_per_page=20)
+		_pagination = self._pagination(pages)
+		return {'unidades':pages,'msj':msj, 'companies':companies.all(),'pagination':_pagination}
+	#aqui me quede
+	
 	@action(renderer=BASE_TMPL  + "unidades/edit.pt")
 	def edit(self):
 		msj = self.message();
 		unidades = DBSession.query(Unidad)
+		pages = webhelpers.paginate.Page(unidades, page=self.request.GET.get('p',1), items_per_page=20)
+		_pagination = self._pagination(pages)
 		companies = DBSession.query(Company)
 		unidad_id = self.request.matchdict['id']
 		entry = DBSession.query(Unidad).filter_by(id=unidad_id).first()
-		return {'entry':entry,'unidades':unidades,'msj':msj, 'companies':companies.all()}
+		return {'entry':entry,'unidades':pages,'msj':msj, 'companies':companies.all(),'pagination':_pagination}
+		
+	@action(renderer=BASE_TMPL  + "unidades/list.pt")
+	def filter(self):
+		unidades = DBSession.query(Unidad)
+		pages = webhelpers.paginate.Page(unidades, page=self.request.GET.get('p',1), items_per_page=20)
+		_pagination = self._pagination(pages)
+		return {'unidades':pages,'pagination':_pagination}		
 	
 	@reify
 	def unidades_list(self):
