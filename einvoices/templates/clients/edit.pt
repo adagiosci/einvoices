@@ -53,8 +53,13 @@
 			</div>
 			<div class='colum2'>
 
-				<p><label for='id_Empresa'>ID Empresa*</label></p>
-				<p><input type="text" name="id_Empresa" id='id_Empresa' value="${entry.id_Empresa}" class="required"/></p>
+				<p><label for='idcompany'>Empresa*</label></p>
+				<p><select name="idcompany" id='idcompany' class="required">
+					<option></option>
+					<tal:block tal:repeat="row companies">
+						<option tal:attributes="selected 'selected' if entry.company.id == row.id else None" value='${row.id}'>${row.name}</option>
+					</tal:block>
+				</select></p>
 				
 				<p><label for='id_Sucursal'>ID Sucursal*</label></p>
 				<p><input type="text" name="id_Sucursal" id='id_Sucursal' value="${entry.id_Sucursal}" class="required"/></p>

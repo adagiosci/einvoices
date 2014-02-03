@@ -10,30 +10,35 @@ BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
 
+from einvoices.models.company import Company
+
 from einvoices.models.cliente import (
     DBSession,
     Cliente,
     )
-
+    
+    
 class ProjectorClientes(Main):
 	def __init__(self, request):
 		self.config_view_name = 'clients'
 		super(ProjectorClientes,self).__init__(request)
 		
-                
 	@action(renderer=BASE_TMPL  + "clients/index.pt")
 	def index(self):
 		msj = self.message();
 		clientes = DBSession.query(Cliente)
-		return {'clientes':clientes.all(),'msj':msj}
-	#aqui me quede	
+		companies = DBSession.query(Company)
+		return {'clientes':clientes.all(),'msj':msj,'companies':companies.all()}
+		
+	#aqui me quede
 	@action(renderer=BASE_TMPL  + "clients/edit.pt")
 	def edit(self):
 		msj = self.message();
 		clientes = DBSession.query(Cliente)
 		cliente_id = self.request.matchdict['id']
 		entry = DBSession.query(Cliente).filter_by(id=cliente_id).first()
-		return {'entry':entry,'clientes':clientes,'msj':msj}
+		companies = DBSession.query(Company)
+		return {'entry':entry,'clientes':clientes,'msj':msj,'companies':companies.all()}
 	
 	@reify
 	def clientes_list(self):
@@ -45,7 +50,7 @@ class ProjectorClientes(Main):
 		cliente = Cliente(RFC = self.request.POST['RFC'] 
 				,RazonSocial = self.request.POST['RazonSocial'] 
 				,Direccion = self.request.POST['Direccion']
-				,id_Empresa = self.request.POST['id_Empresa']
+				,idcompany = self.request.POST['idcompany']
 				,id_Sucursal = self.request.POST['id_Sucursal']
 			)
 		DBSession.add(cliente)
@@ -60,7 +65,7 @@ class ProjectorClientes(Main):
 													 'RFC': self.request.POST['RFC']
 													,'RazonSocial': self.request.POST['RazonSocial']
 													,'Direccion': self.request.POST['Direccion']
-													,'id_Empresa': self.request.POST['id_Empresa']
+													,'idcompany': self.request.POST['idcompany']
 													,'id_Sucursal': self.request.POST['id_Sucursal']
 													})
 		return HTTPFound(location='/clients/m=rec')
@@ -72,35 +77,3 @@ class ProjectorClientes(Main):
 		#DBSession.delete(company)
 		return HTTPFound(location='/clients/m=rdc')
 		
-	def errormsj(self,code):
-		message = {}
-		message['ac'] = "Hubo un error al activar el registro"
-		message['in'] = "Hubo un error al inactivar el registro"
-		message['edc'] = "Hubo un error al eliminar el registro"
-		return message[code]
-		
-	def succesms(self,code):
-		message  = {}
-		message['rec'] = "El registro se edito exitosamente"
-		message['ric'] = "El registro se inserto exitosamente"
-		message['rdc'] = "El registro se elimino exitosamente"
-		return message[code]
-	def message(self):
-		msj = {}
-		msj['e'] = ''
-		msj['s'] = ''
-		try:
-			m = self.request.matchdict['m']
-			msj['s'] = self.succesms(m)
-		except Exception, e:
-			print repr(e)
-			
-		try:
-			ex = self.request.matchdict['e']
-			msj['e'] = self.succesms(ex)
-		except Exception, e:
-			print repr(e)
-			
-		return msj
-				
-

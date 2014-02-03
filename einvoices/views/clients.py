@@ -9,10 +9,10 @@ BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
 
-from einvoices.models.models import (
-    DBSession,
-    Aerolinea
-    )
+#from einvoices.models.models import (
+    #DBSession,
+    #Aerolinea
+    #)
 
 class ProjectorClients(Main):
 	

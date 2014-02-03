@@ -87,20 +87,35 @@ class Main(Layouts):
 				objectx.current = False
 				
 			paginator.append(objectx)
-			
-		#if(isset($this->infopaginator->previous)){
-			#$paginator.= "<a href='/{$this->view->controller}/$action?p={$this->infopaginator->first}{$param}'>&lt;&lt</a>";
-			#$paginator.= "<a href='/{$this->view->controller}/$action?p={$this->infopaginator->previous}{$param}'>Prev</a>";
-		#}
-		#foreach($this->infopaginator->pagesInRange as $r){
-			#$on = ($r == $this->infopaginator->current)?"class='on'":"";
-			#$paginator.="<a $on href='/{$this->view->controller}/$action?p=$r{$param}'>".$r."</a>";
-		#}
-		#if(isset($this->infopaginator->next)){
-			#$paginator.="<a href='/{$this->view->controller}/$action?p={$this->infopaginator->next}{$param}'>Next</a>";
-			#$paginator.="<a href='/{$this->view->controller}/$action?p={$this->infopaginator->last}{$param}'>&gt;&gt;</a>";
-		#}
-		#$this->view->totalItemCount = $this->infopaginator->totalItemCount;
-		#$this->view->lastItemNumber = $this->infopaginator->lastItemNumber;
-		#$this->view->pagination = $paginator;
 		return paginator
+		
+	def errormsj(self,code):
+		message = {}
+		message['ac'] = "Hubo un error al activar el registro"
+		message['in'] = "Hubo un error al inactivar el registro"
+		message['edc'] = "Hubo un error al eliminar el registro"
+		return message[code]
+		
+	def succesms(self,code):
+		message  = {}
+		message['rec'] = "El registro se edito exitosamente"
+		message['ric'] = "El registro se inserto exitosamente"
+		message['rdc'] = "El registro se elimino exitosamente"
+		return message[code]
+	def message(self):
+		msj = {}
+		msj['e'] = ''
+		msj['s'] = ''
+		try:
+			m = self.request.matchdict['m']
+			msj['s'] = self.succesms(m)
+		except Exception, e:
+			print repr(e)
+			
+		try:
+			ex = self.request.matchdict['e']
+			msj['e'] = self.succesms(ex)
+		except Exception, e:
+			print repr(e)
+			
+		return msj

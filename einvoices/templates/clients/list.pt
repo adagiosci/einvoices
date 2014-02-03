@@ -30,7 +30,7 @@
 		<td>${row.RFC}</td>
 		<td>${row.RazonSocial}</td>
 		<td>${row.Direccion}</td>
-		<td>${row.id_Empresa}</td>
+		<td>${row.idcompany}</td>
 		<td>${row.id_Sucursal}</td>
 		<td><a href='/clients/edit/${row.id}'>Editar</a></td>
 		<td><a href='/clients/delete/${row.id}'>Eliminar<a></td>

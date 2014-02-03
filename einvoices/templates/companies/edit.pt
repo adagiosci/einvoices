@@ -66,7 +66,7 @@
 			<div class='colum2'>
 
 				<p><label for='legalRepresentative'>Representante legal*</label></p>
-				<p><input type="text" name="legalRepresentative" value="" id='legalRepresentative' class="required"/></p>	
+				<p><input type="text" name="legalRepresentative" value="${entry.legalRepresentative}" id='legalRepresentative' class="required"/></p>	
 
 				<p><label for='position'>Puesto*</label></p>
 				<p><input type="text" value="${entry.positionlegalRepresentative}" name="positionlegalRepresentative"  id='positionlegalRepresentative' class="required"/></p>				
@@ -92,34 +92,42 @@
 			<div class='colum3'>
 				<p><label for='taxRegime'>Atenderá Régimen Fiscal*</label></p>
 				<p><select name="taxRegime" id='taxRegime' class="required">
-					<option></option>
-					<option tal:repeat="row users" value="${row.id}">${row.names} ${row.last_name} ${row.mother_name}</option>
+					<option value=''></option>
+					<tal:block tal:repeat="row users">
+						<option  tal:attributes="selected 'selected' if entry.utaxRegime.id == row.id else None" value='${row.id}'>${row.names} ${row.last_name} ${row.mother_name}</option>
+					</tal:block>
 				</select></p>
 				
 				
 				<p><label for='labourSystem'>Atenderá Régimen Laboral*</label></p>
 				<p><select  name="labourSystem" id='labourSystem' class="required">
 					<option></option>
-					<option tal:repeat="row users" value="${row.id}">${row.names} ${row.last_name} ${row.mother_name}</option>				
+					<tal:block tal:repeat="row users">
+						<option  tal:attributes="selected 'selected' if entry.ulabourSystem.id == row.id else None" value='${row.id}'>${row.names} ${row.last_name} ${row.mother_name}</option>
+					</tal:block>
 				</select></p>
 							
 				<p><label for='financialInformation'>Atenderá información financiera*</label></p>
 				<p><select name="financialInformation" id='financialInformation' class="required">
 					<option></option>
-					<option tal:repeat="row users" value="${row.id}">${row.names} ${row.last_name} ${row.mother_name}</option>		
+					<tal:block tal:repeat="row users">
+						<option  tal:attributes="selected 'selected' if entry.ufinancialInformation.id == row.id else None" value='${row.id}'>${row.names} ${row.last_name} ${row.mother_name}</option>
+					</tal:block>
 				</select></p>
 				
 				<p><label for='supervise'>Supervisará*</label></p>
 				<p><select name="supervise" id='supervise' class="required">
 					<option></option>
-					<option tal:repeat="row users" value="${row.id}">${row.names} ${row.last_name} ${row.mother_name}</option>				
+					<tal:block tal:repeat="row users">
+						<option  tal:attributes="selected 'selected' if entry.usupervise.id == row.id else None" value='${row.id}'>${row.names} ${row.last_name} ${row.mother_name}</option>
+					</tal:block>
 				</select></p>
 			
 				<p><label for='ciecKey'>Clave CIEC*</label></p>
 				<p><input type="text" value='${entry.ciecKey}' name="ciecKey" id='ciecKey' class="required"/></p>
 				
 				<p><label for='fielKey'>Clave FIEL*</label></p>
-				<p><input type="text" value='${entry.fielKey}' name="fielKey" id='fielKey' class="required"/></p>				
+				<p><input type="text" value='${entry.fielKey}' name="fielKey" id='fielKey' class="required"/></p>
 
 				<p><label for='imssKey'>Clave IMSS*</label></p>
 				<p><input type="text" value='${entry.imssKey}' name="imssKey" id='imssKey' class="required"/></p>
@@ -136,10 +144,11 @@
 				<p><input type="text" value="${entry.start_date}" name="start_date" id='start_date' class="required"/></p>
 				
 				<p><label for='corporateName'>Fin de Obligaciones*</label></p>
-				<p><input type="text" value="${entry.end_date}" name="end_date" id='end_date' class="required"/></p>				
+				<p><input type="text" value="${entry.end_date}" name="end_date" id='end_date' class="required"/></p>
 
 				<p><label for='corporateName'>Servicios*</label></p>
-				<p><input type="text" value="" name="services" id='services' class="required"/></p>			
+				<p><input type="text" value="${entry.services}" name="services" id='services' class="required"/></p>
+				
 				<p><input type='hidden' value='${entry.id}' name='company_id' id='company_id' /></p>
 				<p><input type="submit" value="Guardar" class="new submit"/> <a href="/companies" class='back'>Cancelar</a> </p>
 			</div>

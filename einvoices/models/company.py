@@ -38,14 +38,20 @@ class Company(Base):
     start_date = Column(String(10))
     end_date = Column(String(10))
     
-    taxRegime = Column(Integer)
+    taxRegime = Column(Integer,ForeignKey('users.id'))
     labourSystem = Column(Integer,ForeignKey('users.id'))
-    financialInformation = Column(Integer)
-    supervise = Column(Integer)
+    financialInformation = Column(Integer,ForeignKey('users.id'))
+    supervise = Column(Integer,ForeignKey('users.id'))
     services = Column(Integer)
     
     #relationships
-    #labourSystems = relationship("User", order_by="User.id", backref="user")
+    #En una relacion one to many  la llave foranea esta en los hijos
+    #En una relacion  many to one, la llave foranea esta en los hijos
     
-    #units = relationship("Unidad", order_by="Unidad.id", backref="company") relacion uno a muchos
+    utaxRegime = relationship("User", foreign_keys=[taxRegime], backref=backref('taxRegimes', order_by=id)) #many to one relationship
+    ulabourSystem = relationship("User", foreign_keys=[labourSystem], backref=backref('labourSystems', order_by=id))
+    ufinancialInformation = relationship("User", foreign_keys=[financialInformation], backref=backref('financialInformations', order_by=id))
+    usupervise = relationship("User", foreign_keys=[supervise], backref=backref('supervises', order_by=id))
+        
+    #units = relationship("Unidad", order_by="Unidad.id", backref="company") one to many relationship
 
