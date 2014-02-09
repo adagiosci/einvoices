@@ -20,26 +20,19 @@ SITE_MENU = [
 		'title': 'Catalogos',
 		'children':[
 			{'view':'units','href': '/unidades', 'title': 'Unidades'},
-			{'view':'users','href': '/users', 'title': 'Usuarios'},
 			{'view':'suppliers','href': '/suppliers', 'title': 'Provedores'},
 			{'view':'clients','href': '/clients', 'title': 'Clientes'},
 		]
 	},
 	{
-		'title':'Facturaciones',
+		'title':'Configuraciones',
 		'children':[
-			{'view':'config','href': '/config', 'title': 'Configuraciones'},
+			{'view':'users','href': '/users', 'title': 'Usuarios'},
+			{'view':'companies','href': '/companies', 'title': 'Empresas'},
+			{'view':'password','href':'/users/password','title':'Contrasena'},
 		]
 	},
 ]    
-#SITE_MENU = [
-        #{'view':'companies','href': '/companies', 'title': 'Empresas'},
-        #{'view':'units','href': '/unidades', 'title': 'Unidades'},
-        #{'view':'users','href': '/users', 'title': 'Usuarios'},
-        #{'view':'suppliers','href': '/suppliers', 'title': 'Provedores'},
-        #{'view':'clients','href': '/clients', 'title': 'Clientes'},
-#]    
-    
 BASE_TMPL = 'einvoices:templates/'
 import cPickle as pickle
 
