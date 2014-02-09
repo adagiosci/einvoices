@@ -17,7 +17,14 @@
 	</div>
 	<div class='clear'></div>
 	<div class='options'>
-		<a href='/catalogs/' class='on'>Catálogos</a>
+		<tal:block tal:repeat="menu view.site_menu">
+			<tal:block tal:condition="menu.current">
+				<a href='#' class='on' >${menu.title}</a>
+			</tal:block>
+			<tal:block tal:condition="not menu.current">
+				<a href='#'>${menu.title}</a>
+			</tal:block>
+		</tal:block>
 		<div class="clear"></div>
 	</div>
 	<div class='logout'>
@@ -26,18 +33,37 @@
 
 	</div>
 	<div class='clear'></div>
-	<div class='submenu on'>
-		<tal:block tal:repeat="menu view.site_menu">
-			<tal:block tal:condition="menu.current">
-				<a  class='on' href='${menu.href}'>${menu.title}</a>
-			</tal:block>
-			<tal:block tal:condition="not menu.current">
-				<a  href='${menu.href}'>${menu.title}</a>
-			 </tal:block>
+	<tal:block tal:repeat="section view.site_menu">
+		<tal:block tal:condition="section.current">
+			<div class='submenu on'>
+				<tal:block tal:repeat="menu section['children']">
+					<tal:block tal:condition="menu.current">
+						<a  class='on' href='${menu.href}'>${menu.title}</a>
+					</tal:block>
+					<tal:block tal:condition="not menu.current">
+						<a  href='${menu.href}'>${menu.title}</a>
+					</tal:block>
+				</tal:block>
+				<div class="clear"></div>
+			</div>
 		</tal:block>
-		<div class="clear"></div>
-	</div>
-	
+		
+		<tal:block tal:condition="not section.current">
+			<div class='submenu'>
+				<tal:block tal:repeat="menu section['children']">
+					<tal:block tal:condition="menu.current">
+						<a  class='on' href='${menu.href}'>${menu.title}</a>
+					</tal:block>
+					<tal:block tal:condition="not menu.current">
+						<a  href='${menu.href}'>${menu.title}</a>
+					</tal:block>
+				</tal:block>
+				<div class="clear"></div>
+			</div>		
+		</tal:block>		
+		
+	</tal:block>
+		
 	<div class='clear'></div>
 	<div id='red-line'></div>
 	<div id='message'>

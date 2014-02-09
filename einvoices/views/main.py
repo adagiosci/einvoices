@@ -15,14 +15,30 @@ from einvoices.models.user import (
     DBSession,
     User,
     )
-    
 SITE_MENU = [
-        {'view':'companies','href': '/companies', 'title': 'Empresas'},
-        {'view':'units','href': '/unidades', 'title': 'Unidades'},
-        {'view':'users','href': '/users', 'title': 'Usuarios'},
-        {'view':'suppliers','href': '/suppliers', 'title': 'Provedores'},
-        {'view':'clients','href': '/clients', 'title': 'Clientes'},
+        {
+		'title': 'Catalogos',
+		'children':[
+			{'view':'units','href': '/unidades', 'title': 'Unidades'},
+			{'view':'users','href': '/users', 'title': 'Usuarios'},
+			{'view':'suppliers','href': '/suppliers', 'title': 'Provedores'},
+			{'view':'clients','href': '/clients', 'title': 'Clientes'},
+		]
+	},
+	{
+		'title':'Facturaciones',
+		'children':[
+			{'view':'config','href': '/config', 'title': 'Configuraciones'},
+		]
+	},
 ]    
+#SITE_MENU = [
+        #{'view':'companies','href': '/companies', 'title': 'Empresas'},
+        #{'view':'units','href': '/unidades', 'title': 'Unidades'},
+        #{'view':'users','href': '/users', 'title': 'Usuarios'},
+        #{'view':'suppliers','href': '/suppliers', 'title': 'Provedores'},
+        #{'view':'clients','href': '/clients', 'title': 'Clientes'},
+#]    
     
 BASE_TMPL = 'einvoices:templates/'
 import cPickle as pickle
@@ -34,6 +50,7 @@ class Main(Layouts):
 	def __init__(self, request):
 		self.request = request
 		self.session = session(request)
+		path  = self.request.path
 		user_id = authenticated_userid(self.request)
 		if (user_id == None and path != '/main/login'):
 			raise HTTPFound(location='/main/login')
@@ -48,7 +65,6 @@ class Main(Layouts):
 				md5 = hashlib.md5()
 				md5.update(passwd)
 				password = md5.hexdigest()
-				print password
 				user = DBSession.query(User).filter_by(email=user_name,password=password).first()
 				headers = remember(self.request, user.id, max_age='86400')
 				return HTTPFound(location='/companies', headers=headers)
@@ -60,16 +76,20 @@ class Main(Layouts):
 	def logout(self):
 		headers = forget(self.request)
 		return HTTPFound(location='/main/login', headers=headers)
-	
+		
 	@reify
 	def site_menu(self):
 		new_menu = SITE_MENU[:]
 		url = self.request.url
-		for menu in new_menu:
-			if menu['view'] == self.config_view_name:
-				menu['current'] = True
-			else:
-				menu['current'] = False
+		for section in new_menu:
+			children = section['children']
+			section['current'] = False
+			for menu in children:
+				if menu['view'] == self.config_view_name:
+					menu['current'] = True
+					section['current'] = True
+				else:
+					menu['current'] = False
 		return new_menu
 		
 	def _pagination(self,page):

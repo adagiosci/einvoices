@@ -1,4 +1,3 @@
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> -->
 <html xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       metal:define-macro="layout">
@@ -23,7 +22,7 @@
 	<section class="container">
 	  <div class ="login">
 		<form method="post" action="/main/login">
-			<p>Usuario:    <input type="text" name="username" value ="" placeholder="Username or Email"></p>
+			<p>Usuario:<input type="text" name="username" value ="" placeholder="Username or Email"></p>
 			<p>Contraseña: <input type="password" name="password" value = "" placeholder="password"><br></p>
 			<p><input type='hidden' name='submit' value='submit'></p>
 			<p><input type="submit" value="Login"></p>
