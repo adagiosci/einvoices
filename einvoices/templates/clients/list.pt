@@ -29,8 +29,8 @@
 		<th>RFC</th>
 		<th>Razon Social</th>
 		<th>Direccion</th>
-		<th>ID Empresa</th>
-		<th>ID Sucursal</th>
+		<th>Empresa</th>
+		<th>Sucursal</th>
 		<th class='global-td'>Editar</th>
 		<th class='global-td'>Estado</th>
 	</tr>
@@ -40,8 +40,8 @@
 		<td>${row.RFC}</td>
 		<td>${row.RazonSocial}</td>
 		<td>${row.Direccion}</td>
-		<td>${row.idcompany}</td>
-		<td>${row.id_Sucursal}</td>
+		<td>${row.company.name}</td>
+		<td>${row.sucursal.Nombre}</td>
 		<td><a href='/clients/edit/${row.id}'>Editar</a></td>
 		<td><a href='/clients/delete/${row.id}'>Eliminar<a></td>
 		<?python
