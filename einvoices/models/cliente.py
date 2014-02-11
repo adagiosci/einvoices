@@ -14,7 +14,7 @@ from .meta import (
 from sqlalchemy.orm import relationship, backref
 
 class Cliente(Base):
-    __tablename__ = 'Cliente'
+    __tablename__ = 'clientes'
     id = Column(Integer, primary_key=True)
     RFC = Column(String(20))
     RazonSocial = Column(String(100))
