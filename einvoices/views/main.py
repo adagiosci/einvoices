@@ -22,6 +22,7 @@ SITE_MENU = [
 			{'view':'units','href': '/unidades', 'title': 'Unidades'},
 			{'view':'suppliers','href': '/suppliers', 'title': 'Provedores'},
 			{'view':'clients','href': '/clients', 'title': 'Clientes'},
+			{'view':'sucursales','href': '/sucursales', 'title': 'sucursales'},
 		]
 	},
 	{

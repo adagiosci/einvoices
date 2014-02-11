@@ -13,6 +13,7 @@ from views.home import  ProjectorHome
 from views.users import ProjectorUsers
 from views.clientes import ProjectorClientes
 from views.suppliers import ProjectorSuppliers
+from views.sucursales import ProjectorSucursales
 from views.main import Main
 
 def main(global_config, **settings):
@@ -78,5 +79,12 @@ def main(global_config, **settings):
     config.add_handler('suppliers_indexe', '/suppliers/e={e}', handler= ProjectorSuppliers, action='index')
     config.add_handler('suppliers_action', '/suppliers/{action}', handler= ProjectorSuppliers)
     config.add_handler('suppliers_action_id', '/suppliers/{action}/{id}', handler= ProjectorSuppliers)
+    
+    #sucursales
+    config.add_handler('sucursales_index', '/sucursales', handler= ProjectorSucursales, action='index')
+    config.add_handler('sucursales_indexm', '/sucursales/m={m}', handler= ProjectorSucursales, action='index') 
+    config.add_handler('sucursales_indexe', '/sucursales/e={e}', handler= ProjectorSucursales, action='index')    
+    config.add_handler('sucursales_action', '/sucursales/{action}', handler= ProjectorSucursales)
+    config.add_handler('sucursales_action_id', '/sucursales/{action}/{id}', handler= ProjectorSucursales)
        
     return config.make_wsgi_app()
