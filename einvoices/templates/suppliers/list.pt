@@ -21,44 +21,23 @@
 <div class='clear'></div>
 <table>
 	<tr class='titles'>
-		<th colspan='15'>Generales</th>
+		<th colspan='4'>Generales</th>
 		<th colspan='2'>Acción</th>
 	</tr>
 	<tr class='titles'>
-		<th>Id</th>
 		<th>RFC</th>
-		<th>Contacto</th>
-		<th>No. Exterior</th>
-		<th>Colonia</th>
-		<th>Localidad</th>
-		<th>Pais</th>
-		<th>CP</th>
 		<th>Razon Social</th>
-		<th>Calle</th>
-		<th>No. Interior</th>
-		<th>Referencia</th>
-		<th>Municipio</th>
-		<th>Estado</th>
+		<th>Contacto</th>
 		<th>Email</th>
 		<th class='global-td'>Editar</th>
 		<th class='global-td'>Estado</th>
 	</tr>
 	<?python color = 'trgreen2' ?>
 	<tr tal:repeat="row suppliers" class='${color}'>
-		<td>${row.id}</td>
 		<td>${row.rfc}</td>
-		<td>${row.contacto}</td>
-		<td>${row.noExterior}</td>
-		<td>${row.colonia}</td>
-		<td>${row.localidad}</td>
-		<td>${row.pais}</td>
-		<td>${row.cp}</td>
 		<td>${row.razonsocial}</td>
-		<td>${row.calle}</td>
-		<td>${row.noInterior}</td>
-		<td>${row.referencia}</td>
-		<td>${row.municipio}</td>
-		<td>${row.estado}</td>
+		<td>${row.contacto}</td>
+
 		<td>${row.email}</td>
 		
 		<td><a href='/suppliers/edit/${row.id}'>Editar</a></td>
