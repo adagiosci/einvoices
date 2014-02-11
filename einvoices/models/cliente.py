@@ -20,8 +20,9 @@ class Cliente(Base):
     RazonSocial = Column(String(100))
     Direccion = Column(String(100))
     idcompany = Column(Integer,ForeignKey('companies.id'))
-    id_Sucursal = Column(Integer)
+    id_Sucursal = Column(Integer,ForeignKey('sucursales.id'))
     
     #relationships
     company = relationship("Company", foreign_keys=[idcompany], backref=backref('clients', order_by=id))
+    sucursal = relationship("Sucursal", foreign_keys=[id_Sucursal], backref=backref('sucursales', order_by=id))
 

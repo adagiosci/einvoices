@@ -12,7 +12,7 @@ BASE_TMPL = 'einvoices:templates/'
 from sqlalchemy.exc import DBAPIError
 
 from einvoices.models.company import Company
-
+from einvoices.models.sucursal import Sucursal
 from einvoices.models.cliente import (
     DBSession,
     Cliente,
@@ -28,22 +28,24 @@ class ProjectorClientes(Main):
 	def index(self):
 		msj = self.message();
 		clientes = DBSession.query(Cliente)
+		sucursales = DBSession.query(Sucursal)
 		pages = webhelpers.paginate.Page(clientes, page=self.request.GET.get('p',1), items_per_page=20)
 		companies = DBSession.query(Company)
 		_pagination = self._pagination(pages)
-		return {'clientes':pages,'msj':msj,'companies':companies.all(),'pagination':_pagination}
+		return {'clientes':pages,'msj':msj,'companies':companies.all(),'sucursales':sucursales.all(),'pagination':_pagination}
 		
 	#aqui me quede
 	@action(renderer=BASE_TMPL  + "clients/edit.pt")
 	def edit(self):
 		msj = self.message();
 		clientes = DBSession.query(Cliente)
+		sucursales = DBSession.query(Sucursal)
 		pages = webhelpers.paginate.Page(clientes, page=self.request.GET.get('p',1), items_per_page=20)
 		cliente_id = self.request.matchdict['id']
 		entry = DBSession.query(Cliente).filter_by(id=cliente_id).first()
 		companies = DBSession.query(Company)
 		_pagination = self._pagination(pages)
-		return {'entry':entry,'clientes':clientes,'msj':msj,'companies':companies.all(),'pagination':_pagination}
+		return {'entry':entry,'clientes':pages,'msj':msj,'companies':companies.all(),'sucursales':sucursales.all(),'pagination':_pagination}
 		
 	@action(renderer=BASE_TMPL  + "clients/list.pt")
 	def filter(self):

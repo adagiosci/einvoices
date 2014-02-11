@@ -59,8 +59,11 @@
 					<option tal:repeat="row companies" value="${row.id}">${row.name}</option>
 				</select></p>
 				
-				<p><label for='id_Sucursal'>id_Sucursal*</label></p>
-				<p><input type="text" name="id_Sucursal" value="" id='id_Sucursal' class="required"/></p>
+				<p><label for='id_Sucursal'>Sucursal*</label></p>
+				<p><select name='id_Sucursal' id='id_Sucursal' class='required'>
+					<option value=''></option>
+					<option tal:repeat="row sucursales" value="${row.id}">${row.Nombre}</option>
+				</select></p>
 				
 				<p><input type="submit" value="Guardar" class="new submit"/></p>
 			
