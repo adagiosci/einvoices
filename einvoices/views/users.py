@@ -29,6 +29,13 @@ class ProjectorUsers(Main):
 		pages = webhelpers.paginate.Page(users, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
 		return {'users':pages,'msj':msj,'pagination':_pagination}
+
+	@action(renderer=BASE_TMPL  + "users/password.pt")
+	def password(self):
+		self.config_view_name = 'password'
+		msj = self.message();
+		return{'msj' : msj}
+
 	#aqui me quede	
 	@action(renderer=BASE_TMPL  + "users/edit.pt")
 	def edit(self):
@@ -85,35 +92,22 @@ class ProjectorUsers(Main):
 		user = DBSession.query(User).filter_by(id=user_id).delete()
 		#DBSession.delete(company)
 		return HTTPFound(location='/users/m=rdc')
+
+	@action()
+	def changepassword(self):
+		user_name = self.__user__.email
+		passwd = self.request.POST['password'] 
+		md5 = hashlib.md5()
+		md5.update(passwd)
+		password = md5.hexdigest()	
+		user = DBSession.query(User).filter_by(email=user_name,password=password).first()
+		if (user):
+			newpasswd = self.request.POST['newpassword']
+			md5 = hashlib.md5()
+			md5.update(newpasswd)
+			password = md5.hexdigest()
+			uuser = DBSession.query(User).filter_by(id=self.__user__.id).update({'password' : password})
 		
-	def errormsj(self,code):
-		message = {}
-		message['ac'] = "Hubo un error al activar el registro"
-		message['in'] = "Hubo un error al inactivar el registro"
-		message['edc'] = "Hubo un error al eliminar el registro"
-		return message[code]
-		
-	def succesms(self,code):
-		message  = {}
-		message['rec'] = "El registro se edito exitosamente"
-		message['ric'] = "El registro se inserto exitosamente"
-		message['rdc'] = "El registro se elimino exitosamente"
-		return message[code]
-	def message(self):
-		msj = {}
-		msj['e'] = ''
-		msj['s'] = ''
-		try:
-			m = self.request.matchdict['m']
-			msj['s'] = self.succesms(m)
-		except Exception, e:
-			print repr(e)
-			
-		try:
-			ex = self.request.matchdict['e']
-			msj['e'] = self.succesms(ex)
-		except Exception, e:
-			print repr(e)
-			
-		return msj
+		return HTTPFound(location='/users/password')
+
 				

@@ -17,8 +17,7 @@ from einvoices.models.cliente import (
     DBSession,
     Cliente,
     )
-    
-    
+
 class ProjectorClientes(Main):
 	def __init__(self, request):
 		self.config_view_name = 'clients'

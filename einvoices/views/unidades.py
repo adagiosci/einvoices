@@ -80,36 +80,3 @@ class ProjectorUnidades(Main):
 		unidad = DBSession.query(Unidad).filter_by(id=unidad_id).delete()
 		#DBSession.delete(company)
 		return HTTPFound(location='/unidades/m=rdc')
-		
-	def errormsj(self,code):
-		message = {}
-		message['ac'] = "Hubo un error al activar el registro"
-		message['in'] = "Hubo un error al inactivar el registro"
-		message['edc'] = "Hubo un error al eliminar el registro"
-		return message[code]
-		
-	def succesms(self,code):
-		message  = {}
-		message['rec'] = "El registro se edito exitosamente"
-		message['ric'] = "El registro se inserto exitosamente"
-		message['rdc'] = "El registro se elimino exitosamente"
-		return message[code]
-	def message(self):
-		msj = {}
-		msj['e'] = ''
-		msj['s'] = ''
-		try:
-			m = self.request.matchdict['m']
-			msj['s'] = self.succesms(m)
-		except Exception, e:
-			print repr(e)
-			
-		try:
-			ex = self.request.matchdict['e']
-			msj['e'] = self.succesms(ex)
-		except Exception, e:
-			print repr(e)
-			
-		return msj
-				
-
