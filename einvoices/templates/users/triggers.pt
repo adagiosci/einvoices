@@ -1,0 +1,16 @@
+<div tal:repeat="tablex tables">
+		<p>
+		DROP TRIGGER IF EXISTS ${tablex.Tables_in_einvoices}_before_insert<br />
+		delimiter | <br /><br />
+		CREATE TRIGGER `${tablex.Tables_in_einvoices}_before_insert`  BEFORE INSERT ON `${tablex.Tables_in_einvoices}` <br />
+		FOR EACH ROW thisTrigger: BEGIN <br />
+		&nbsp;&nbsp;IF (SUBSTRING_INDEX(USER(),'@',1) = 'root') THEN <br />
+		&nbsp;&nbsp;&nbsp;&nbsp;LEAVE thisTrigger; <br />
+		&nbsp;&nbsp;END IF; <br />
+		&nbsp;&nbsp;SET new.tenant_id = SUBSTRING_INDEX(USER(),'@',1); <br />
+		END; <br />
+		| <br /><br />
+		delimiter ; <br /><br /><br /></p>
+
+
+</div>	

@@ -37,6 +37,9 @@ class Company(Base):
     accountNumber = Column(String(40))
     start_date = Column(String(10))
     end_date = Column(String(10))
+    user = Column(String(5))
+    password = Column(String(10))
+    tenant_id = Column(String(5))
     
     taxRegime = Column(Integer,ForeignKey('users.id'))
     labourSystem = Column(Integer,ForeignKey('users.id'))

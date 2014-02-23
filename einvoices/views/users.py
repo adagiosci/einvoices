@@ -1,8 +1,10 @@
 import hashlib
+import random
 from pyramid.renderers import get_renderer
 from pyramid_handlers import action
 from pyramid.response import Response
 from pyramid.decorator import reify
+from saas import saas
 from pyramid.view import view_config
 import webhelpers.paginate
 from pyramid.httpexceptions import HTTPFound
@@ -28,6 +30,7 @@ class ProjectorUsers(Main):
 		users = DBSession.query(User)
 		pages = webhelpers.paginate.Page(users, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
+
 		return {'users':pages,'msj':msj,'pagination':_pagination}
 
 	@action(renderer=BASE_TMPL  + "users/password.pt")
@@ -109,5 +112,17 @@ class ProjectorUsers(Main):
 			uuser = DBSession.query(User).filter_by(id=self.__user__.id).update({'password' : password})
 		
 		return HTTPFound(location='/users/password')
+
+	@action(renderer='string')	
+	def saas(self):
+		saas2 = saas()
+		# saas2.create_user_companies()
+		return "Hello world"
+
+	@action(renderer=BASE_TMPL  + "users/triggers.pt")
+	def triggers(self):
+		saas2 = saas()
+		tables = saas2.create_trigger();
+		return 	{'tables' : tables}		
 
 				

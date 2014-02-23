@@ -68,6 +68,8 @@ class ProjectorCompanies(Main):
 		
 	@action()
 	def create(self):
+		user = self.generateRandomString(5)
+		password = self.generateRandomString(10)
 		company = Company(
 				 name = self.request.POST['name']
 				,rfc = self.request.POST['rfc']
@@ -95,9 +97,23 @@ class ProjectorCompanies(Main):
 				,start_date = self.request.POST['start_date']
 				,end_date = self.request.POST['end_date']
 				,services = self.request.POST['services']
+				,user = user
+				,password = password
+				,tenant_id = user
 			)
 		DBSession.add(company)
+		self.create_user(user,password)
 		return HTTPFound(location='/companies/m=ric')
+
+	def create_user(self,user,password):
+		query = "CREATE USER "+ user + "@localhost IDENTIFIED BY '" + password + "'"
+		DBSession.execute(query)
+
+		query = "GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER, SHOW VIEW, EXECUTE ON einvoices.* TO  " + user + "@'localhost'"
+		DBSession.execute(query)
+
+		query = "FLUSH PRIVILEGES";
+		DBSession.execute(query)		
 		
 	@action()
 	def update(self):

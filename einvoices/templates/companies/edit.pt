@@ -52,7 +52,7 @@
 				<p><input type="text" name="rfc" value="${entry.rfc}" id='rfc' class="required"/></p>
 				
 				<p><label for='curp'>CURP*</label></p>
-				<p><input type="text" name="curp" value="${entry.address}" id='curp' class="required"/></p>
+				<p><input type="text" name="curp" value="${entry.curp}" id='curp' class="required"/></p>
 
 				<p><label for='address'>Dirección*</label></p>
 				<p><input type="text" name="address" value="${entry.address}" id='address' class="required"/></p>

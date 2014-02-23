@@ -54,8 +54,8 @@
 				<p><label for='rfc'>RFC*</label></p>
 				<p><input type="text" name="rfc" value="" id='rfc' class="required"/></p>
 				
-				<p><label for='cp'>CURP*</label></p>
-				<p><input type="text" name="" value="" id='cp' class="required"/></p>				
+				<p><label for='curp'>CURP*</label></p>
+				<p><input type="text" name="curp" value="" id='curo' class="required"/></p>				
 
 				<p><label for='address'>Dirección*</label></p>
 				<p><input type="text" name="address" value="" id='address' class="required"/></p>
@@ -64,7 +64,7 @@
 				<p><input type="text" name="cp" value="" id='cp' class="required"/></p>
 				
 				<p><label for='phone'>Teléfono*</label></p>
-				<p><input type="text" name="phone" value="" id='phone' class="required"/></p>				
+				<p><input type="text" name="telephone" value="" id='phone' class="required"/></p>				
 				
 			</div>
 			<div class='colum2'>

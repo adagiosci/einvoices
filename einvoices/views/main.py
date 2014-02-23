@@ -1,5 +1,6 @@
 #from einvoices.library.security import security
 import hashlib
+import random
 from pyramid.httpexceptions import HTTPFound
 from einvoices.library.session import session
 from pyramid_handlers import action
@@ -133,3 +134,10 @@ class Main(Layouts):
 			print repr(e)
 			
 		return msj
+
+	def generateRandomString(self,length = 10):
+		characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		randomString = '';
+		for i in range(length):
+			randomString = randomString + characters[random.randint(0,len(characters) - 1)]
+		return randomString		
