@@ -116,7 +116,7 @@ class ProjectorUsers(Main):
 	@action(renderer='string')	
 	def saas(self):
 		saas2 = saas()
-		# saas2.create_user_companies()
+		saas2.create_views()
 		return "Hello world"
 
 	@action(renderer=BASE_TMPL  + "users/triggers.pt")

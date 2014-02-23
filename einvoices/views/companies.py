@@ -13,13 +13,13 @@ from main import Main
 BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
-from einvoices.models.user import (
-    User,
+from einvoices.vmodels.vuser import (
+    vUser,
     )
 	
-from einvoices.models.company import (
-    DBSession,
-    Company,
+from einvoices.vmodels.vcompany import (
+    vDBSession,
+    vCompany,
     )
 
 class ProjectorCompanies(Main):
@@ -32,9 +32,9 @@ class ProjectorCompanies(Main):
 	def index(self):
 		#self.insertdb()
 		msj = self.message();
-		companies = DBSession.query(Company)
+		companies = vDBSession.query(vCompany)
 		pages = webhelpers.paginate.Page(companies, page=self.request.GET.get('p',1), items_per_page=20)
-		users = DBSession.query(User)
+		users = vDBSession.query(vUser)
 		_pagination = self._pagination(pages)
 		return {'users':users,'companies':pages,'msj':msj,'pagination':_pagination}
 		
