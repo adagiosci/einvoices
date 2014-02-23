@@ -13,22 +13,26 @@ from main import Main
 BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
-from einvoices.models.user import (
-    User,
+from einvoices.vmodels.vuser import vUser
+from einvoices.vmodels.vsucursal import vSucursal   
+from einvoices.vmodels.vcompany import (
+    vDBSession,
+    vCompany,
     )
 
-from einvoices.models.sucursal import (
-    Sucursal,
-    )    
-    
+from einvoices.models.user import User
+from einvoices.models.sucursal import Sucursal   
 from einvoices.models.company import (
     DBSession,
     Company,
     )
 
 class ProjectorSucursales(Main):
-	
-        def __init__(self, request):
+	def __init__(self, request):
+		self.DBSession = vDBSession
+		self.tUser = vUser
+		self.tSucursal = vSucursal
+		self.tCompany = vCompany
 		self.config_view_name = 'sucursales'
 		super(ProjectorSucursales,self).__init__(request)
 		
@@ -36,22 +40,22 @@ class ProjectorSucursales(Main):
 	def index(self):
 		#self.insertdb()
 		msj = self.message();
-		companies = DBSession.query(Company)
-		sucursales = DBSession.query(Sucursal)
+		companies = self.DBSession.query(self.tCompany)
+		sucursales = self.DBSession.query(self.tSucursal)
 		pages = webhelpers.paginate.Page(sucursales, page=self.request.GET.get('p',1), items_per_page=20)
-		users = DBSession.query(User)
+		users = self.DBSession.query(self.tUser)
 		_pagination = self._pagination(pages)
 		return {'sucursales':pages,'companies':companies,'msj':msj,'pagination':_pagination}
 		
 	@action(renderer=BASE_TMPL  + "sucursales/edit.pt")
 	def edit(self):
 		msj = self.message();
-		companies = DBSession.query(Company)
+		companies = self.DBSession.query(self.tCompany)
 		sucursal_id = self.request.matchdict['id']
-		entry = DBSession.query(Sucursal).filter_by(id=sucursal_id).first()
-		sucursales = DBSession.query(Sucursal)
+		entry = self.DBSession.query(self.tSucursal).filter_by(id=sucursal_id).first()
+		sucursales = self.DBSession.query(self.tSucursal)
 		pages = webhelpers.paginate.Page(sucursales, page=self.request.GET.get('p',1), items_per_page=20)
-		users = DBSession.query(User)
+		users = self.DBSession.query(self.tUser)
 		_pagination = self._pagination(pages)
 		return {'entry':entry
 			,'sucursales':pages
@@ -63,7 +67,7 @@ class ProjectorSucursales(Main):
 	
 	@action(renderer=BASE_TMPL  + "sucursales/list.pt")
 	def filter(self):
-		companies = DBSession.query(Company)
+		companies = self.DBSession.query(self.tCompany)
 		page = webhelpers.paginate.Page(companies, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(page)
 		return {'companies':page,'pagination':_pagination}
@@ -75,18 +79,18 @@ class ProjectorSucursales(Main):
 		
 	@action()
 	def create(self):
-		sucursal = Sucursal(
+		sucursal = self.tSucursal(
 				 Nombre = self.request.POST['Nombre']
 				,Direccion = self.request.POST['Direccion']
 				,Correo = self.request.POST['Correo']
 				,idcompany = self.request.POST['idcompany']
 			)
-		DBSession.add(sucursal)
+		self.DBSession.add(sucursal)
 		return HTTPFound(location='/sucursales/m=ric')
 		
 	@action()
 	def update(self):
-		company = DBSession.query(Sucursal).filter_by(id=self.request.POST['sucursal_id']).update({
+		company = self.DBSession.query(self.tSucursal).filter_by(id=self.request.POST['sucursal_id']).update({
 													 'Nombre': self.request.POST['Nombre']
 													,'Direccion': self.request.POST['Direccion']
 													,'Correo': self.request.POST['Correo']
@@ -97,6 +101,6 @@ class ProjectorSucursales(Main):
 	@action()
 	def delete(self):
 		sucursal_id = self.request.matchdict['id'] 
-		sucursal = DBSession.query(Sucursal).filter_by(id=sucursal_id).delete()
+		sucursal = self.DBSession.query(self.tSucursal).filter_by(id=sucursal_id).delete()
 		return HTTPFound(location='/sucursales/m=rdc')
 				

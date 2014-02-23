@@ -10,21 +10,27 @@ BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
 
+from einvoices.vmodels.vsupplier import (
+    vDBSession,
+    vSupplier,
+    )
+
 from einvoices.models.supplier import (
     DBSession,
     Supplier,
     )
 
 class ProjectorSuppliers(Main):
-
-        def __init__(self, request):
+	def __init__(self, request):
+		self.DBSession = vDBSession
+		self.tSupplier = vSupplier
 		self.config_view_name = 'suppliers'
 		super(ProjectorSuppliers,self).__init__(request)
 
 	@action(renderer=BASE_TMPL  + "suppliers/index.pt")
 	def index(self):
 		msj = self.message();
-		suppliers = DBSession.query(Supplier)
+		suppliers = self.DBSession.query(self.tSupplier)
 		pages = webhelpers.paginate.Page(suppliers, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
 		return {'suppliers':pages,'msj':msj,'pagination':_pagination}
@@ -33,16 +39,16 @@ class ProjectorSuppliers(Main):
 	@action(renderer=BASE_TMPL  + "suppliers/edit.pt")
 	def edit(self):
 		msj = self.message();
-		suppliers = DBSession.query(Supplier)
+		suppliers = self.DBSession.query(self.tSupplier)
 		pages = webhelpers.paginate.Page(suppliers, page=self.request.GET.get('p',1), items_per_page=20)
 		supplier_id = self.request.matchdict['id']
-		entry = DBSession.query(Supplier).filter_by(id=supplier_id).first()
+		entry = self.DBSession.query(self.tSupplier).filter_by(id=supplier_id).first()
 		_pagination = self._pagination(pages)
 		return {'entry':entry,'suppliers':pages,'msj':msj,'pagination':_pagination}
 
 	@action(renderer=BASE_TMPL  + "suppliers/list.pt")
 	def filter(self):
-		suppliers = DBSession.query(Supplier)
+		suppliers = self.DBSession.query(self.tSupplier)
 		pages = webhelpers.paginate.Page(suppliers, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
 		return {'suppliers':pages,'pagination':_pagination}		
@@ -54,7 +60,7 @@ class ProjectorSuppliers(Main):
 		
 	@action()
 	def create(self):
-		supplier = Supplier(rfc = self.request.POST['rfc'] 
+		supplier = self.tSupplier(rfc = self.request.POST['rfc'] 
 				,contacto = self.request.POST['contacto']
 				,noExterior = self.request.POST['noExterior']
 				,colonia = self.request.POST['colonia']
@@ -69,12 +75,12 @@ class ProjectorSuppliers(Main):
 				,estado = self.request.POST['estado']
 				,email = self.request.POST['email']
 			)
-		DBSession.add(supplier)
+		self.DBSession.add(supplier)
 		return HTTPFound(location='/suppliers/m=ric')
 		
 	@action()
 	def update(self):
-		supplier = DBSession.query(Supplier).filter_by(id=self.request.POST['supplier_id']).update({
+		supplier = self.DBSession.query(self.tSupplier).filter_by(id=self.request.POST['supplier_id']).update({
 													 'rfc': self.request.POST['rfc']
 													,'contacto': self.request.POST['contacto']
 													,'noExterior': self.request.POST['noExterior']
@@ -95,6 +101,6 @@ class ProjectorSuppliers(Main):
 	@action()
 	def delete(self):
 		supplier_id = self.request.matchdict['id'] 
-		supplier = DBSession.query(Supplier).filter_by(id=supplier_id).delete()
+		supplier = self.DBSession.query(self.tSupplier).filter_by(id=supplier_id).delete()
 		#DBSession.delete(company)
 		return HTTPFound(location='/suppliers/m=rdc')

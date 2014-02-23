@@ -52,7 +52,6 @@
 				
 				<p><label for='idcompany'>Empresa*</label></p>
 				<p><select id='idcompany' name='idcompany'>
-					<option value=''></option>
 					<tal:block tal:repeat="row companies">
 						<option  tal:attributes="selected 'selected' if entry.company.id == row.id else None" value='${row.id}'>${row.name}</option>
 					</tal:block>

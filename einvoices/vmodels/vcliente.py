@@ -13,7 +13,7 @@ from .vmeta import (
 )
 from sqlalchemy.orm import relationship, backref
 
-class vCliente(Base):
+class vCliente(vBase):
     __tablename__ = 'vclientes'
     id = Column(Integer, primary_key=True)
     RFC = Column(String(20))

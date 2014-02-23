@@ -56,7 +56,6 @@
 
 				<p><label for='idcompany'>Empresa*</label></p>
 				<p><select name="idcompany" id='idcompany' class="required">
-					<option></option>
 					<tal:block tal:repeat="row companies">
 						<option tal:attributes="selected 'selected' if entry.company.id == row.id else None" value='${row.id}'>${row.name}</option>
 					</tal:block>
@@ -64,7 +63,6 @@
 				
 				<p><label for='id_Sucursal'>Sucursal*</label></p>
 				<p><select name="id_Sucursal" id='id_Sucursal' class="required">
-					<option></option>
 					<tal:block tal:repeat="row sucursales">
 						<option tal:attributes="selected 'selected' if entry.sucursal.id == row.id else None" value='${row.id}'>${row.Nombre}</option>
 					</tal:block>
