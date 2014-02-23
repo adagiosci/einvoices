@@ -7,9 +7,9 @@ from sqlalchemy import (
     ForeignKey,
     )
 
-from .meta import (
-	Base,
-	DBSession,
+from .vmeta import (
+	vBase,
+	vDBSession,
 )
 from sqlalchemy.orm import relationship, backref
 

@@ -6,8 +6,8 @@ from sqlalchemy import (
     String,
     )
 
-from .meta import (
-	Base,
-	DBSession,
+from .vmeta import (
+	vBase,
+	vDBSession,
 )
 

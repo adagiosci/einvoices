@@ -13,6 +13,10 @@ BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
 
+from einvoices.vmodels.vuser import (
+    vDBSession,
+    vUser,
+    )
 from einvoices.models.user import (
     DBSession,
     User,
@@ -20,17 +24,18 @@ from einvoices.models.user import (
 
 class ProjectorUsers(Main):
 	
-        def __init__(self, request):
+	def __init__(self, request):
+		self.DBSession = vDBSession
+		self.tUser = vUser
 		self.config_view_name = 'users'
 		super(ProjectorUsers,self).__init__(request)	
                 
 	@action(renderer=BASE_TMPL  + "users/index.pt")
 	def index(self):
 		msj = self.message();
-		users = DBSession.query(User)
+		users = self.DBSession.query(self.tUser)
 		pages = webhelpers.paginate.Page(users, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
-
 		return {'users':pages,'msj':msj,'pagination':_pagination}
 
 	@action(renderer=BASE_TMPL  + "users/password.pt")
@@ -43,16 +48,16 @@ class ProjectorUsers(Main):
 	@action(renderer=BASE_TMPL  + "users/edit.pt")
 	def edit(self):
 		msj = self.message();
-		users = DBSession.query(User)
+		users = self.DBSession.query(self.tUser)
 		pages = webhelpers.paginate.Page(users, page=self.request.GET.get('p',1), items_per_page=20)
 		user_id = self.request.matchdict['id']
-		entry = DBSession.query(User).filter_by(id=user_id).first()
+		entry = self.DBSession.query(self.tUser).filter_by(id=user_id).first()
 		_pagination = self._pagination(pages)
 		return {'entry':entry,'users':pages,'msj':msj,'pagination':_pagination}
 		
 	@action(renderer=BASE_TMPL  + "users/list.pt")
 	def filter(self):
-		users = DBSession.query(User)
+		users = self.DBSession.query(self.tUser)
 		pages = webhelpers.paginate.Page(users, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
 		return {'users':pages,'pagination':_pagination}	
@@ -67,32 +72,30 @@ class ProjectorUsers(Main):
 		md5 = hashlib.md5()
 		md5.update(self.request.POST['password'])
 		password = md5.hexdigest()
-		user = User(email = self.request.POST['email'] 
+		user = self.tUser(email = self.request.POST['email'] 
 				,password = password
 				,names = self.request.POST['names']
 				,last_name = self.request.POST['last_name']
 				,mother_name = self.request.POST['mother_name']
 			)
-		DBSession.add(user)
+		self.DBSession.add(user)
 		return HTTPFound(location='/users/m=ric')
 		
 	@action()
 	def update(self):
-		#md5 = hashlib.md5()
-		#md5.update(self.request.POST['password'])
-		#password = md5.hexdigest()
-		user = DBSession.query(User).filter_by(id=self.request.POST['user_id']).update({
+		user = self.DBSession.query(self.tUser).filter_by(id=self.request.POST['user_id']).update({
 													 'email': self.request.POST['email']
 													,'names': self.request.POST['names']
 													,'last_name': self.request.POST['last_name']
 													,'mother_name': self.request.POST['mother_name']
 													})
+		#vDBSession.commit()
 		return HTTPFound(location='/users/m=rec')
 	
 	@action()
 	def delete(self):
 		user_id = self.request.matchdict['id'] 
-		user = DBSession.query(User).filter_by(id=user_id).delete()
+		user = self.DBSession.query(self.tUser).filter_by(id=user_id).delete()
 		#DBSession.delete(company)
 		return HTTPFound(location='/users/m=rdc')
 
@@ -103,13 +106,13 @@ class ProjectorUsers(Main):
 		md5 = hashlib.md5()
 		md5.update(passwd)
 		password = md5.hexdigest()	
-		user = DBSession.query(User).filter_by(email=user_name,password=password).first()
+		user = self.DBSession.query(self.tUser).filter_by(email=user_name,password=password).first()
 		if (user):
 			newpasswd = self.request.POST['newpassword']
 			md5 = hashlib.md5()
 			md5.update(newpasswd)
 			password = md5.hexdigest()
-			uuser = DBSession.query(User).filter_by(id=self.__user__.id).update({'password' : password})
+			uuser = vDBSession.query(vUser).filter_by(id=self.__user__.id).update({'password' : password})
 		
 		return HTTPFound(location='/users/password')
 

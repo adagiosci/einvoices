@@ -21,11 +21,12 @@ def MakeEngine():
    # actually create the engine with the sqlalchemy factory method
    return engine_from_config(settings, prefix='')
 
-#from zope.sqlalchemy import ZopeTransactionExtension
+from zope.sqlalchemy import ZopeTransactionExtension #pasando esto por parametro ya no es necesario hacer un commit (vDBSession.commit()) al finalizar cada transaccion
 #DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 engine = MakeEngine() 
 vBase = declarative_base()
 vBase.metadata.drop_all(engine)
 vBase.metadata.create_all(engine)
-createSession = sessionmaker(bind=engine)
-vDBSession = createSession()
+#createSession = sessionmaker(extension=ZopeTransactionExtension(),bind=engine)
+#vDBSession = createSession()
+vDBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension(),bind=engine))

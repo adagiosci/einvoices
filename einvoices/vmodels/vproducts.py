@@ -6,12 +6,12 @@ from sqlalchemy import (
     String,
     )
 
-from .meta import (
-	Base,
-	DBSession,
+from .vmeta import (
+	vBase,
+	vDBSession,
 )
 
-class vProducts_Services(Base):
+class vProducts_Services(vBase):
 	__tablename__ = 'vproducts_services'
 	id = Column(Integer, primary_key=True)
 	name = Column(String(100))

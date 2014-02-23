@@ -6,11 +6,11 @@ from sqlalchemy import (
     String,
     )
 
-from .meta import (
-	Base,
-	DBSession,
+from .vmeta import (
+	vBase,
+	vDBSession,
 )
-class vSession(Base):
+class vSession(vBase):
     __tablename__ = 'vsessions'
     session_id = Column(String(20), primary_key=True)
     data = Column(String(500))

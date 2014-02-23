@@ -7,13 +7,13 @@ from sqlalchemy import (
     ForeignKey,
     )
 
-from .meta import (
-	Base,
-	DBSession,
+from .vmeta import (
+	vBase,
+	vDBSession,
 )
 from sqlalchemy.orm import relationship, backref
 
-class vSucursal(Base):
+class vSucursal(vBase):
     __tablename__ = 'vsucursales'
     id = Column(Integer, primary_key=True)
     Nombre = Column(String(150))

@@ -6,9 +6,9 @@ from sqlalchemy import (
     String,
     ForeignKey,
     )
-from .meta import (
-	Base,
-	DBSession,
+from .vmeta import (
+	vBase,
+	vDBSession,
 )
 from sqlalchemy.orm import relationship, backref
 
@@ -16,7 +16,7 @@ from sqlalchemy.orm import relationship, backref
 #`id`
 #) ON DELETE RESTRICT ON UPDATE CASCADE ;
 
-class vUnidad(Base):
+class vUnidad(vBase):
 	__tablename__ = 'vunidades'
 	id = Column(Integer, primary_key=True)
 	clave = Column(String(20))

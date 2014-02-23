@@ -41,11 +41,11 @@ class ProjectorCompanies(Main):
 	@action(renderer=BASE_TMPL  + "companies/edit.pt")
 	def edit(self):
 		msj = self.message();
-		companies = DBSession.query(Company)
+		companies = vDBSession.query(vCompany)
 		company_id = self.request.matchdict['id']
-		entry = DBSession.query(Company).filter_by(id=company_id).first()
+		entry = vDBSession.query(Company).filter_by(id=company_id).first()
 		page = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
-		users = DBSession.query(User)
+		users = DBSession.query(vUser)
 		_pagination = self._pagination(page)
 		return {'entry':entry
 			,'companies':page
@@ -56,7 +56,7 @@ class ProjectorCompanies(Main):
 	
 	@action(renderer=BASE_TMPL  + "companies/list.pt")
 	def filter(self):
-		companies = DBSession.query(Company)
+		companies = vDBSession.query(Company)
 		page = webhelpers.paginate.Page(companies, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(page)
 		return {'companies':page,'pagination':_pagination}
@@ -70,7 +70,7 @@ class ProjectorCompanies(Main):
 	def create(self):
 		user = self.generateRandomString(5)
 		password = self.generateRandomString(10)
-		company = Company(
+		company = vCompany(
 				 name = self.request.POST['name']
 				,rfc = self.request.POST['rfc']
 				,address = self.request.POST['address']
@@ -101,23 +101,23 @@ class ProjectorCompanies(Main):
 				,password = password
 				,tenant_id = user
 			)
-		DBSession.add(company)
+		vDBSession.add(company)
 		self.create_user(user,password)
 		return HTTPFound(location='/companies/m=ric')
 
 	def create_user(self,user,password):
 		query = "CREATE USER "+ user + "@localhost IDENTIFIED BY '" + password + "'"
-		DBSession.execute(query)
+		vDBSession.execute(query)
 
 		query = "GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER, SHOW VIEW, EXECUTE ON einvoices.* TO  " + user + "@'localhost'"
-		DBSession.execute(query)
+		vDBSession.execute(query)
 
 		query = "FLUSH PRIVILEGES";
-		DBSession.execute(query)		
+		vDBSession.execute(query)		
 		
 	@action()
 	def update(self):
-		company = DBSession.query(Company).filter_by(id=self.request.POST['company_id']).update({
+		company = vDBSession.query(Company).filter_by(id=self.request.POST['company_id']).update({
 													 'name': self.request.POST['name']
 													,'rfc': self.request.POST['rfc']
 													,'address': self.request.POST['address']

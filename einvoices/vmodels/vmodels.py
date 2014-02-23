@@ -6,12 +6,12 @@ from sqlalchemy import (
     String,
     )
 
-from .meta import (
-	Base,
-	DBSession,
+from .vmeta import (
+	vBase,
+	vDBSession,
 )
 
-class Aerolinea(Base):
+class vAerolinea(vBase):
     __tablename__ = 'aerolineas'
     idaerolinea = Column(Integer, primary_key=True)
     Cod_iata = Column(Text)
