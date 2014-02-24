@@ -62,9 +62,10 @@ class saas(object):
 		query = "SELECT * FROM companies"
 		companies = DBSession.execute(query)			
 		for row in companies:
-			user = self.generateRandomString(5)
-			password = self.generateRandomString(10)
-			DBSession.query(Company).filter_by(id = row.id).update({'user':user, 'password':password,'tenant_id':user})
+			self.create_user(row.user,row.password)
+			#user = self.generateRandomString(5)
+			#password = self.generateRandomString(10)
+			#DBSession.query(Company).filter_by(id = row.id).update({'user':user, 'password':password,'tenant_id':user})
 
 	def generateRandomString(self,length = 10):
 		characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
