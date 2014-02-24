@@ -1,6 +1,7 @@
 #from einvoices.library.security import security
 import hashlib
 import random
+from sqlalchemy import engine_from_config
 from pyramid.httpexceptions import HTTPFound
 from einvoices.library.session import session
 from pyramid_handlers import action
@@ -12,8 +13,12 @@ from pyramid.security import (
     )
 from pyramid.decorator import reify
 from pyramid.security import authenticated_userid
+from einvoices.vmodels.vmeta import (
+    vDBSession,
+    vBase
+    )
 from einvoices.models.user import (
-    DBSession,
+	DBSession,
     User,
     )
 SITE_MENU = [
@@ -50,6 +55,11 @@ class Main(Layouts):
 		if (user_id == None and path != '/main/login'):
 			raise HTTPFound(location='/main/login')
 		self.__user__ = DBSession.query(User).filter_by(id=user_id).first()
+
+		#databse user config
+		engine = self.make_engine()
+		DBSession.configure(bind=engine)
+		vBase.metadata.bind = engine 
 		
 	@action(renderer=BASE_TMPL  + "main/login.pt")
 	def login(self):
@@ -140,4 +150,19 @@ class Main(Layouts):
 		randomString = '';
 		for i in range(length):
 			randomString = randomString + characters[random.randint(0,len(characters) - 1)]
-		return randomString		
+		return randomString
+
+	def make_engine(self):
+		# vars for the connection url
+   		username = self.__user__.company.user
+   		password = self.__user__.company.password
+   		host = 'localhost'
+   		database = 'einvoices'
+ 
+  		# specify the url (and other settings if we had them)
+   		settings = {
+         	'url': 'mysql://%s:%s@%s/%s' % (username, password, host, database)
+        }
+ 
+   		# actually create the engine with the sqlalchemy factory method
+   		return engine_from_config(settings, prefix='')		

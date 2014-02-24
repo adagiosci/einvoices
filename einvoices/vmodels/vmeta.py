@@ -1,32 +1,10 @@
-from sqlalchemy import engine_from_config
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import (
     scoped_session,
     sessionmaker,
     )
+#pasando esto por parametro ya no es necesario hacer un commit (vDBSession.commit()) al finalizar cada transaccion
+from zope.sqlalchemy import ZopeTransactionExtension
 
-def MakeEngine():
-   # vars for the connection url
-   username = 'HfPf2'
-   password = 'SVaAlnR781'
-   host = 'localhost'
-   port = '5432'
-   database = 'einvoices'
- 
-   # specify the url (and other settings if we had them)
-   settings = {
-         'url': 'mysql://%s:%s@%s/%s' % (username, password, host, database)
-         }
- 
-   # actually create the engine with the sqlalchemy factory method
-   return engine_from_config(settings, prefix='')
-
-from zope.sqlalchemy import ZopeTransactionExtension #pasando esto por parametro ya no es necesario hacer un commit (vDBSession.commit()) al finalizar cada transaccion
-#DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
-engine = MakeEngine() 
+vDBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 vBase = declarative_base()
-vBase.metadata.drop_all(engine)
-vBase.metadata.create_all(engine)
-#createSession = sessionmaker(extension=ZopeTransactionExtension(),bind=engine)
-#vDBSession = createSession()
-vDBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension(),bind=engine))

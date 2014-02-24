@@ -7,32 +7,25 @@ import webhelpers.paginate
 from pyramid.httpexceptions import HTTPFound
 from main import Main
 BASE_TMPL = 'einvoices:templates/'
-
 from sqlalchemy.exc import DBAPIError
-from einvoices.vmodels.vcompany import (
-    vCompany,
-    )
-from einvoices.vmodels.vunidad import (
-    vDBSession,
-    vUnidad,
-    )
 
-from einvoices.models.company import (
-    Company,
-    )
-from einvoices.models.unidad import (
-    DBSession,
-    Unidad,
-    )
+
+from einvoices.vmodels.vmeta import vDBSession
+from einvoices.vmodels.vcompany import vCompany
+from einvoices.vmodels.vunidad import vUnidad
+
+from einvoices.models.meta import DBSession
+from einvoices.models.company import Company
+from einvoices.models.unidad import Unidad
 
 class ProjectorUnidades(Main):
 	
    	def __init__(self, request):
+   		super(ProjectorUnidades,self).__init__(request)
    		self.DBSession = vDBSession
    		self.Unidad = vUnidad
    		self.Company = vCompany
 		self.config_view_name = 'units'
-		super(ProjectorUnidades,self).__init__(request)
                 
 	@action(renderer=BASE_TMPL  + "unidades/index.pt")
 	def index(self):
