@@ -126,6 +126,10 @@ class ProjectorUsers(Main):
 	def triggers(self):
 		saas2 = saas()
 		tables = saas2.create_trigger();
-		return 	{'tables' : tables}		
+		return 	{'tables' : tables}
 
-				
+	@action(renderer='string')	
+	def create_user(self):
+		saas2 = saas()
+		saas2.create_user_companies()
+		return "Hello world"
