@@ -57,9 +57,10 @@ class Main(Layouts):
 		self.__user__ = DBSession.query(User).filter_by(id=user_id).first()
 
 		#databse user config
-		engine = self.make_engine()
-		DBSession.configure(bind=engine)
-		vBase.metadata.bind = engine 
+		if(self.__user__):
+			engine = self.make_engine()
+			DBSession.configure(bind=engine)
+			vBase.metadata.bind = engine 
 		
 	@action(renderer=BASE_TMPL  + "main/login.pt")
 	def login(self):
