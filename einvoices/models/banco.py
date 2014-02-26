@@ -13,14 +13,16 @@ from .meta import (
 )
 from sqlalchemy.orm import relationship, backref
 
-class FPagos(Base):
-    __tablename__ = 'FPago'
+class Banco(Base):
+    __tablename__ = 'bancos'
     id = Column(Integer, primary_key=True)
     Clave = Column(String(50))
-    Descripcion = Column(String(50))
-    Tipo = Column(String(50))
-    Moneda = Column(String(50))
-    id_Empresa = Column(Integer,ForeignKey('companies.id'))
+    Nombre = Column(String(100))
+    Sucursal = Column(String(100))
+    Direccion = Column(String(200))
+    Telefono = Column(String(20))
+    Estatus = Column(String(20))
+    company_id = Column(Integer,ForeignKey('companies.id'))
     tenant_id = Column(String(5))
     
     #relationships
