@@ -40,6 +40,7 @@ class Company(Base):
     user = Column(String(5))
     password = Column(String(10))
     tenant_id = Column(String(5))
+    group = Column(String(10))
     
     taxRegime = Column(Integer,ForeignKey('users.id'))
     labourSystem = Column(Integer,ForeignKey('users.id'))

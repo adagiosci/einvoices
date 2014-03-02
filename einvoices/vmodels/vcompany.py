@@ -39,6 +39,7 @@ class vCompany(vBase):
     end_date = Column(String(10))
     user = Column(String(5))
     password = Column(String(10))
+    group = Column(String(10))
     
     taxRegime = Column(Integer,ForeignKey('vusers.id'))
     labourSystem = Column(Integer,ForeignKey('vusers.id'))

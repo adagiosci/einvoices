@@ -60,7 +60,12 @@ class ProjectorUsers(Main):
 		users = self.DBSession.query(self.tUser)
 		pages = webhelpers.paginate.Page(users, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
-		return {'users':pages,'pagination':_pagination}	
+		return {'users':pages,'pagination':_pagination}
+
+	@action(renderer=BASE_TMPL + "users/permissions.pt")
+	def permissions(self):
+		msj = self.message();
+		return{'msj':msj}	
 	
 	@reify
 	def users_list(self):

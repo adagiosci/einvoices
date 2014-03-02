@@ -1,6 +1,9 @@
 #from einvoices.library.security import security
 import hashlib
 import random
+from pyramid.view import (
+    forbidden_view_config,
+    )
 from sqlalchemy import engine_from_config
 from pyramid.httpexceptions import HTTPFound
 from einvoices.library.session import session
@@ -23,20 +26,20 @@ from einvoices.models.user import (
     )
 SITE_MENU = [
         {
-		'title': 'Catalogos',
+		'title': 'Catalogos','permission':'view',
 		'children':[
-			{'view':'units','href': '/unidades', 'title': 'Unidades'},
-			{'view':'suppliers','href': '/suppliers', 'title': 'Provedores'},
-			{'view':'clients','href': '/clients', 'title': 'Clientes'},
-			{'view':'sucursales','href': '/sucursales', 'title': 'sucursales'},
+			{'view':'units','href': '/unidades', 'title': 'Unidades','permission':'view'},
+			{'view':'suppliers','href': '/suppliers', 'title': 'Provedores','permission':'view'},
+			{'view':'clients','href': '/clients', 'title': 'Clientes','permission':'view'},
+			{'view':'sucursales','href': '/sucursales', 'title': 'sucursales','permission':'view'},
 		]
 	},
 	{
-		'title':'Configuraciones',
+		'title':'Configuraciones','permission':'view',
 		'children':[
-			{'view':'users','href': '/users', 'title': 'Usuarios'},
-			{'view':'companies','href': '/companies', 'title': 'Empresas'},
-			{'view':'password','href':'/users/password','title':'Contrasena'},
+			{'view':'users','href': '/users', 'title': 'Usuarios','permission':'view'},
+			{'view':'companies','href': '/companies', 'title': 'Empresas','permission':'view'},
+			{'view':'password','href':'/users/password','title':'Contrasena','permission':'view'},
 		]
 	},
 ]    
@@ -59,10 +62,11 @@ class Main(Layouts):
 		#databse user config
 		if(self.__user__):
 			engine = self.make_engine()
-			DBSession.configure(bind=engine)
+			vDBSession.configure(bind=engine)
 			vBase.metadata.bind = engine 
 		
 	@action(renderer=BASE_TMPL  + "main/login.pt")
+	@forbidden_view_config(renderer=BASE_TMPL  + "main/login.pt")
 	def login(self):
 		if 'username' in self.request.POST and 'password' in self.request.POST:
 			user_name = self.request.POST.get('username', '')
@@ -73,7 +77,7 @@ class Main(Layouts):
 				password = md5.hexdigest()
 				user = DBSession.query(User).filter_by(email=user_name,password=password).first()
 				headers = remember(self.request, user.id, max_age='86400')
-				return HTTPFound(location='/companies', headers=headers)
+				return HTTPFound(location='/', headers=headers)
 			except Exception, e:
 				return HTTPFound(location='/main/login')
 		return {}

@@ -22,7 +22,7 @@
 <table>
 	<tr class='titles'>
 		<th colspan='5'>Generales</th>
-		<th colspan='2'>Acción</th>
+		<th colspan='3'>Acción</th>
 	</tr>
 	<tr class='titles'>
 		<th>Id</th>
@@ -30,6 +30,7 @@
 		<th>Apellido Paterno</th>
 		<th>Apellido Materno</th>
 		<th>Email</th>
+		<th class='global-td'>Permisos</th>
 		<th class='global-td'>Editar</th>
 		<th class='global-td'>Estado</th>
 	</tr>
@@ -40,6 +41,7 @@
 		<td>${row.last_name}</td>
 		<td>${row.mother_name}</td>
 		<td>${row.email}</td>
+		<td><a href='/users/permissions/${row.id}'>Cambiar</a></td>
 		<td><a href='/users/edit/${row.id}'>Editar</a></td>
 		<td><a href='/users/delete/${row.id}'>Eliminar<a></td>
 		<?python

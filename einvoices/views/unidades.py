@@ -22,9 +22,18 @@ class ProjectorUnidades(Main):
 	
    	def __init__(self, request):
    		super(ProjectorUnidades,self).__init__(request)
+   		#if(self.__user__.company.group == 'Admin'):
+   		#	self.DBSession = DBSession
+   		#	self.Unidad = Unidad
+   		#	self.Company = Company   			
+   		#else:
+   		#	self.DBSession = vDBSession
+   		#	self.Unidad = vUnidad
+   		#	self.Company = vCompany
+
    		self.DBSession = vDBSession
    		self.Unidad = vUnidad
-   		self.Company = vCompany
+   		self.Company = vCompany   		
 		self.config_view_name = 'units'
                 
 	@action(renderer=BASE_TMPL  + "unidades/index.pt")
