@@ -2,7 +2,7 @@
 <div class='center'>
 	<form class="form" enctype="multipart/form-data" accept-charset="utf-8" method="post" action="/users/actpermisos/" novalidate="novalidate">
 	<ul > <!-- menu parent -->
-			<li tal:repeat="menu view.permission_menu"><input type='checkbox' class='checkbox' checked='checked' /><label class='bold'>${menu.title}</label>
+			<tal:block tal:repeat="menu view.permission_menu"><li tal:condition="menu.valid" ><input type='checkbox' class='checkbox' checked='checked' /><label class='bold'>${menu.title}</label>
 				<ul>
 					<tal:block tal:repeat="child menu.children">
 					<li  tal:condition="child.valid">
@@ -16,7 +16,7 @@
 					</li>
 					</tal:block>
 				</ul>
-			</li>
+			</li></tal:block>
 	</ul>
 	</form>
 	<div class='clear'></div>

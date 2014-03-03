@@ -77,6 +77,7 @@ class Main(Layouts):
 		for section in new_menu:
 			children = section['children']
 			section['current'] = False
+			section['valid'] = self.groupfinder(section,self.user_group)
 			for menu in children:
 				if menu['view'] == self.config_view_name:
 					menu['current'] = True
@@ -84,6 +85,12 @@ class Main(Layouts):
 				else:
 					menu['current'] = False
 		return new_menu
+		
+	def groupfinder(self,source,ugroup):
+		if ugroup in source['groups']:
+			return True
+		else: 
+			return False			
 
 	def _pagination(self,page):
 		paginator  = []

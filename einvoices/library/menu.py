@@ -1,6 +1,6 @@
 SITE_MENU = [
         {
-		'title': 'Catalogos',
+		'title': 'Catalogos','groups':['group:Cliente'],
 		'children':[
 			{'view':'units','href': '/unidades', 'title': 'Unidades','groups':['group:Cliente'],
 				'children': [{
@@ -16,7 +16,7 @@ SITE_MENU = [
 		]
 	},
 	{
-		'title':'Configuraciones',
+		'title':'Configuraciones','groups':['group:Cliente','group:Admin'],
 		'children':[
 			{'view':'users','href': '/users', 'title': 'Usuarios','groups':['group:Cliente']},
 			{'view':'companies','href': '/companies', 'title': 'Empresas','groups':['group:Admin']},

@@ -150,13 +150,10 @@ class ProjectorUsers(Main):
 		new_menu = SITE_MENU[:]
 		url = self.request.url
 		for section in new_menu: #catalogs
+			section['valid'] = self.groupfinder(section,self.user_group)
 			children = section['children']
 			for menu in children: #menu
-				if self.groupfinder(menu,self.user_group):
-					menu['valid'] = True
-				else:
-					menu['valid'] = False
-
+				menu['valid'] = self.groupfinder(menu,self.user_group)
 		return new_menu			
 
 	def groupfinder(self,source,ugroup):
