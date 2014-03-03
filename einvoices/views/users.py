@@ -14,6 +14,9 @@ BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
 
+from einvoices.models.company import Company
+from einvoices.vmodels.vcompany import vCompany
+
 from einvoices.vmodels.vuser import (
     vDBSession,
     vUser,
@@ -30,8 +33,9 @@ from einvoices.models.user import (
 class ProjectorUsers(Main):
 	
 	def __init__(self, request):
-		self.DBSession = vDBSession
-		self.tUser = vUser
+		self.DBSession = DBSession
+		self.tUser = User
+		self.tCompany = Company
 		self.config_view_name = 'users'
 		super(ProjectorUsers,self).__init__(request)	
                 
@@ -42,7 +46,8 @@ class ProjectorUsers(Main):
 		users = self.DBSession.query(self.tUser)
 		pages = webhelpers.paginate.Page(users, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
-		return {'users':pages,'msj':msj,'pagination':_pagination}
+		companies = self.DBSession.query(self.tCompany)
+		return {'users':pages,'msj':msj,'pagination':_pagination,'companies':companies.all()}
 
 	@action(renderer=BASE_TMPL  + "users/password.pt")
 	def password(self):
@@ -59,7 +64,8 @@ class ProjectorUsers(Main):
 		user_id = self.request.matchdict['id']
 		entry = self.DBSession.query(self.tUser).filter_by(id=user_id).first()
 		_pagination = self._pagination(pages)
-		return {'entry':entry,'users':pages,'msj':msj,'pagination':_pagination}
+		companies = self.DBSession.query(self.tCompany)
+		return {'entry':entry,'users':pages,'msj':msj,'pagination':_pagination,'companies':companies.all()}
 		
 	@action(renderer=BASE_TMPL  + "users/list.pt")
 	def filter(self):
@@ -155,9 +161,3 @@ class ProjectorUsers(Main):
 			for menu in children: #menu
 				menu['valid'] = self.groupfinder(menu,self.user_group)
 		return new_menu			
-
-	def groupfinder(self,source,ugroup):
-		if ugroup in source['groups']:
-			return True
-		else: 
-			return False	

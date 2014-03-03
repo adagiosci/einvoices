@@ -41,6 +41,11 @@
 	<div class="NewInputs hidden">
 		<form class="form" action='/users/create' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
+				<p><label for='company'>Empresa*</label></p>
+				<p><select name='company' id='company'>
+					<option tal:repeat="row companies" value='${row.id}'>${row.name}</option>
+				</select></p>
+
 				<p><label for='names'>Nombres*</label></p>
 				<p><input type="text" name="names" value="" id='names' class="required"/></p>
 				

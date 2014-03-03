@@ -41,9 +41,9 @@ class Main(Layouts):
 		if (user_id == None and path != '/main/login'):
 			raise HTTPFound(location='/main/login')
 		self.__user__ = DBSession.query(User).filter_by(id=user_id).first()
-		self.user_group = 'group:' + self.__user__.company.group;
 		#databse user config
 		if(self.__user__):
+			self.user_group = 'group:' + self.__user__.company.group;
 			engine = self.make_engine()
 			vDBSession.configure(bind=engine)
 			vBase.metadata.bind = engine 

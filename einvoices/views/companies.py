@@ -76,7 +76,7 @@ class ProjectorCompanies(Main):
 	def create(self):
 		user = self.generateRandomString(5)
 		password = self.generateRandomString(10)
-		company = Company(
+		company = self.tCompany(
 				 name = self.request.POST['name']
 				,rfc = self.request.POST['rfc']
 				,address = self.request.POST['address']
@@ -107,23 +107,23 @@ class ProjectorCompanies(Main):
 				,password = password
 				,tenant_id = user
 			)
-		DBSession.add(company)
+		self.DBSession.add(company)
 		self.create_user(user,password)
 		return HTTPFound(location='/companies/m=ric')
 
 	def create_user(self,user,password):
 		query = "CREATE USER "+ user + "@localhost IDENTIFIED BY '" + password + "'"
-		vDBSession.execute(query)
+		DBSession.execute(query)
 
 		query = "GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER, SHOW VIEW, EXECUTE ON einvoices.* TO  " + user + "@'localhost'"
-		vDBSession.execute(query)
+		DBSession.execute(query)
 
 		query = "FLUSH PRIVILEGES";
-		vDBSession.execute(query)		
+		DBSession.execute(query)		
 		
 	@action()
 	def update(self):
-		company = vDBSession.query(Company).filter_by(id=self.request.POST['company_id']).update({
+		company = self.DBSession.query(self.tCompany).filter_by(id=self.request.POST['company_id']).update({
 													 'name': self.request.POST['name']
 													,'rfc': self.request.POST['rfc']
 													,'address': self.request.POST['address']
@@ -156,6 +156,6 @@ class ProjectorCompanies(Main):
 	@action()
 	def delete(self):
 		company_id = self.request.matchdict['id'] 
-		company = DBSession.query(Company).filter_by(id=company_id).delete()
+		company = self.DBSession.query(self.tCompany).filter_by(id=company_id).delete()
 		return HTTPFound(location='/companies/m=rdc')
 				

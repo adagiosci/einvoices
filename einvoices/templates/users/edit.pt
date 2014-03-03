@@ -42,6 +42,13 @@
 		<form class="form" action='/users/update' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
 
+				<p><label for='company'>Empresa*</label></p>
+				<p><select name='company' id='company' autocomplete='off'>
+					<tal:block tal:repeat="row companies">
+						<option tal:attributes="selected 'selected' if entry.company.id == row.id else None" value='${row.id}'>${row.name}</option>
+					</tal:block>
+				</select></p>
+
 				<p><label for='names'>Nombres*</label></p>
 				<p><input type="text" name="names" value="${entry.names}" id='names' class="required"/></p>
 				
