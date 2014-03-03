@@ -79,13 +79,14 @@ class Main(Layouts):
 			section['current'] = False
 			section['valid'] = self.groupfinder(section,self.user_group)
 			for menu in children:
+				menu['valid'] = self.groupfinder(menu,self.user_group)
 				if menu['view'] == self.config_view_name:
 					menu['current'] = True
 					section['current'] = True
 				else:
 					menu['current'] = False
 		return new_menu
-		
+
 	def groupfinder(self,source,ugroup):
 		if ugroup in source['groups']:
 			return True

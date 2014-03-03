@@ -22,19 +22,25 @@ from einvoices.vmodels.vcompany import (
     vCompany,
     )
 
+from einvoices.models.company import (
+	DBSession,
+	Company
+	)
+
 class ProjectorCompanies(Main):
-	
         def __init__(self, request):
 		self.config_view_name = 'companies'
 		super(ProjectorCompanies,self).__init__(request)
+		self.DBSession = DBSession
+		self.tCompany = Company
 		
 	@action(renderer=BASE_TMPL  + "companies/index.pt")
 	def index(self):
 		#self.insertdb()
 		msj = self.message();
-		companies = vDBSession.query(vCompany)
+		companies = DBSession.query(Company)
 		pages = webhelpers.paginate.Page(companies, page=self.request.GET.get('p',1), items_per_page=20)
-		users = vDBSession.query(vUser)
+		users = DBSession.query(vUser)
 		_pagination = self._pagination(pages)
 		return {'users':users,'companies':pages,'msj':msj,'pagination':_pagination}
 		
@@ -70,7 +76,7 @@ class ProjectorCompanies(Main):
 	def create(self):
 		user = self.generateRandomString(5)
 		password = self.generateRandomString(10)
-		company = vCompany(
+		company = Company(
 				 name = self.request.POST['name']
 				,rfc = self.request.POST['rfc']
 				,address = self.request.POST['address']
@@ -101,7 +107,7 @@ class ProjectorCompanies(Main):
 				,password = password
 				,tenant_id = user
 			)
-		vDBSession.add(company)
+		DBSession.add(company)
 		self.create_user(user,password)
 		return HTTPFound(location='/companies/m=ric')
 

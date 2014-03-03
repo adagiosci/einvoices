@@ -18,10 +18,10 @@ SITE_MENU = [
 	{
 		'title':'Configuraciones','groups':['group:Cliente','group:Admin'],
 		'children':[
-			{'view':'users','href': '/users', 'title': 'Usuarios','groups':['group:Cliente']},
+			{'view':'users','href': '/users', 'title': 'Usuarios','groups':['group:Cliente','group:Admin']},
 			{'view':'companies','href': '/companies', 'title': 'Empresas','groups':['group:Admin']},
 			{'view':'companies','href': '/companies/edit', 'title': 'Empresa','groups':['group:Cliente']},
-			{'view':'password','href':'/users/password','title':'Contrasena','groups':['group:Cliente']},
+			{'view':'password','href':'/users/password','title':'Contrasena','groups':['group:Cliente','group:Admin']},
 		]
 	},
 ] 
