@@ -92,26 +92,26 @@
 							
 			</div>
 			<div class='colum3'>
-				<p><label for='taxRegime'>Atenderá Régimen Fiscal*</label></p>
-				<p><select name="taxRegime" id='taxRegime' class="required">
+				<p><label for='taxRegime'>Atenderá Régimen Fiscal</label></p>
+				<p><select name="taxRegime" id='taxRegime'>
 					<option></option>
 					<option tal:repeat="row users" value="${row.id}">${row.names} ${row.last_name} ${row.mother_name}</option>
 				</select></p>
 				
-				<p><label for='labourSystem'>Atenderá Régimen Laboral*</label></p>
-				<p><select  name="labourSystem" id='labourSystem' class="required">
+				<p><label for='labourSystem'>Atenderá Régimen Laboral</label></p>
+				<p><select  name="labourSystem" id='labourSystem'>
 					<option></option>
 					<option tal:repeat="row users" value="${row.id}">${row.names} ${row.last_name} ${row.mother_name}</option>				
 				</select></p>
 							
-				<p><label for='financialInformation'>Atenderá información financiera*</label></p>
-				<p><select name="financialInformation" id='financialInformation' class="required">
+				<p><label for='financialInformation'>Atenderá información financiera</label></p>
+				<p><select name="financialInformation" id='financialInformation'>
 					<option></option>
 					<option tal:repeat="row users" value="${row.id}">${row.names} ${row.last_name} ${row.mother_name}</option>		
 				</select></p>
 				
-				<p><label for='supervise'>Supervisará*</label></p>
-				<p><select name="supervise" id='supervise' class="required">
+				<p><label for='supervise'>Supervisará</label></p>
+				<p><select name="supervise" id='supervise'>
 					<option></option>
 					<option tal:repeat="row users" value="${row.id}">${row.names} ${row.last_name} ${row.mother_name}</option>				
 				</select></p>
@@ -142,6 +142,12 @@
 				<p><label for='corporateName'>Servicios*</label></p>
 				<p><input type="text" value="" name="services" id='services' class="required"/></p>				
 								
+				<p><label for='group'>Grupo: </label></p>
+				<p><select name='group' id='group'>
+						<option value='Cliente'>Cliente</option>
+						<option value='Admin'>Admin</option>
+				</select></p>
+
 				<p><input type="submit" value="Guardar" class="new submit"/></p>
 			</div>
 		</form>

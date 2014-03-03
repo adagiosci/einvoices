@@ -16,6 +16,10 @@ from sqlalchemy.exc import DBAPIError
 from einvoices.vmodels.vuser import (
     vUser,
     )
+
+from einvoices.models.user import (
+    User,
+    )
 	
 from einvoices.vmodels.vcompany import (
     vDBSession,
@@ -40,9 +44,9 @@ class ProjectorCompanies(Main):
 		msj = self.message();
 		companies = DBSession.query(Company)
 		pages = webhelpers.paginate.Page(companies, page=self.request.GET.get('p',1), items_per_page=20)
-		users = DBSession.query(vUser)
+		users = DBSession.query(User)
 		_pagination = self._pagination(pages)
-		return {'users':users,'companies':pages,'msj':msj,'pagination':_pagination}
+		return {'users':users.all(),'companies':pages,'msj':msj,'pagination':_pagination}
 		
 	@action(renderer=BASE_TMPL  + "companies/edit.pt")
 	def edit(self):
@@ -106,6 +110,7 @@ class ProjectorCompanies(Main):
 				,user = user
 				,password = password
 				,tenant_id = user
+				,group = self.request.POST['group']
 			)
 		self.DBSession.add(company)
 		self.create_user(user,password)

@@ -33,12 +33,17 @@ from einvoices.models.user import (
 class ProjectorUsers(Main):
 	
 	def __init__(self, request):
-		self.DBSession = DBSession
-		self.tUser = User
-		self.tCompany = Company
 		self.config_view_name = 'users'
-		super(ProjectorUsers,self).__init__(request)	
-                
+		super(ProjectorUsers,self).__init__(request)
+		if(self.__user__.company.group == 'Admin'):
+			self.DBSession = DBSession
+			self.tUser = User
+			self.tCompany = Company
+		else:
+			self.DBSession = vDBSession
+			self.tUser = vUser
+			self.tCompany = vCompany			
+	                
 	@action(renderer=BASE_TMPL  + "users/index.pt")
 	def index(self):
 		#print self.groupfinder('Admin')

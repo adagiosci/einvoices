@@ -31,7 +31,7 @@
 		<th>Dirección</th>
 		<th>CP</th>
 		<th>Razon Social</th>
-		<th>CURP</th>
+		<th>Grupo</th>
 		<th class='global-td'>Acceder</th>
 		<th class='global-td'>Editar</th>
 		<th class='global-td'>Estado</th>
@@ -44,7 +44,7 @@
 		<td>${row.address}</td>
 		<td>${row.cp}</td>
 		<td>${row.corporateName}</td>
-		<td>${row.curp}</td>
+		<td>${row.group}</td>
 		<td><a href='#'>Acceder</a></td>
 		<td><a href='/companies/edit/${row.id}'>Editar</a></td>
 		<td><a href='/companies/delete/${row.id}'>Eliminar<a></td>
