@@ -149,17 +149,18 @@ class ProjectorUsers(Main):
 	def permission_menu(self):
 		new_menu = SITE_MENU[:]
 		url = self.request.url
-		for section in new_menu:
+		for section in new_menu: #catalogs
 			children = section['children']
-			section['current'] = False
-			for menu in children:
-				if menu['view'] == self.config_view_name:
-					menu['current'] = True
-					section['current'] = True
+			for menu in children: #menu
+				if self.groupfinder(menu,self.user_group):
+					menu['valid'] = True
 				else:
-					menu['current'] = False
+					menu['valid'] = False
+
 		return new_menu			
 
-	#def groupfinder(self,userid):
-	#	if (userid in USERS):
-	#		return GROUPS.get(userid, [])	
+	def groupfinder(self,source,ugroup):
+		if ugroup in source['groups']:
+			return True
+		else: 
+			return False	
