@@ -1,5 +1,13 @@
 <div metal:use-macro="view.global_template"><div metal:fill-slot="content" class='container'>
 <div class='center'>
-	
+	<form class="form" enctype="multipart/form-data" accept-charset="utf-8" method="post" action="/users/actpermisos/" novalidate="novalidate">
+	<ul > <!-- menu parent -->
+			<li tal:repeat="menu view.permission_menu"><input type='checkbox' class='checkbox' /><label class='bold'>${menu.title}</label>
+				<ul>
+					<li tal:repeat="child menu.children"><input type='checkbox' class='checkbox' /><label>${child.title}</label></li>
+				</ul>
+			</li>
+	</ul>
+	</form>
 </div>
 </div></div>

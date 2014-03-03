@@ -5,6 +5,7 @@ from pyramid_handlers import action
 from pyramid.response import Response
 from pyramid.decorator import reify
 from saas import saas
+from einvoices.library.menu import SITE_MENU
 from pyramid.view import view_config
 import webhelpers.paginate
 from pyramid.httpexceptions import HTTPFound
@@ -22,6 +23,10 @@ from einvoices.models.user import (
     User,
     )
 
+#USERS = {'editor':'editor',
+#          'viewer':'viewer'}
+#GROUPS = {'editor':['group:editors']}
+
 class ProjectorUsers(Main):
 	
 	def __init__(self, request):
@@ -32,6 +37,7 @@ class ProjectorUsers(Main):
                 
 	@action(renderer=BASE_TMPL  + "users/index.pt")
 	def index(self):
+		#print self.groupfinder('Admin')
 		msj = self.message();
 		users = self.DBSession.query(self.tUser)
 		pages = webhelpers.paginate.Page(users, page=self.request.GET.get('p',1), items_per_page=20)
@@ -65,7 +71,7 @@ class ProjectorUsers(Main):
 	@action(renderer=BASE_TMPL + "users/permissions.pt")
 	def permissions(self):
 		msj = self.message();
-		return{'msj':msj}	
+		return{'msj':msj,'catalogs':SITE_MENU}	
 	
 	@reify
 	def users_list(self):
@@ -138,3 +144,22 @@ class ProjectorUsers(Main):
 		saas2 = saas()
 		saas2.create_user_companies()
 		return "Hello world"
+
+	@reify
+	def permission_menu(self):
+		new_menu = SITE_MENU[:]
+		url = self.request.url
+		for section in new_menu:
+			children = section['children']
+			section['current'] = False
+			for menu in children:
+				if menu['view'] == self.config_view_name:
+					menu['current'] = True
+					section['current'] = True
+				else:
+					menu['current'] = False
+		return new_menu			
+
+	#def groupfinder(self,userid):
+	#	if (userid in USERS):
+	#		return GROUPS.get(userid, [])	

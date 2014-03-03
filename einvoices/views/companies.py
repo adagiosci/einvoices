@@ -43,9 +43,9 @@ class ProjectorCompanies(Main):
 		msj = self.message();
 		companies = vDBSession.query(vCompany)
 		company_id = self.request.matchdict['id']
-		entry = vDBSession.query(Company).filter_by(id=company_id).first()
+		entry = vDBSession.query(vCompany).filter_by(id=company_id).first()
 		page = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
-		users = DBSession.query(vUser)
+		users = vDBSession.query(vUser)
 		_pagination = self._pagination(page)
 		return {'entry':entry
 			,'companies':page

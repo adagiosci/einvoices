@@ -9,15 +9,11 @@
 <body><metal:company_menu define-macro="company_menu"><div class="container">
 	<div class="img-logo"><a href='/'>FACTURACIÓN ELECTRONICA</a></div>
 	<div class='questions'>
-<!-- 			<p class='bold'>Para reportar cualquier Bug o aclarar alguna duda: -->
-<!-- 				<a href='mailto:irving.sci@gmail.com'>e-mail:irving.sci@gmail.com</a> -->
-<!-- 				<br /> -->
-<!-- 				<a href='#'>Tel. Cel. 9981259528</a> -->
-<!-- 			</p> -->
+
 	</div>
 	<div class='clear'></div>
 	<div class='options'>
-		<tal:block tal:repeat="menu view.site_menu">
+		<tal:block tal:repeat="menu view.site_menu"> <!-- menu parent -->
 			<tal:block tal:condition="menu.current">
 				<a href='#' class='on' >${menu.title}</a>
 			</tal:block>
@@ -33,7 +29,7 @@
 
 	</div>
 	<div class='clear'></div>
-	<tal:block tal:repeat="section view.site_menu">
+	<tal:block tal:repeat="section view.site_menu"> <!-- menu children current -->
 		<tal:block tal:condition="section.current">
 			<div class='submenu on'>
 				<tal:block tal:repeat="menu section['children']">
@@ -48,7 +44,7 @@
 			</div>
 		</tal:block>
 		
-		<tal:block tal:condition="not section.current">
+		<tal:block tal:condition="not section.current"> <!-- menu children not selected -->
 			<div class='submenu'>
 				<tal:block tal:repeat="menu section['children']">
 					<tal:block tal:condition="menu.current">

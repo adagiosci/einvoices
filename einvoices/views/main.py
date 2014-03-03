@@ -7,6 +7,7 @@ from pyramid.view import (
 from sqlalchemy import engine_from_config
 from pyramid.httpexceptions import HTTPFound
 from einvoices.library.session import session
+from einvoices.library.menu import SITE_MENU
 from pyramid_handlers import action
 from pyramid.renderers import get_renderer
 from layouts import Layouts
@@ -24,25 +25,7 @@ from einvoices.models.user import (
 	DBSession,
     User,
     )
-SITE_MENU = [
-        {
-		'title': 'Catalogos','permission':'view',
-		'children':[
-			{'view':'units','href': '/unidades', 'title': 'Unidades','permission':'view'},
-			{'view':'suppliers','href': '/suppliers', 'title': 'Provedores','permission':'view'},
-			{'view':'clients','href': '/clients', 'title': 'Clientes','permission':'view'},
-			{'view':'sucursales','href': '/sucursales', 'title': 'sucursales','permission':'view'},
-		]
-	},
-	{
-		'title':'Configuraciones','permission':'view',
-		'children':[
-			{'view':'users','href': '/users', 'title': 'Usuarios','permission':'view'},
-			{'view':'companies','href': '/companies', 'title': 'Empresas','permission':'view'},
-			{'view':'password','href':'/users/password','title':'Contrasena','permission':'view'},
-		]
-	},
-]    
+
 BASE_TMPL = 'einvoices:templates/'
 import cPickle as pickle
 
@@ -58,7 +41,7 @@ class Main(Layouts):
 		if (user_id == None and path != '/main/login'):
 			raise HTTPFound(location='/main/login')
 		self.__user__ = DBSession.query(User).filter_by(id=user_id).first()
-
+		self.user_group = 'group:' + self.__user__.company.group;
 		#databse user config
 		if(self.__user__):
 			engine = self.make_engine()
@@ -101,7 +84,7 @@ class Main(Layouts):
 				else:
 					menu['current'] = False
 		return new_menu
-		
+
 	def _pagination(self,page):
 		paginator  = []
 		index = int(self.request.GET.get('p','1'))
