@@ -48,12 +48,12 @@
 
 				<p><label for='names'>Nombres*</label></p>
 				<p><input type="text" name="names" value="" id='names' class="required"/></p>
-				
-				<p><label for='mother_name'>Apellido Materno*</label></p>
-				<p><input type="text" name="mother_name" id='mother_name' value="" class="required"/></p>
-				
+
 				<p><label for='last_name'>Apellido Paterno*</label></p>
 				<p><input type="text" name="last_name" id='last_name' value="" class="required"/></p>				
+				
+				<p><label for='mother_name'>Apellido Materno*</label></p>
+				<p><input type="text" name="mother_name" id='mother_name' value="" class="required"/></p>				
 				
 			</div>
 			<div class='colum2'>

@@ -20,6 +20,7 @@ class User(Base):
     names = Column(String(100))
     last_name = Column(String(100))
     mother_name = Column(String(100))
+    tenant_id = Column(String(10))
     company_id = Column(Integer,ForeignKey('companies.id'))
 
     company = relationship("Company", foreign_keys=[company_id] ,backref=backref('users', order_by=id)) #many to one relationship

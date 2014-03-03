@@ -39,7 +39,7 @@ class Company(Base):
     end_date = Column(String(10))
     user = Column(String(5))
     password = Column(String(10))
-    tenant_id = Column(String(5))
+    tenant_id = Column(String(10))
     group = Column(String(10))
     
     taxRegime = Column(Integer,ForeignKey('users.id'))

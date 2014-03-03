@@ -89,22 +89,45 @@ class ProjectorUsers(Main):
 		md5 = hashlib.md5()
 		md5.update(self.request.POST['password'])
 		password = md5.hexdigest()
-		user = self.tUser(email = self.request.POST['email'] 
+		if(self.__user__.company.group == 'Admin'):
+			company_id = self.request.POST['company']
+			ocompany = self.DBSession.query(self.tCompany).filter_by(id=company_id).first();
+			tenant_id = ocompany.tenant_id
+		else:
+			company_id = self.__user__.company.id
+
+		user = self.tUser(
+				email = self.request.POST['email'] 
 				,password = password
 				,names = self.request.POST['names']
 				,last_name = self.request.POST['last_name']
 				,mother_name = self.request.POST['mother_name']
+				,company_id = company_id
 			)
 		self.DBSession.add(user)
+		self.DBSession.flush()
+		if(self.__user__.company.group == 'Admin'):
+			self.DBSession.query(self.tUser).filter_by(id=user.id).update({'tenant_id':tenant_id})
 		return HTTPFound(location='/users/m=ric')
 		
 	@action()
 	def update(self):
+		if(self.__user__.company.group == 'Admin'):
+			company_id = self.request.POST['company']
+			ocompany = self.DBSession.query(self.tCompany).filter_by(id=company_id).first();
+			tenant_id = ocompany.tenant_id
+		else:
+			company_id = self.__user__.company.id
+			ocompany = self.DBSession.query(self.tCompany).filter_by(id=company_id).first();
+			tenant_id = ocompany.tenant_id			
+
 		user = self.DBSession.query(self.tUser).filter_by(id=self.request.POST['user_id']).update({
 													 'email': self.request.POST['email']
 													,'names': self.request.POST['names']
 													,'last_name': self.request.POST['last_name']
 													,'mother_name': self.request.POST['mother_name']
+													,'company_id':company_id
+													,'tenant_id' :tenant_id
 													})
 		#vDBSession.commit()
 		return HTTPFound(location='/users/m=rec')
