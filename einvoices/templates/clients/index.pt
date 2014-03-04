@@ -41,6 +41,18 @@
 	<div class="NewInputs hidden">
 		<form class="form" action='/clients/create' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
+
+
+				<p><label for='Empresa'>Empresa*</label></p>
+				<p><select name='idcompany' id='idcompany' class='required'>
+					<option tal:repeat="row companies" value="${row.id}">${row.name}</option>
+				</select></p>
+
+				<p><label for='id_Sucursal'>Sucursal*</label></p>
+				<p><select name='id_Sucursal' id='id_Sucursal' class='required'>
+					<option tal:repeat="row sucursales" value="${row.id}">${row.Nombre}</option>
+				</select></p>				
+
 				<p><label for='RFC'>FRC*</label></p>
 				<p><input type="text" name="RFC" value="" id='RFC' class="required"/></p>
 				
@@ -53,16 +65,7 @@
 			</div>
 			<div class='colum2'>
 
-				<p><label for='Empresa'>Empresa*</label></p>
-				<p><select name='idcompany' id='idcompany' class='required'>
-					<option tal:repeat="row companies" value="${row.id}">${row.name}</option>
-				</select></p>
-				
-				<p><label for='id_Sucursal'>Sucursal*</label></p>
-				<p><select name='id_Sucursal' id='id_Sucursal' class='required'>
-					<option tal:repeat="row sucursales" value="${row.id}">${row.Nombre}</option>
-				</select></p>
-				
+								
 				<p><input type="submit" value="Guardar" class="new submit"/></p>
 			
 			</div>

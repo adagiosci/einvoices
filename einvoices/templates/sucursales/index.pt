@@ -45,6 +45,11 @@
 		<form class="form" action='/sucursales/create' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
 
+				<p><label for='idcompany'>Empresa*</label></p>
+				<p><select id='idcompany' name='idcompany'>
+					<option tal:repeat="row companies" value="${row.id}">${row.name}</option>
+				</select></p>				
+
 				<p><label for='name'>Nombre*</label></p>
 				<p><input type="text" name="Nombre" id='Nombre' value="" class="required"/></p>
 				
@@ -54,10 +59,6 @@
 				<p><label for='rfc'>Correo*</label></p>
 				<p><input type="text" name="Correo" value="" id='rfc' class="required"/></p>
 				
-				<p><label for='idcompany'>Empresa*</label></p>
-				<p><select id='idcompany' name='idcompany'>
-					<option tal:repeat="row companies" value="${row.id}">${row.name}</option>
-				</select></p>
 				<p><input type="submit" value="Guardar" class="new submit"/></p>	
 				
 			</div>

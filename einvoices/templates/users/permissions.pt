@@ -2,16 +2,15 @@
 <div class='center'>
 	<form class="form" enctype="multipart/form-data" accept-charset="utf-8" method="post" action="/users/actpermisos/" novalidate="novalidate">
 	<ul > <!-- menu parent -->
-			<tal:block tal:repeat="menu view.permission_menu"><li tal:condition="menu.valid" ><input type='checkbox' class='checkbox' checked='checked' /><label class='bold'>${menu.title}</label>
+			<tal:block tal:repeat="menu view.permission_menu"><li tal:condition="menu.show" ><input type='checkbox' class='checkbox' checked='checked' /><label class='bold'>${menu.title}</label>
 				<ul>
 					<tal:block tal:repeat="child menu.children">
-					<li  tal:condition="child.valid">
+					<li  tal:condition="child.show">
 						<input type='checkbox' class='checkbox' checked='checked' /><label>${child.title}</label>
 						<ul>
-							<li><input type='checkbox' class='checkbox' checked='checked' /><label>Crear</label></li>
-							<li><input type='checkbox' class='checkbox' checked='checked' /><label>Leer</label></li>
-							<li><input type='checkbox' class='checkbox' checked='checked' /><label>Actualizar</label></li>
-							<li><input type='checkbox' class='checkbox' checked='checked' /><label>Eliminar</label></li>
+							<tal:block tal:repeat="crud child.children">
+								<li><input type='checkbox' class='checkbox' checked='checked' /><label>${crud.title}</label></li>
+							</tal:block>
 						</ul>
 					</li>
 					</tal:block>

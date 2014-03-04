@@ -27,11 +27,10 @@ class CuentaxPagar(Base):
     Impuesto = Column (Float)
     Total = Column (Float)
     Estatus = Column(String(20))
-    id_Movimiento = #relacion con bancos
     company_id = Column(Integer,ForeignKey('companies.id'))
     tenant_id = Column(String(5))
     
     #relationships
-    company = relationship("Company", foreign_keys=[idcompany], backref=backref('clients', order_by=id))
+    company = relationship("Company", foreign_keys=[company_id], backref=backref('clients', order_by=id))
     
 

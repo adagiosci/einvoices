@@ -41,15 +41,14 @@
 	<div class="NewInputs hidden">
 		<form class="form" action='/unidades/create' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
-
-				<p><label for='clave'>Clave*</label></p>
-				<p><input type="text" name="clave" id='clave' value="" class="required"/></p>
-								
 				<p><label for='idcompany'>Empresa*</label></p>
 				<select name='idcompany' id='idcompany' class='required'>
 					<option tal:repeat="row companies" value="${row.id}">${row.name}</option>
 				</select>
-				
+
+				<p><label for='clave'>Clave*</label></p>
+				<p><input type="text" name="clave" id='clave' value="" class="required"/></p>
+							
 				<p><label for='description'>Descripcion*</label></p>
 				<p><input type='text' name="description" id='description' class="required" /></p>
 				

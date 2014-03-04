@@ -6,11 +6,12 @@ from pyramid.response import Response
 from pyramid.decorator import reify
 from saas import saas
 from einvoices.library.menu import SITE_MENU
-from pyramid.view import view_config
+from pyramid.view import view_config, forbidden_view_config
 import webhelpers.paginate
 from pyramid.httpexceptions import HTTPFound
 from main import Main
 BASE_TMPL = 'einvoices:templates/'
+from einvoices.models.RootFactory import RootFactory
 
 from sqlalchemy.exc import DBAPIError
 
@@ -26,16 +27,12 @@ from einvoices.models.user import (
     User,
     )
 
-#USERS = {'editor':'editor',
-#          'viewer':'viewer'}
-#GROUPS = {'editor':['group:editors']}
 
 class ProjectorUsers(Main):
-	
 	def __init__(self, request):
 		self.config_view_name = 'users'
 		super(ProjectorUsers,self).__init__(request)
-		if(self.__user__.company.group == 'Admin'):
+		if(self.__group_company__ == 'Admin'):
 			self.DBSession = DBSession
 			self.tUser = User
 			self.tCompany = Company
@@ -43,7 +40,9 @@ class ProjectorUsers(Main):
 			self.DBSession = vDBSession
 			self.tUser = vUser
 			self.tCompany = vCompany			
-	                
+	 
+	@view_config(renderer=BASE_TMPL  + "users/index.pt")               
+	@forbidden_view_config(renderer=BASE_TMPL  + "users/index.pt")                
 	@action(renderer=BASE_TMPL  + "users/index.pt")
 	def index(self):
 		#print self.groupfinder('Admin')
@@ -94,7 +93,7 @@ class ProjectorUsers(Main):
 		md5 = hashlib.md5()
 		md5.update(self.request.POST['password'])
 		password = md5.hexdigest()
-		if(self.__user__.company.group == 'Admin'):
+		if(self.__group_company__ == 'Admin'):
 			company_id = self.request.POST['company']
 			ocompany = self.DBSession.query(self.tCompany).filter_by(id=company_id).first();
 			tenant_id = ocompany.tenant_id
@@ -111,13 +110,13 @@ class ProjectorUsers(Main):
 			)
 		self.DBSession.add(user)
 		self.DBSession.flush()
-		if(self.__user__.company.group == 'Admin'):
+		if(self.__group_company__ == 'Admin'):
 			self.DBSession.query(self.tUser).filter_by(id=user.id).update({'tenant_id':tenant_id})
 		return HTTPFound(location='/users/m=ric')
 		
 	@action()
 	def update(self):
-		if(self.__user__.company.group == 'Admin'):
+		if(self.__group_company__== 'Admin'):
 			company_id = self.request.POST['company']
 			ocompany = self.DBSession.query(self.tCompany).filter_by(id=company_id).first();
 			tenant_id = ocompany.tenant_id
@@ -184,8 +183,8 @@ class ProjectorUsers(Main):
 		new_menu = SITE_MENU[:]
 		url = self.request.url
 		for section in new_menu: #catalogs
-			section['valid'] = self.groupfinder(section,self.user_group)
+			section['show'] = self.groupfinder(section,self.user_group)
 			children = section['children']
 			for menu in children: #menu
-				menu['valid'] = self.groupfinder(menu,self.user_group)
+				menu['show'] = self.groupfinder(menu,self.user_group)
 		return new_menu			

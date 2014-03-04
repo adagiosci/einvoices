@@ -15,13 +15,15 @@ from views.clientes import ProjectorClientes
 from views.suppliers import ProjectorSuppliers
 from views.sucursales import ProjectorSucursales
 from views.main import Main
+from einvoices.models.RootFactory import RootFactory, groupfinder
+
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
     
-    authn_policy = AuthTktAuthenticationPolicy(
-        'session_id',
+    authn_policy = AuthTktAuthenticationPolicy('session_id', 
+        callback=groupfinder
     )
     authz_policy = ACLAuthorizationPolicy()
     
@@ -30,6 +32,7 @@ def main(global_config, **settings):
     Base.metadata.bind = engine
     config = Configurator(
         settings=settings,
+         root_factory=RootFactory,
         authentication_policy=authn_policy,
         authorization_policy=authz_policy,
     )

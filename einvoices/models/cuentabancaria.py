@@ -24,11 +24,10 @@ class CuentaBancaria(Base):
     Observaciones = Column(String(300))
     Estatus = Column(String(20))
     Saldo = Column (Float)
-    id_Banco = #relacion con bancos
     company_id = Column(Integer,ForeignKey('companies.id'))
     tenant_id = Column(String(5))
     
     #relationships
-    company = relationship("Company", foreign_keys=[idcompany], backref=backref('clients', order_by=id))
+    company = relationship("Company", foreign_keys=[company_id], backref=backref('clients', order_by=id))
     
 

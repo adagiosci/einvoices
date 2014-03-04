@@ -24,6 +24,6 @@ class FPagos(Base):
     tenant_id = Column(String(5))
     
     #relationships
-    company = relationship("Company", foreign_keys=[idcompany], backref=backref('clients', order_by=id))
+    company = relationship("Company", foreign_keys=[id_Empresa], backref=backref('clients', order_by=id))
     
 

@@ -14,7 +14,7 @@
 	<div class='clear'></div>
 	<div class='options'>
 		<tal:block tal:repeat="menu view.site_menu"> <!-- menu parent -->
-			<tal:block tal:condition="menu.valid">
+			<tal:block tal:condition="menu.show">
 			<tal:block tal:condition="menu.current">
 				<a href='#' class='on' >${menu.title}</a>
 			</tal:block>
@@ -32,11 +32,11 @@
 	</div>
 	<div class='clear'></div>
 	<tal:block tal:repeat="section view.site_menu"> <!-- menu children current -->
-		<tal:block tal:condition="section.valid">
+		<tal:block tal:condition="section.show">
 		<tal:block tal:condition="section.current">
 			<div class='submenu on'>
 				<tal:block tal:repeat="menu section['children']">
-					<tal:block tal:condition="menu.valid">
+					<tal:block tal:condition="menu.show">
 					<tal:block tal:condition="menu.current">
 						<a  class='on' href='${menu.href}'>${menu.title}</a>
 					</tal:block>
@@ -52,7 +52,7 @@
 		<tal:block tal:condition="not section.current"> <!-- menu children not selected -->
 			<div class='submenu'>
 				<tal:block tal:repeat="menu section['children']">
-					<tal:block tal:condition="menu.valid">
+					<tal:block tal:condition="menu.show">
 					<tal:block tal:condition="menu.current">
 						<a  class='on' href='${menu.href}'>${menu.title}</a>
 					</tal:block>

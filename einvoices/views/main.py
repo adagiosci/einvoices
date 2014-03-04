@@ -43,6 +43,7 @@ class Main(Layouts):
 		self.__user__ = DBSession.query(User).filter_by(id=user_id).first()
 		#databse user config
 		if(self.__user__):
+			self.__group_company__ = self.__user__.company.group;
 			self.user_group = 'group:' + self.__user__.company.group;
 			engine = self.make_engine()
 			vDBSession.configure(bind=engine)
@@ -77,9 +78,9 @@ class Main(Layouts):
 		for section in new_menu:
 			children = section['children']
 			section['current'] = False
-			section['valid'] = self.groupfinder(section,self.user_group)
+			section['show'] = self.groupfinder(section,self.user_group)
 			for menu in children:
-				menu['valid'] = self.groupfinder(menu,self.user_group)
+				menu['show'] = self.groupfinder(menu,self.user_group)
 				if menu['view'] == self.config_view_name:
 					menu['current'] = True
 					section['current'] = True

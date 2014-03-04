@@ -26,6 +26,6 @@ class Banco(Base):
     tenant_id = Column(String(5))
     
     #relationships
-    company = relationship("Company", foreign_keys=[idcompany], backref=backref('clients', order_by=id))
+    company = relationship("Company", foreign_keys=[company_id], backref=backref('clients', order_by=id))
     
 
