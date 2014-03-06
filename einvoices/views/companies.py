@@ -1,3 +1,4 @@
+from pyramid.security import Allow, Everyone, Deny
 from pyramid.renderers import get_renderer
 from pyramid_handlers import action
 from pyramid.response import Response
@@ -32,11 +33,12 @@ from einvoices.models.company import (
 	)
 
 class ProjectorCompanies(Main):
-        def __init__(self, request):
+	def __init__(self, request):
 		self.config_view_name = 'companies'
 		super(ProjectorCompanies,self).__init__(request)
 		self.DBSession = DBSession
 		self.tCompany = Company
+		#self.__acl__ = [ (Allow, 'editor', 'view') ]
 		
 	@action(renderer=BASE_TMPL  + "companies/index.pt")
 	def index(self):
@@ -48,7 +50,7 @@ class ProjectorCompanies(Main):
 		_pagination = self._pagination(pages)
 		return {'users':users.all(),'companies':pages,'msj':msj,'pagination':_pagination}
 		
-	@action(renderer=BASE_TMPL  + "companies/edit.pt")
+	@action(renderer=BASE_TMPL  + "companies/edit.pt",permission='/companies/edit')
 	def edit(self):
 		msj = self.message();
 		companies = vDBSession.query(vCompany)
@@ -63,7 +65,7 @@ class ProjectorCompanies(Main):
 			,'msj':msj
 			,'pagination':_pagination
 		}
-	
+
 	@action(renderer=BASE_TMPL  + "companies/list.pt")
 	def filter(self):
 		companies = vDBSession.query(Company)

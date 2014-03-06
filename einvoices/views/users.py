@@ -10,6 +10,7 @@ from pyramid.view import view_config, forbidden_view_config
 import webhelpers.paginate
 from pyramid.httpexceptions import HTTPFound
 from main import Main
+from einvoices.models.permission import Permission
 BASE_TMPL = 'einvoices:templates/'
 from einvoices.models.RootFactory import RootFactory
 
@@ -26,7 +27,6 @@ from einvoices.models.user import (
     DBSession,
     User,
     )
-
 
 class ProjectorUsers(Main):
 	def __init__(self, request):
@@ -81,7 +81,8 @@ class ProjectorUsers(Main):
 	@action(renderer=BASE_TMPL + "users/permissions.pt")
 	def permissions(self):
 		msj = self.message();
-		return{'msj':msj,'catalogs':SITE_MENU}	
+		user_id = self.request.matchdict['id']
+		return{'msj':msj,'catalogs':SITE_MENU,'user_id':user_id}	
 	
 	@reify
 	def users_list(self):
@@ -187,4 +188,42 @@ class ProjectorUsers(Main):
 			children = section['children']
 			for menu in children: #menu
 				menu['show'] = self.groupfinder(menu,self.user_group)
-		return new_menu			
+		return new_menu
+
+	def array_permissions(self):
+		permissions = []
+		for section  in SITE_MENU:
+			#permissions.append(section['href'])
+			for menu in section['children']:
+				permissions.append(menu['href'])
+				for crud in menu['children']:
+					permissions.append(crud['href'])
+		return permissions	
+
+	@action()
+	def actpermissions(self):
+		permissions = self.array_permissions()
+		for permission in permissions:
+			if permission in self.request.params.getall('permissions'):
+				result = DBSession.query(Permission).filter_by(user_id=self.request.POST['user_id']).filter_by(permission=permission).first()
+				if(result):
+					DBSession.query(Permission).filter_by(user_id=self.request.POST['user_id']).filter_by(permission=permission).update({'permission':permission})
+				else:
+					Register = Permission(
+							user_id=self.request.POST['user_id']
+							,permission=permission
+							,value='1'
+							)
+					DBSession.add(Register)
+			else:
+				result = DBSession.query(Permission).filter_by(user_id=self.request.POST['user_id']).filter_by(permission=permission).first()
+				if(result):
+					DBSession.query(Permission).filter_by(user_id=self.request.POST['user_id']).filter_by(permission=permission).update({'permission':permission})
+				else:
+					Register = Permission(
+							user_id=self.request.POST['user_id']
+							,permission=permission
+							,value='0'
+							)
+					DBSession.add(Register)				
+		return HTTPFound(location='/users/permissions/' + self.request.POST['user_id'])
