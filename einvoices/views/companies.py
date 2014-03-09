@@ -8,6 +8,7 @@ from pyramid.httpexceptions import HTTPFound
 import webhelpers.paginate
 from layouts import Layouts
 from main import Main
+from sqlalchemy.orm import aliased
 #from einvoices.library.main import (
 	#main,
 #)
@@ -17,11 +18,9 @@ from sqlalchemy.exc import DBAPIError
 from einvoices.vmodels.vuser import (
     vUser,
     )
-
 from einvoices.models.user import (
     User,
-    )
-	
+    )	
 from einvoices.vmodels.vcompany import (
     vDBSession,
     vCompany,
@@ -31,7 +30,6 @@ from einvoices.models.company import (
 	DBSession,
 	Company
 	)
-
 class ProjectorCompanies(Main):
 	def __init__(self, request):
 		self.config_view_name = 'companies'
@@ -53,11 +51,19 @@ class ProjectorCompanies(Main):
 	@action(renderer=BASE_TMPL  + "companies/edit.pt",permission='/companies/edit')
 	def edit(self):
 		msj = self.message();
-		companies = vDBSession.query(vCompany)
+		companies = DBSession.query(Company)
 		company_id = self.request.matchdict['id']
-		entry = vDBSession.query(vCompany).filter_by(id=company_id).first()
+		adalias1 = aliased(User)
+		adalias2 = aliased(User)
+		adalias3 = aliased(User)
+		adalias4 = aliased(User)
+		entry = DBSession.query(Company).filter_by(id=company_id).outerjoin(adalias1,Company.utaxRegime).\
+						   outerjoin(adalias2,Company.ulabourSystem).\
+						   outerjoin(adalias3,Company.ufinancialInformation).\
+						   outerjoin(adalias4,Company.usupervise).first()
+						   			
 		page = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
-		users = vDBSession.query(vUser)
+		users = DBSession.query(vUser)
 		_pagination = self._pagination(page)
 		return {'entry':entry
 			,'companies':page
