@@ -19,7 +19,7 @@ class Sucursal(Base):
     Nombre = Column(String(150))
     Direccion = Column(String(250))
     Correo = Column(String(250))    
-    idcompany = Column(Integer,ForeignKey('companies.id'))
+    company_id = Column(Integer,ForeignKey('companies.id'))
     
     #relationships
     #En una relacion one to many  la llave foranea esta en los hijos

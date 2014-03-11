@@ -2,12 +2,13 @@ import hashlib
 import random
 import time
 from pyramid.response import Response
-import cPickle as pickle
-from einvoices.models.user import (User)
-from einvoices.models.session import (
-    DBSession,
-    Session,
-    )
+import phpserialize
+from collections import OrderedDict
+from einvoices.models.user import User
+from einvoices.models.session import DBSession, Session
+
+SESSION_NAME = 'session_id'
+
 class session(object):
 	def __init__(self, request):
 		self.request = request
@@ -25,7 +26,7 @@ class session(object):
 		try:
 			if(user.password == password):
 				session_id = self.save_in_session('user_id',user.id)
-				self.request.response.set_cookie('session_id', session_id,max_age=None,path='/')
+				self.request.response.set_cookie(SESSION_NAME, session_id,max_age=None,path='/')
 				return "success"
 			else:
 				return "pass" 
@@ -41,25 +42,24 @@ class session(object):
 	
 	def read_session_key(self,key):
 		try:
-			session_id = self.request.cookies['session_id']
+			session_id = self.request.cookies[SESSION_NAME]
 			session = DBSession.query(Session).filter_by(session_id=session_id).first()
 			try:
-				data = pickle.loads(session.data)
+				data = phpserialize.loads(session.data,array_hook=OrderedDict)
 				try:
 					return data[key]
 				except Exception, e:
-					return False
+					return None
 			except Exception, e:
-				return False
+				return None
 		except Exception, e:
-			return False
+			return None
 			
 	def read_session(self):
 		try:
-			session_id = self.request.cookies['session_id']
+			session_id = self.request.cookies[SESSION_NAME]
 			session = DBSession.query(Session).filter_by(session_id=session_id).first()
 			try:
-				session.data = pickle.loads(session.data);
 				return session
 			except Exception, e:
 				return False
@@ -68,18 +68,19 @@ class session(object):
 			
 	def read_session_data(self):
 		try:
-			session_id = self.request.cookies['session_id']
+			session_id = self.request.cookies[SESSION_NAME]
 			session = DBSession.query(Session).filter_by(session_id=session_id).first()
 			try:
-				session.data = pickle.loads(session.data);
-				return session.data
+				data = phpserialize.loads(session.data,array_hook=OrderedDict)
+				return data
 			except Exception, e:
 				return False
 		except Exception, e:
 			return False
+
 	def verify_login(self):
 		try:
-			session_id = self.request.cookies['session_id']
+			session_id = self.request.cookies[SESSION_NAME]
 			session = DBSession.query(Session).filter_by(session_id=session_id).first()
 			try:
 				return session.session_id
@@ -89,18 +90,22 @@ class session(object):
 			return False
 				
 	def update_session(self,key,value):
-		session_id = self.request.cookies['session_id']
-		data = self.read_session_data()
-		data[key] = value
-		session = DBSession.query(Session).filter_by(session_id=session_id).update({'data':pickle.dumps(data)})
+		
+		session_id = self.request.cookies[SESSION_NAME]
+		try:
+			data = self.read_session_data()
+			data[key] = value
+			session = DBSession.query(Session).filter_by(session_id=session_id).update({'data':phpserialize.dumps(data)})
+		except Exception, e:
+			print e			
 		return session_id
 	
 	def insert_session(self,var,value):
 		session_id = self.generateRandomString(20);
 		data = {}
-		data[var] = value;
-		data2 = pickle.dumps(data)
-		#data3 = data2.decode('utf-8')
+		data[var] =  value;
+		data2 = phpserialize.dumps(data)
+		#print data2
 		session = Session(session_id = session_id,data = data2)
 		DBSession.add(session)
 		return session_id;

@@ -23,10 +23,10 @@ from einvoices.models.company import (
 
 class ProjectorSucursales(Main):
 	def __init__(self, request):
-		self.DBSession = DBSession()
-		self.tUser = User()
-		self.tSucursal = Sucursal()
-		self.tCompany = Company()
+		self.DBSession = DBSession
+		self.tUser = User
+		self.tSucursal = Sucursal
+		self.tCompany = Company
 		self.config_view_name = 'sucursales'
 		super(ProjectorSucursales,self).__init__(request)
 		
@@ -34,27 +34,24 @@ class ProjectorSucursales(Main):
 	def index(self):
 		#self.insertdb()
 		msj = self.message();
-		companies = self.DBSession.query(self.tCompany)
-		sucursales = self.DBSession.query(self.tSucursal)
+		companies = self.DBSession.query(self.tCompany).filter_by(id = self.__current_company__.id)
+		sucursales = self.DBSession.query(self.tSucursal).filter_by(company_id = self.__current_company__.id)
 		pages = webhelpers.paginate.Page(sucursales, page=self.request.GET.get('p',1), items_per_page=20)
-		users = self.DBSession.query(self.tUser)
 		_pagination = self._pagination(pages)
 		return {'sucursales':pages,'companies':companies,'msj':msj,'pagination':_pagination}
 		
 	@action(renderer=BASE_TMPL  + "sucursales/edit.pt")
 	def edit(self):
 		msj = self.message();
-		companies = self.DBSession.query(self.tCompany)
 		sucursal_id = self.request.matchdict['id']
-		entry = self.DBSession.query(self.tSucursal).filter_by(id=sucursal_id).first()
-		sucursales = self.DBSession.query(self.tSucursal)
+		companies = self.DBSession.query(self.tCompany).filter_by(id = self.__current_company__.id)
+		entry = self.DBSession.query(self.tSucursal).filter_by(id=sucursal_id,company_id = self.__current_company__.id).first()
+		sucursales = self.DBSession.query(self.tSucursal).filter_by(company_id = self.__current_company__.id)
 		pages = webhelpers.paginate.Page(sucursales, page=self.request.GET.get('p',1), items_per_page=20)
-		users = self.DBSession.query(self.tUser)
 		_pagination = self._pagination(pages)
 		return {'entry':entry
 			,'sucursales':pages
 			,'companies':companies
-			,'users':users.all()
 			,'msj':msj
 			,'pagination':_pagination
 		}

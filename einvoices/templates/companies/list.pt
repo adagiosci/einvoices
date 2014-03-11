@@ -45,7 +45,7 @@
 		<td>${row.cp}</td>
 		<td>${row.corporateName}</td>
 		<td>${row.group}</td>
-		<td><a href='#'>Acceder</a></td>
+		<td><a href='/companies/access/${row.id}'>Acceder</a></td>
 		<td><a href='/companies/edit/${row.id}'>Editar</a></td>
 		<td><a href='/companies/delete/${row.id}'>Eliminar<a></td>
 		<?python

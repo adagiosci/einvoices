@@ -27,16 +27,16 @@ class ProjectorUnidades(Main):
    		#	self.Unidad = vUnidad
    		#	self.Company = vCompany
 
-   		self.DBSession = DBSession()
-   		self.Unidad = Unidad()
-   		self.Company = Company()   		
+   		self.DBSession = DBSession
+   		self.Unidad = Unidad
+   		self.Company = Company   		
 		self.config_view_name = 'units'
                 
 	@action(renderer=BASE_TMPL  + "unidades/index.pt")
 	def index(self):
 		msj = self.message();
-		unidades = self.DBSession.query(self.Unidad)
-		companies = self.DBSession.query(self.Company)
+		unidades = self.DBSession.query(self.Unidad).filter_by(company_id = self.__current_company__.id)
+		companies = self.DBSession.query(self.Company).filter_by(id=self.__current_company__.id)
 		pages = webhelpers.paginate.Page(unidades, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
 		return {'unidades':pages,'msj':msj, 'companies':companies.all(),'pagination':_pagination}
@@ -45,12 +45,12 @@ class ProjectorUnidades(Main):
 	@action(renderer=BASE_TMPL  + "unidades/edit.pt")
 	def edit(self):
 		msj = self.message();
-		unidades = self.DBSession.query(self.Unidad)
+		unidades = self.DBSession.query(self.Unidad).filter_by(company_id = self.__current_company__.id)
 		pages = webhelpers.paginate.Page(unidades, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
-		companies = self.DBSession.query(self.Company)
+		companies = self.DBSession.query(self.Company).filter_by(id=self.__current_company__.id)
 		unidad_id = self.request.matchdict['id']
-		entry = self.DBSession.query(self.Unidad).filter_by(id=unidad_id).first()
+		entry = self.DBSession.query(self.Unidad).filter_by(id=unidad_id,company_id = self.__current_company__.id).first()
 		return {'entry':entry,'unidades':pages,'msj':msj, 'companies':companies.all(),'pagination':_pagination}
 		
 	@action(renderer=BASE_TMPL  + "unidades/list.pt")
@@ -69,7 +69,7 @@ class ProjectorUnidades(Main):
 	def create(self):
 		unidad = self.Unidad(clave = self.request.POST['clave'] 
 				,description = self.request.POST['description']
-				,idcompany = self.request.POST['idcompany']
+				,company_id = self.__current_company__.id
 			)
 		self.DBSession.add(unidad)
 		return HTTPFound(location='/unidades/m=ric')
@@ -79,7 +79,7 @@ class ProjectorUnidades(Main):
 		unidad = self.DBSession.query(self.Unidad).filter_by(id=self.request.POST['unidad_id']).update({
 													 'clave': self.request.POST['clave']
 													,'description': self.request.POST['description']
-													,'idcompany': self.request.POST['idcompany']
+													,'company_id':  self.__current_company__.id
 													})
 		return HTTPFound(location='/unidades/m=rec')
 	

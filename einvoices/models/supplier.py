@@ -30,3 +30,5 @@ class Supplier(Base):
 	municipio = Column(String(45))
 	estado = Column(String(45))
 	email = Column(String(45))
+	company_id = Column(Integer,ForeignKey('companies.id'))
+	company = relationship("Company", backref=backref('suppliers', order_by=id)) #one to one relationship	

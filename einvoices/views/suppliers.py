@@ -17,15 +17,15 @@ from einvoices.models.supplier import (
 
 class ProjectorSuppliers(Main):
 	def __init__(self, request):
-		self.DBSession = DBSession()
-		self.tSupplier = Supplier()
+		self.DBSession = DBSession
+		self.tSupplier = Supplier
 		self.config_view_name = 'suppliers'
 		super(ProjectorSuppliers,self).__init__(request)
 
 	@action(renderer=BASE_TMPL  + "suppliers/index.pt")
 	def index(self):
 		msj = self.message();
-		suppliers = self.DBSession.query(self.tSupplier)
+		suppliers = self.DBSession.query(self.tSupplier).filter_by(company_id = self.__current_company__.id)
 		pages = webhelpers.paginate.Page(suppliers, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
 		return {'suppliers':pages,'msj':msj,'pagination':_pagination}
@@ -34,16 +34,16 @@ class ProjectorSuppliers(Main):
 	@action(renderer=BASE_TMPL  + "suppliers/edit.pt")
 	def edit(self):
 		msj = self.message();
-		suppliers = self.DBSession.query(self.tSupplier)
+		suppliers = self.DBSession.query(self.tSupplier).filter_by(company_id = self.__current_company__.id)
 		pages = webhelpers.paginate.Page(suppliers, page=self.request.GET.get('p',1), items_per_page=20)
 		supplier_id = self.request.matchdict['id']
-		entry = self.DBSession.query(self.tSupplier).filter_by(id=supplier_id).first()
+		entry = self.DBSession.query(self.tSupplier).filter_by(id=supplier_id,company_id = self.__current_company__.id).first()
 		_pagination = self._pagination(pages)
 		return {'entry':entry,'suppliers':pages,'msj':msj,'pagination':_pagination}
 
 	@action(renderer=BASE_TMPL  + "suppliers/list.pt")
 	def filter(self):
-		suppliers = self.DBSession.query(self.tSupplier)
+		suppliers = self.DBSession.query(self.tSupplier).filter_by(company_id = self.__current_company__.id)
 		pages = webhelpers.paginate.Page(suppliers, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
 		return {'suppliers':pages,'pagination':_pagination}		
@@ -69,6 +69,7 @@ class ProjectorSuppliers(Main):
 				,municipio = self.request.POST['municipio']
 				,estado = self.request.POST['estado']
 				,email = self.request.POST['email']
+				,company_id = self.__current_company__.id
 			)
 		self.DBSession.add(supplier)
 		return HTTPFound(location='/suppliers/m=ric')
@@ -96,6 +97,6 @@ class ProjectorSuppliers(Main):
 	@action()
 	def delete(self):
 		supplier_id = self.request.matchdict['id'] 
-		supplier = self.DBSession.query(self.tSupplier).filter_by(id=supplier_id).delete()
+		supplier = self.DBSession.query(self.tSupplier).filter_by(id=supplier_id,company_id = self.__current_company__.id).delete()
 		#DBSession.delete(company)
 		return HTTPFound(location='/suppliers/m=rdc')

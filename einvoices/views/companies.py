@@ -153,4 +153,15 @@ class ProjectorCompanies(Main):
 		company_id = self.request.matchdict['id'] 
 		company = self.DBSession.query(self.tCompany).filter_by(id=company_id).delete()
 		return HTTPFound(location='/companies/m=rdc')
+
+	@action()
+	def access(self):
+		company_id = self.request.matchdict['id']
+		self.session.save_in_session('company_id',company_id)
+		return HTTPFound(location='/')
+	def returncompany(self):
+		self.session.save_in_session('company_id',self.__user__.company.id)
+		self.session.save_in_session('company_id',company_id)
+		return HTTPFound(location='/')		
+
 				

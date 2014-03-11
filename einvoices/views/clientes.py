@@ -20,20 +20,20 @@ from einvoices.models.cliente import (
 
 class ProjectorClientes(Main):
 	def __init__(self, request):
-		self.DBSession = DBSession()
-		self.tCompany = Company()
-		self.tSucursal = Sucursal()
-		self.tCliente = Cliente()
+		self.DBSession = DBSession
+		self.tCompany = Company
+		self.tSucursal = Sucursal
+		self.tCliente = Cliente
 		self.config_view_name = 'clients'
 		super(ProjectorClientes,self).__init__(request)
 		
 	@action(renderer=BASE_TMPL  + "clients/index.pt")
 	def index(self):
 		msj = self.message();
-		clientes = self.DBSession.query(self.tCliente)
-		sucursales = self.DBSession.query(self.tSucursal)
+		clientes = self.DBSession.query(self.tCliente).filter_by(company_id = self.__current_company__.id)
+		sucursales = self.DBSession.query(self.tSucursal).filter_by(company_id = self.__current_company__.id)
+		companies = self.DBSession.query(self.tCompany).filter_by(id = self.__current_company__.id)
 		pages = webhelpers.paginate.Page(clientes, page=self.request.GET.get('p',1), items_per_page=20)
-		companies = self.DBSession.query(self.tCompany)
 		_pagination = self._pagination(pages)
 		return {'clientes':pages,'msj':msj,'companies':companies.all(),'sucursales':sucursales.all(),'pagination':_pagination}
 		
@@ -41,12 +41,12 @@ class ProjectorClientes(Main):
 	@action(renderer=BASE_TMPL  + "clients/edit.pt")
 	def edit(self):
 		msj = self.message();
-		clientes = self.DBSession.query(self.tCliente)
-		sucursales = self.DBSession.query(self.tSucursal)
+		clientes = self.DBSession.query(self.tCliente).filter_by(company_id = self.__current_company__.id)
+		sucursales = self.DBSession.query(self.tSucursal).filter_by(company_id = self.__current_company__.id)
+		companies = self.DBSession.query(self.tCompany).filter_by(id = self.__current_company__.id)
 		pages = webhelpers.paginate.Page(clientes, page=self.request.GET.get('p',1), items_per_page=20)
 		cliente_id = self.request.matchdict['id']
-		entry = self.DBSession.query(self.tCliente).filter_by(id=cliente_id).first()
-		companies = self.DBSession.query(self.tCompany)
+		entry = self.DBSession.query(self.tCliente).filter_by(id=cliente_id,company_id = self.__current_company__.id).first()
 		_pagination = self._pagination(pages)
 		return {'entry':entry,'clientes':pages,'msj':msj,'companies':companies.all(),'sucursales':sucursales.all(),'pagination':_pagination}
 		
@@ -67,7 +67,7 @@ class ProjectorClientes(Main):
 		cliente = self.tCliente(RFC = self.request.POST['RFC'] 
 				,RazonSocial = self.request.POST['RazonSocial'] 
 				,Direccion = self.request.POST['Direccion']
-				,idcompany = self.request.POST['idcompany']
+				,company_id = self.__current_company__.id
 				,id_Sucursal = self.request.POST['id_Sucursal']
 			)
 		self.DBSession.add(cliente)
@@ -82,7 +82,6 @@ class ProjectorClientes(Main):
 													 'RFC': self.request.POST['RFC']
 													,'RazonSocial': self.request.POST['RazonSocial']
 													,'Direccion': self.request.POST['Direccion']
-													,'idcompany': self.request.POST['idcompany']
 													,'id_Sucursal': self.request.POST['id_Sucursal']
 													})
 		return HTTPFound(location='/clients/m=rec')
@@ -90,7 +89,7 @@ class ProjectorClientes(Main):
 	@action()
 	def delete(self):
 		cliente_id = self.request.matchdict['id'] 
-		cliente = self.DBSession.query(self.tCliente).filter_by(id=cliente_id).delete()
+		cliente = self.DBSession.query(self.tCliente).filter_by(id=cliente_id,company_id = self.__current_company__.id).delete()
 		#DBSession.delete(company)
 		return HTTPFound(location='/clients/m=rdc')
 		

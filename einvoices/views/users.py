@@ -32,12 +32,16 @@ class ProjectorUsers(Main):
 				                
 	@action(renderer=BASE_TMPL  + "users/index.pt")
 	def index(self):
-		#print self.groupfinder('Admin')
 		msj = self.message();
-		users = self.DBSession.query(User)
+		if(self.__current_company__.group == 'Admin'):
+			companies = self.DBSession.query(self.tCompany)
+			users = self.DBSession.query(User)
+		else:
+			companies = self.DBSession.query(self.tCompany).filter_by(id=self.__current_company__.id)
+			users = self.DBSession.query(User).filter_by(company_id=self.__current_company__.id)
 		pages = webhelpers.paginate.Page(users, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
-		companies = self.DBSession.query(self.tCompany)
+		
 		return {'users':pages,'msj':msj,'pagination':_pagination,'companies':companies.all()}
 
 	@action(renderer=BASE_TMPL  + "users/password.pt")

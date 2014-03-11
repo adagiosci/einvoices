@@ -11,12 +11,14 @@ from einvoices.library.menu import SITE_MENU
 from pyramid_handlers import action
 from pyramid.renderers import get_renderer
 from layouts import Layouts
+from pyramid.response import Response
 from pyramid.security import (
     remember,
     forget,
     )
 from pyramid.decorator import reify
 from pyramid.security import authenticated_userid
+from einvoices.models.company import Company
 from einvoices.models.user import (
 	DBSession,
     	User,
@@ -33,14 +35,21 @@ class Main(Layouts):
 		self.request = request
 		self.session = session(request)
 		path  = self.request.path
-		user_id = authenticated_userid(self.request)
-		if (user_id == None and path != '/main/login'):
+		if (self.session.verify_login() == False and path != '/main/login'):
 			raise HTTPFound(location='/main/login')
+		user_id = self.session.read_session_key('user_id')
 		self.__user__ = DBSession.query(User).filter_by(id=user_id).first()
-		#databse user config
 		if(self.__user__):
-			self.__group_company__ = self.__user__.company.group;
-			self.user_group = 'group:' + self.__user__.company.group;
+			company_id = self.session.read_session_key('company_id')
+			if not company_id:
+				self.session.save_in_session('company_id',self.__user__.company.id)
+				self.__group_company__ = self.__user__.company.group;
+				self.user_group = 'group:' + self.__user__.company.group;
+				self.__current_company__ = DBSession.query(Company).filter_by(id=self.__user__.company.id).first()
+			else:
+				self.__current_company__ = DBSession.query(Company).filter_by(id=company_id).first()
+				self.__group_company__ = self.__current_company__.group;
+				self.user_group = 'group:' + self.__current_company__.group;					
 		
 	@action(renderer=BASE_TMPL  + "main/login.pt")
 	@forbidden_view_config(renderer=BASE_TMPL  + "main/login.pt")
@@ -53,16 +62,23 @@ class Main(Layouts):
 				md5.update(passwd)
 				password = md5.hexdigest()
 				user = DBSession.query(User).filter_by(email=user_name,password=password).first()
-				headers = remember(self.request, user.id, max_age='86400')
-				return HTTPFound(location='/', headers=headers)
+				if user:
+					session_id = self.session.save_in_session('user_id',user.id)
+					self.request.response.set_cookie('session_id', session_id,max_age=None,path='/')														
+					return HTTPFound(location='/',headers=[ (k,v) for (k,v)\
+						in self.request.response.headers.iteritems() if k == 'Set-Cookie'])
+				else:
+					return HTTPFound(location='/main/login')
 			except Exception, e:
 				return HTTPFound(location='/main/login')
 		return {}
 		
 	@action()
 	def logout(self):
-		headers = forget(self.request)
-		return HTTPFound(location='/main/login', headers=headers)
+		#headers = forget(self.request)
+		self.request.response.delete_cookie('session_id', path='/')
+		return HTTPFound(location='/main/login',headers=[ (k,v) for (k,v)\
+						in self.request.response.headers.iteritems() if k == 'Set-Cookie'])
 		
 	@reify
 	def site_menu(self):

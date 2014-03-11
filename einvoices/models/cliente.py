@@ -19,10 +19,10 @@ class Cliente(Base):
     RFC = Column(String(20))
     RazonSocial = Column(String(100))
     Direccion = Column(String(100))
-    idcompany = Column(Integer,ForeignKey('companies.id'))
+    company_id = Column(Integer,ForeignKey('companies.id'))
     id_Sucursal = Column(Integer,ForeignKey('sucursales.id'))
     
     #relationships
-    company = relationship("Company", foreign_keys=[idcompany], backref=backref('clients', order_by=id))
+    company = relationship("Company", backref=backref('clientes', order_by=id)) #one to one relationship
     sucursal = relationship("Sucursal", foreign_keys=[id_Sucursal], backref=backref('sucursales', order_by=id))
 

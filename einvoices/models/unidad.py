@@ -21,6 +21,6 @@ class Unidad(Base):
 	id = Column(Integer, primary_key=True)
 	clave = Column(String(20))
 	description = Column(Text)
-	idcompany = Column(Integer,ForeignKey('companies.id'))
+	company_id = Column(Integer,ForeignKey('companies.id'))
 	company = relationship("Company", backref=backref('units', order_by=id)) #one to one relationship
 
