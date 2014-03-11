@@ -1,7 +1,5 @@
-from pyramid.security import Allow, Everyone, Deny
 from pyramid.renderers import get_renderer
 from pyramid_handlers import action
-from pyramid.response import Response
 from pyramid.decorator import reify
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
@@ -9,23 +7,12 @@ import webhelpers.paginate
 from layouts import Layouts
 from main import Main
 from sqlalchemy.orm import aliased
-#from einvoices.library.main import (
-	#main,
-#)
 BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
-from einvoices.vmodels.vuser import (
-    vUser,
-    )
 from einvoices.models.user import (
     User,
     )	
-from einvoices.vmodels.vcompany import (
-    vDBSession,
-    vCompany,
-    )
-
 from einvoices.models.company import (
 	DBSession,
 	Company
@@ -34,8 +21,8 @@ class ProjectorCompanies(Main):
 	def __init__(self, request):
 		self.config_view_name = 'companies'
 		super(ProjectorCompanies,self).__init__(request)
-		self.DBSession = DBSession
-		self.tCompany = Company
+		self.DBSession = DBSession()
+		self.tCompany = Company()
 		#self.__acl__ = [ (Allow, 'editor', 'view') ]
 		
 	@action(renderer=BASE_TMPL  + "companies/index.pt")
@@ -53,19 +40,14 @@ class ProjectorCompanies(Main):
 		msj = self.message();
 		companies = DBSession.query(Company)
 		company_id = self.request.matchdict['id']
-		adalias1 = aliased(User)
-		adalias2 = aliased(User)
-		adalias3 = aliased(User)
-		adalias4 = aliased(User)
-		entry = DBSession.query(Company).filter_by(id=company_id).outerjoin(adalias1,Company.utaxRegime).\
-						   outerjoin(adalias2,Company.ulabourSystem).\
-						   outerjoin(adalias3,Company.ufinancialInformation).\
-						   outerjoin(adalias4,Company.usupervise).first()
-						   			
+		entry = DBSession.query(Company).filter_by(id=company_id).outerjoin(aliased(User),Company.utaxRegime).\
+						   outerjoin(aliased(User),Company.ulabourSystem).\
+						   outerjoin(aliased(User),Company.ufinancialInformation).\
+						   outerjoin(aliased(User),Company.usupervise)				   			
 		page = webhelpers.paginate.Page(companies, page=2, items_per_page=30)
-		users = DBSession.query(vUser)
+		users = DBSession.query(User).filter_by(company_id=company_id)
 		_pagination = self._pagination(page)
-		return {'entry':entry
+		return {'entry':entry.first()
 			,'companies':page
 			,'users':users.all()
 			,'msj':msj
@@ -121,7 +103,7 @@ class ProjectorCompanies(Main):
 				,group = self.request.POST['group']
 			)
 		self.DBSession.add(company)
-		self.create_user(user,password)
+		# self.create_user(user,password)
 		return HTTPFound(location='/companies/m=ric')
 
 	def create_user(self,user,password):

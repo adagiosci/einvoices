@@ -10,10 +10,6 @@ BASE_TMPL = 'einvoices:templates/'
 from sqlalchemy.exc import DBAPIError
 
 
-from einvoices.vmodels.vmeta import vDBSession
-from einvoices.vmodels.vcompany import vCompany
-from einvoices.vmodels.vunidad import vUnidad
-
 from einvoices.models.meta import DBSession
 from einvoices.models.company import Company
 from einvoices.models.unidad import Unidad
@@ -31,9 +27,9 @@ class ProjectorUnidades(Main):
    		#	self.Unidad = vUnidad
    		#	self.Company = vCompany
 
-   		self.DBSession = vDBSession
-   		self.Unidad = vUnidad
-   		self.Company = vCompany   		
+   		self.DBSession = DBSession()
+   		self.Unidad = Unidad()
+   		self.Company = Company()   		
 		self.config_view_name = 'units'
                 
 	@action(renderer=BASE_TMPL  + "unidades/index.pt")

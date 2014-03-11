@@ -17,12 +17,6 @@ from einvoices.models.RootFactory import RootFactory
 from sqlalchemy.exc import DBAPIError
 
 from einvoices.models.company import Company
-from einvoices.vmodels.vcompany import vCompany
-
-from einvoices.vmodels.vuser import (
-    vDBSession,
-    vUser,
-    )
 from einvoices.models.user import (
     DBSession,
     User,
@@ -32,22 +26,15 @@ class ProjectorUsers(Main):
 	def __init__(self, request):
 		self.config_view_name = 'users'
 		super(ProjectorUsers,self).__init__(request)
-		if(self.__group_company__ == 'Admin'):
-			self.DBSession = DBSession
-			self.tUser = User
-			self.tCompany = Company
-		else:
-			self.DBSession = vDBSession
-			self.tUser = vUser
-			self.tCompany = vCompany			
-	 
-	@view_config(renderer=BASE_TMPL  + "users/index.pt")               
-	@forbidden_view_config(renderer=BASE_TMPL  + "users/index.pt")                
+		self.DBSession = DBSession()
+		self.tUser = User()
+		self.tCompany = Company
+				                
 	@action(renderer=BASE_TMPL  + "users/index.pt")
 	def index(self):
 		#print self.groupfinder('Admin')
 		msj = self.message();
-		users = self.DBSession.query(self.tUser)
+		users = self.DBSession.query(User)
 		pages = webhelpers.paginate.Page(users, page=self.request.GET.get('p',1), items_per_page=20)
 		_pagination = self._pagination(pages)
 		companies = self.DBSession.query(self.tCompany)

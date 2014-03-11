@@ -10,11 +10,6 @@ BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
 
-from einvoices.vmodels.vsupplier import (
-    vDBSession,
-    vSupplier,
-    )
-
 from einvoices.models.supplier import (
     DBSession,
     Supplier,
@@ -22,8 +17,8 @@ from einvoices.models.supplier import (
 
 class ProjectorSuppliers(Main):
 	def __init__(self, request):
-		self.DBSession = vDBSession
-		self.tSupplier = vSupplier
+		self.DBSession = DBSession()
+		self.tSupplier = Supplier()
 		self.config_view_name = 'suppliers'
 		super(ProjectorSuppliers,self).__init__(request)
 

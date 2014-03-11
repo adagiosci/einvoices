@@ -13,12 +13,6 @@ from main import Main
 BASE_TMPL = 'einvoices:templates/'
 
 from sqlalchemy.exc import DBAPIError
-from einvoices.vmodels.vuser import vUser
-from einvoices.vmodels.vsucursal import vSucursal   
-from einvoices.vmodels.vcompany import (
-    vDBSession,
-    vCompany,
-    )
 
 from einvoices.models.user import User
 from einvoices.models.sucursal import Sucursal   
@@ -29,10 +23,10 @@ from einvoices.models.company import (
 
 class ProjectorSucursales(Main):
 	def __init__(self, request):
-		self.DBSession = vDBSession
-		self.tUser = vUser
-		self.tSucursal = vSucursal
-		self.tCompany = vCompany
+		self.DBSession = DBSession()
+		self.tUser = User()
+		self.tSucursal = Sucursal()
+		self.tCompany = Company()
 		self.config_view_name = 'sucursales'
 		super(ProjectorSucursales,self).__init__(request)
 		

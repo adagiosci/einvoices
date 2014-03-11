@@ -17,13 +17,9 @@ from pyramid.security import (
     )
 from pyramid.decorator import reify
 from pyramid.security import authenticated_userid
-from einvoices.vmodels.vmeta import (
-    vDBSession,
-    vBase
-    )
 from einvoices.models.user import (
 	DBSession,
-    User,
+    	User,
     )
 
 BASE_TMPL = 'einvoices:templates/'
@@ -45,9 +41,6 @@ class Main(Layouts):
 		if(self.__user__):
 			self.__group_company__ = self.__user__.company.group;
 			self.user_group = 'group:' + self.__user__.company.group;
-			engine = self.make_engine()
-			vDBSession.configure(bind=engine)
-			vBase.metadata.bind = engine 
 		
 	@action(renderer=BASE_TMPL  + "main/login.pt")
 	@forbidden_view_config(renderer=BASE_TMPL  + "main/login.pt")
