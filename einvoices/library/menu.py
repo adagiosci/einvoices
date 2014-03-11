@@ -36,7 +36,21 @@ SITE_MENU = [
 					{'title':'Actualizar','href':'/monedas/update'},
 					{'title':'Eliminar','href':'/monedas/delete'}
 				]			
-			},			
+			},
+			{'view':'bancos','href': '/bancos', 'title': 'Bancos','groups':['group:Cliente'],
+				'children': [
+					{'title':'Crear','href':'/bancos/create'},
+					{'title':'Actualizar','href':'/bancos/update'},
+					{'title':'Eliminar','href':'/bancos/delete'}
+				]			
+			},
+			{'view':'cuentas','href': '/cuentas', 'title': 'Cuentas','groups':['group:Cliente'],
+				'children': [
+					{'title':'Crear','href':'/cuentas/create'},
+					{'title':'Actualizar','href':'/cuentas/update'},
+					{'title':'Eliminar','href':'/cuentas/delete'}
+				]			
+			},									
 		]
 	},
 	{
