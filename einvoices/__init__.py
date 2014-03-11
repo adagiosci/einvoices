@@ -14,6 +14,7 @@ from views.users import ProjectorUsers
 from views.clientes import ProjectorClientes
 from views.suppliers import ProjectorSuppliers
 from views.sucursales import ProjectorSucursales
+from views.monedas import ProjectorMonedas
 from views.main import Main
 from einvoices.models.RootFactory import RootFactory, groupfinder
 
@@ -89,5 +90,12 @@ def main(global_config, **settings):
     config.add_handler('sucursales_indexe', '/sucursales/e={e}', handler= ProjectorSucursales, action='index')    
     config.add_handler('sucursales_action', '/sucursales/{action}', handler= ProjectorSucursales)
     config.add_handler('sucursales_action_id', '/sucursales/{action}/{id}', handler= ProjectorSucursales)
+
+    #monedas
+    config.add_handler('monedas_index', '/monedas', handler= ProjectorMonedas, action='index')
+    config.add_handler('monedas_indexm', '/monedas/m={m}', handler= ProjectorMonedas, action='index') 
+    config.add_handler('monedas_indexe', '/monedas/e={e}', handler= ProjectorMonedas, action='index')    
+    config.add_handler('monedas_action', '/monedas/{action}', handler= ProjectorMonedas)
+    config.add_handler('monedas_action_id', '/monedas/{action}/{id}', handler= ProjectorMonedas)   
        
     return config.make_wsgi_app()

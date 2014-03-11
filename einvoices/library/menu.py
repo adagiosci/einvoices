@@ -30,6 +30,13 @@ SITE_MENU = [
 					{'title':'Eliminar','href':'/sucursales/delete'}
 				]			
 			},
+			{'view':'monedas','href': '/monedas', 'title': 'Monedas','groups':['group:Cliente'],
+				'children': [
+					{'title':'Crear','href':'/monedas/create'},
+					{'title':'Actualizar','href':'/monedas/update'},
+					{'title':'Eliminar','href':'/monedas/delete'}
+				]			
+			},			
 		]
 	},
 	{
