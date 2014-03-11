@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-03-2014 a las 05:36:21
+-- Tiempo de generación: 11-03-2014 a las 15:43:17
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -226,6 +226,28 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `currencies`
+--
+
+CREATE TABLE IF NOT EXISTS `currencies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `currency_code` varchar(10) NOT NULL,
+  `prefix` varchar(10) NOT NULL,
+  `company_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `currencies`
+--
+
+INSERT INTO `currencies` (`id`, `name`, `currency_code`, `prefix`, `company_id`) VALUES
+(1, 'Pesos', 'MXN', '$', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `folios`
 --
 
@@ -267,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `permission` varchar(200) NOT NULL,
   `value` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=65 ;
 
 --
 -- Volcado de datos para la tabla `permissions`
@@ -327,7 +349,11 @@ INSERT INTO `permissions` (`id`, `user_id`, `permission`, `value`) VALUES
 (57, 1, '/companies/create', 1),
 (58, 1, '/companies/update', 1),
 (59, 1, '/companies/delete', 1),
-(60, 1, '/companies/edit', 0);
+(60, 1, '/companies/edit', 0),
+(61, 2, '/monedas', 1),
+(62, 2, '/monedas/create', 1),
+(63, 2, '/monedas/update', 1),
+(64, 2, '/monedas/delete', 1);
 
 -- --------------------------------------------------------
 
@@ -376,7 +402,8 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `data`, `date`, `expiration`) VALUES
-('j0TZyKu3eiJYCSuXLHOq', 'a:2:{s:7:"user_id";i:2;s:10:"company_id";s:1:"2";}', '2014-03-11 05:13:42', '2014-03-11 05:10:25');
+('j0TZyKu3eiJYCSuXLHOq', 'a:2:{s:7:"user_id";i:2;s:10:"company_id";s:1:"2";}', '2014-03-11 05:13:42', '2014-03-11 05:10:25'),
+('QQijlSvcNWx2tDjt4Z1M', 'a:2:{s:7:"user_id";i:2;s:10:"company_id";s:1:"2";}', '2014-03-11 06:12:09', '2014-03-11 06:11:30');
 
 -- --------------------------------------------------------
 
