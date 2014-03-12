@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-03-2014 a las 04:28:28
+-- Tiempo de generación: 12-03-2014 a las 05:06:34
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -36,7 +36,14 @@ CREATE TABLE IF NOT EXISTS `bancos` (
   `Estatus` varchar(20) NOT NULL,
   `company_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `bancos`
+--
+
+INSERT INTO `bancos` (`id`, `Clave`, `Nombre`, `Sucursal`, `Direccion`, `Telefono`, `Estatus`, `company_id`) VALUES
+(2, 'Clave', 'Nombre', 'Sucursañ', 'Direccion', 'Telefono', 'Active', 2);
 
 -- --------------------------------------------------------
 
@@ -240,6 +247,26 @@ CREATE TRIGGER `companies_before_insert` BEFORE INSERT ON `companies`
 END
 //
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cuentasbancarias`
+--
+
+CREATE TABLE IF NOT EXISTS `cuentasbancarias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
+  `banco_id` int(11) NOT NULL,
+  `Cuenta` varchar(100) NOT NULL,
+  `Titular` varchar(100) NOT NULL,
+  `CLABE` varchar(100) NOT NULL,
+  `Tipo` varchar(100) NOT NULL,
+  `Observaciones` varchar(300) NOT NULL,
+  `Saldo` float NOT NULL,
+  `Estatus` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

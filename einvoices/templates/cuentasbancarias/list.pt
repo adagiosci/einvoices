@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+    <title>Macros</title>
+</head>
+<body><metal:cuentasbancarias_list define-macro="cuentasbancarias_list">
+<div class='clear'></div>
+<p class='paginator' >
+	<tal:block tal:repeat="page pagination">
+		<tal:block tal:condition="page.current">
+			<a href='${page.url}' class='on'>${page.index}</a>
+		</tal:block>
+		<tal:block tal:condition="not page.current">
+			<a href='${page.url}'>${page.index}</a>
+		</tal:block>		
+	</tal:block>
+</p>
+<br />
+<p class='text-right'><span class='bold'>${cuentas.last_item}</span> registros de <span class='bold'>${cuentas.item_count}</span> registros encontrados</p>
+<div class='clear'></div>
+<table>
+	<tr class='titles'>
+		<th colspan='7'>Generales</th>
+		<th colspan='2'>Acción</th>
+	</tr>
+	<tr class='titles'>
+		<th>Cuenta</th>
+		<th>Banco</th>
+		<th>Titular</th>
+		<th>CLABE</th>
+		<th>Tipo</th>
+		<th>Observaciones</th>
+		<th>Saldo</th>
+		<th class='global-td'>Editar</th>
+		<th class='global-td'>Estado</th>
+	</tr>
+	<?python color = 'trgreen2' ?>
+	<tr tal:repeat="row cuentas.items" class='${color}'>
+		<td>${row.Cuenta}</td>
+		<td>${row.banco.Nombre}</td>
+		<td>${row.Titular}</td>
+		<td>${row.CLABE}</td>
+		<td>${row.Tipo}</td>
+		<td>${row.Observaciones}</td>
+		<td>${row.Saldo}</td>
+		<td><a href='/cuentasbancarias/edit/${row.id}'>Editar</a></td>
+		<td><a href='/cuentasbancarias/delete/${row.id}'>Eliminar<a></td>
+		<?python
+			if color=='trgreen2':
+				color = ''
+			else:
+				color = 'trgreen2'
+		?>
+	</tr>
+</table>
+</metal:cuentasbancarias_list></body>
+</html>

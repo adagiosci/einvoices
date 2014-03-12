@@ -16,6 +16,7 @@ from views.suppliers import ProjectorSuppliers
 from views.sucursales import ProjectorSucursales
 from views.monedas import ProjectorMonedas
 from views.bancos import ProjectorBancos
+from views.cuentasbanc import ProjectorCuentasBancarias
 from views.main import Main
 from einvoices.models.RootFactory import RootFactory, groupfinder
 
@@ -104,6 +105,13 @@ def main(global_config, **settings):
     config.add_handler('bancos_indexm', '/bancos/m={m}', handler= ProjectorBancos, action='index') 
     config.add_handler('bancos_indexe', '/bancos/e={e}', handler= ProjectorBancos, action='index')    
     config.add_handler('bancos_action', '/bancos/{action}', handler= ProjectorBancos)
-    config.add_handler('bancos_action_id', '/bancos/{action}/{id}', handler= ProjectorBancos)       
+    config.add_handler('bancos_action_id', '/bancos/{action}/{id}', handler= ProjectorBancos) 
+
+    #cuenta bancaria
+    config.add_handler('cuentabanc_index', '/cuentasbancarias', handler= ProjectorCuentasBancarias, action='index')
+    config.add_handler('cuentabanc_indexm', '/cuentasbancarias/m={m}', handler= ProjectorCuentasBancarias, action='index') 
+    config.add_handler('cuentabanc_indexe', '/cuentasbancarias/e={e}', handler= ProjectorCuentasBancarias, action='index')    
+    config.add_handler('cuentabanc_action', '/cuentasbancarias/{action}', handler= ProjectorCuentasBancarias)
+    config.add_handler('cuentabanc_action_id', '/cuentasbancarias/{action}/{id}', handler= ProjectorCuentasBancarias)          
        
     return config.make_wsgi_app()

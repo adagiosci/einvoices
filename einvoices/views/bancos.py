@@ -15,20 +15,15 @@ BASE_TMPL = 'einvoices:templates/'
 from sqlalchemy.exc import DBAPIError
 
 from einvoices.models.user import User
-from einvoices.models.currency import Currency
-from einvoices.models.banco import Banco 
-from einvoices.models.sucursal import Sucursal  
+from einvoices.models.banco import Banco   
 from einvoices.models.company import (
     DBSession,
-    Company,
     )
 
 class ProjectorBancos(Main):
 	def __init__(self, request):
 		self.DBSession = DBSession
 		self.tUser = User
-		self.tSucursal = Sucursal
-		self.tCompany = Company
 		self.config_view_name = 'bancos'
 		super(ProjectorBancos,self).__init__(request)
 		

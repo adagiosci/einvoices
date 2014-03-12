@@ -44,7 +44,7 @@ SITE_MENU = [
 					{'title':'Eliminar','href':'/bancos/delete'}
 				]			
 			},
-			{'view':'cuentas','href': '/cuentas', 'title': 'Cuentas','groups':['group:Cliente'],
+			{'view':'cuentas','href': '/cuentasbancarias', 'title': 'Cuentas','groups':['group:Cliente'],
 				'children': [
 					{'title':'Crear','href':'/cuentas/create'},
 					{'title':'Actualizar','href':'/cuentas/update'},
