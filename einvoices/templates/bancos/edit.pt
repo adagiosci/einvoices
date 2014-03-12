@@ -1,0 +1,93 @@
+<div metal:use-macro="view.global_template"><div metal:fill-slot="content" class='container'>
+<div class='center'>
+	<div class='opciones'>
+		<a href='#' class='agregar'>Editar</a>
+		<a href='#' class='filtrar'>Filtrar</a>
+	</div>
+	<div class='clear'></div>
+	<div class="InputsFind hidden">
+
+		<div class='inline'>
+			<p><label for='estado'>Estado</label></p>
+			<p>
+				<select id='estado' name='estado'>
+					<option value='Activo'>Activo</option>
+					<option value='Inactivo'>Inactivo</option>
+					<option value='IAll'>Todos</option>
+				</select>
+			</p>
+		</div>
+		<div class='clear'></div>
+
+		<select name="SlcFiltro1" id='SlcFiltro1'>
+			<option value=''>Filtrar por</option>
+		</select>
+		<input type="text" name="TxtFiltro1" id='TxtFiltro1' class='filters' value=""/>
+
+		<select name="SlcFiltro2" id='SlcFiltro2'>
+			<option value=''>Filtrar por</option>
+		</select>
+		<input type="text" name="TxtFiltro2" id='TxtFiltro2' class='filters' value=""/>
+
+		<select name="SlcFiltro3" id='SlcFiltro3'>
+			<option value=''>Filtrar por</option>
+		</select>
+		<input type="text" name="TxtFiltro3" id='TxtFiltro3' class='filters' value=""/>
+
+		<input type="hidden" name='controller' id="controller" value='aerolineas'>
+		<input type="hidden" name='path' id="path" value='${view.request.path}'>
+	</div>
+	<div class='clear'></div>
+	<div class="NewInputs">
+		<form class="form" action='/monedas/update' method='post' accept-charset='utf-8' enctype="multipart/form-data">
+			<div class='colum1'>
+
+
+								
+				<p><label for='name'>Nombre*</label></p>
+				<p><input type="text" name="name" id='name' value="${entry.name}" class="required"/></p>
+				
+				<p><label for='cp'>Código*</label></p>
+				<p><input type="text" name="currency_code" value="${entry.currency_code}" id='currency_code' class="required"/></p>
+				
+				<p><label for='rfc'>Prefijo*</label></p>
+				<p><input type="text" name="prefix" value="${entry.prefix}" id='prefix' class="required"/></p>
+				
+
+				<p><input type='hidden' name='entry_id' id='entry_id' value='${entry.id}'/></p>
+				<p><input type="submit" value="Guardar" class="new submit"/> <a href="/currencies" class='back'>Cancelar</a> </p>
+			</div>
+			<div class='colum2'>
+
+			</div>
+			<div class='colum3'>
+
+			</div>
+			<div class='colum3'>
+	
+			</div>
+		</form>
+	</div>
+	<div class='clear'></div>
+	<select id='num_records' name='num_records' class='size6'>
+		<option tal:repeat="item range(20,201,10)" value='${item}'>${item}</option>
+	</select>
+
+		<form  action='/aerolineas/exportcsv/' id='form_export' method='post' accept-charset='utf-8' enctype="multipart/form-data">
+			<p><input type='hidden' name='estado' id='export_estado' value='Activo'></p>
+			<p><input type='hidden' name='SlcFiltro1' id='export_SlcFiltro1' value=''></p>
+			<p><input type='hidden' name='TxtFiltro1' id='export_TxtFiltro1' value=''></p>
+			<p><input type='hidden' name='SlcFiltro2' id='export_SlcFiltro2' value=''></p>
+			<p><input type='hidden' name='TxtFiltro2' id='export_TxtFiltro2' value=''></p>
+			<p><input type='hidden' name='SlcFiltro3' id='export_SlcFiltro3' value=''></p>
+			<p><input type='hidden' name='TxtFiltro3' id='export_TxtFiltro3' value=''></p>
+			<p><input type='hidden' name='desde' id='export_desde' value=''></p>
+			<p><input type='hidden' name='hasta' id='export_hasta' value=''></p>
+			<p><input type='hidden' name='controller' id='export_controller' value='aerolineas'></p>
+			<p class='export'><input type='submit' value='Exportar'  class='export'/></p>
+		</form>
+
+	<div class='clear'></div>
+	<div class="TblList"><div metal:use-macro="view.companies_list['sucursales_list']"></div></div>
+</div>
+</div></div>

@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+    <title>Macros</title>
+</head>
+<body><metal:companies_list define-macro="sucursales_list">
+<div class='clear'></div>
+<p class='paginator' >
+	<tal:block tal:repeat="page pagination">
+		<tal:block tal:condition="page.current">
+			<a href='${page.url}' class='on'>${page.index}</a>
+		</tal:block>
+		<tal:block tal:condition="not page.current">
+			<a href='${page.url}'>${page.index}</a>
+		</tal:block>		
+	</tal:block>
+</p>
+<br />
+<p class='text-right'><span class='bold'>${currencies.last_item}</span> registros de <span class='bold'>${currencies.item_count}</span> registros encontrados</p>
+<div class='clear'></div>
+<table>
+	<tr class='titles'>
+		<th colspan='4'>Generales</th>
+		<th colspan='2'>Acción</th>
+	</tr>
+	<tr class='titles'>
+		<th>Nombre</th>
+		<th>Código</th>
+		<th>Prefijo</th>
+		<th class='global-td'>Editar</th>
+		<th class='global-td'>Estado</th>
+	</tr>
+	<?python color = 'trgreen2' ?>
+	<tr tal:repeat="row currencies.items" class='${color}'>
+		<td>${row.name}</td>
+		<td>${row.currency_code}</td>
+		<td>${row.prefix}</td>
+		<td><a href='/monedas/edit/${row.id}'>Editar</a></td>
+		<td><a href='/monedas/delete/${row.id}'>Eliminar<a></td>
+		<?python
+			if color=='trgreen2':
+				color = ''
+			else:
+				color = 'trgreen2'
+		?>
+	</tr>
+</table>
+</metal:companies_list></body>
+</html>

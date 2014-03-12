@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-03-2014 a las 15:43:17
+-- Tiempo de generación: 12-03-2014 a las 04:28:28
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -19,6 +19,24 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `einvoices`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `bancos`
+--
+
+CREATE TABLE IF NOT EXISTS `bancos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Clave` varchar(50) NOT NULL,
+  `Nombre` varchar(100) NOT NULL,
+  `Sucursal` varchar(100) NOT NULL,
+  `Direccion` varchar(200) NOT NULL,
+  `Telefono` varchar(20) NOT NULL,
+  `Estatus` varchar(20) NOT NULL,
+  `company_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

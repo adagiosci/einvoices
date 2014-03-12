@@ -21,9 +21,8 @@ class Banco(Base):
     Sucursal = Column(String(100))
     Direccion = Column(String(200))
     Telefono = Column(String(20))
-    Estatus = Column(String(20))
+    Estatus = Column(String(20),default='Active')
     company_id = Column(Integer,ForeignKey('companies.id'))
-    tenant_id = Column(String(5))
     
     #relationships
     company = relationship("Company", foreign_keys=[company_id], backref=backref('clients', order_by=id))

@@ -15,6 +15,7 @@ from views.clientes import ProjectorClientes
 from views.suppliers import ProjectorSuppliers
 from views.sucursales import ProjectorSucursales
 from views.monedas import ProjectorMonedas
+from views.bancos import ProjectorBancos
 from views.main import Main
 from einvoices.models.RootFactory import RootFactory, groupfinder
 
@@ -96,6 +97,13 @@ def main(global_config, **settings):
     config.add_handler('monedas_indexm', '/monedas/m={m}', handler= ProjectorMonedas, action='index') 
     config.add_handler('monedas_indexe', '/monedas/e={e}', handler= ProjectorMonedas, action='index')    
     config.add_handler('monedas_action', '/monedas/{action}', handler= ProjectorMonedas)
-    config.add_handler('monedas_action_id', '/monedas/{action}/{id}', handler= ProjectorMonedas)   
+    config.add_handler('monedas_action_id', '/monedas/{action}/{id}', handler= ProjectorMonedas)
+
+    #bancos
+    config.add_handler('bancos_index', '/bancos', handler= ProjectorBancos, action='index')
+    config.add_handler('bancos_indexm', '/bancos/m={m}', handler= ProjectorBancos, action='index') 
+    config.add_handler('bancos_indexe', '/bancos/e={e}', handler= ProjectorBancos, action='index')    
+    config.add_handler('bancos_action', '/bancos/{action}', handler= ProjectorBancos)
+    config.add_handler('bancos_action_id', '/bancos/{action}/{id}', handler= ProjectorBancos)       
        
     return config.make_wsgi_app()
