@@ -39,25 +39,29 @@
 	</div>
 	<div class='clear'></div>
 	<div class="NewInputs">
-		<form class="form" action='/monedas/update' method='post' accept-charset='utf-8' enctype="multipart/form-data">
+		<form class="form" action='/bancos/update' method='post' accept-charset='utf-8' enctype="multipart/form-data">
 			<div class='colum1'>
 
-
-								
-				<p><label for='name'>Nombre*</label></p>
-				<p><input type="text" name="name" id='name' value="${entry.name}" class="required"/></p>
+				<p><label for='name'>Clave*</label></p>
+				<p><input type="text" name="Clave" id='Clave' value="${entry.Clave}" class="required"/></p>
 				
-				<p><label for='cp'>Código*</label></p>
-				<p><input type="text" name="currency_code" value="${entry.currency_code}" id='currency_code' class="required"/></p>
+				<p><label for='cp'>Nombre*</label></p>
+				<p><input type="text" name="Nombre"  id='Nombre' value='${entry.Nombre}' class="required"/></p>
 				
-				<p><label for='rfc'>Prefijo*</label></p>
-				<p><input type="text" name="prefix" value="${entry.prefix}" id='prefix' class="required"/></p>
+				<p><label for='rfc'>Sucursal*</label></p>
+				<p><input type="text" name="Sucursal"  id='Sucursal' value='${entry.Sucursal}' class="required"/></p>
+	
 				
-
-				<p><input type='hidden' name='entry_id' id='entry_id' value='${entry.id}'/></p>
-				<p><input type="submit" value="Guardar" class="new submit"/> <a href="/currencies" class='back'>Cancelar</a> </p>
 			</div>
 			<div class='colum2'>
+
+				<p><label for='rfc'>Direccion*</label></p>
+				<p><input type="text" name="Direccion"  id='Direccion' value='${entry.Direccion}' class="required"/></p>
+
+				<p><label for='rfc'>Telefono*</label></p>
+				<p><input type="text" name="Telefono"  id='Telefono' value='${entry.Telefono}' class="required"/></p>								
+				<p><input type='hidden' name='entry_id' id='entry_id' value='${entry.id}'/></p>	
+				<p><input type="submit" value="Guardar" class="new submit"/></p>			
 
 			</div>
 			<div class='colum3'>
@@ -88,6 +92,6 @@
 		</form>
 
 	<div class='clear'></div>
-	<div class="TblList"><div metal:use-macro="view.companies_list['sucursales_list']"></div></div>
+	<div class="TblList"><div metal:use-macro="view.bancos_list['bancos_list']"></div></div>
 </div>
 </div></div>

@@ -4,7 +4,7 @@
 <head>
     <title>Macros</title>
 </head>
-<body><metal:companies_list define-macro="sucursales_list">
+<body><metal:bancos_list define-macro="bancos_list">
 <div class='clear'></div>
 <p class='paginator' >
 	<tal:block tal:repeat="page pagination">
@@ -17,27 +17,33 @@
 	</tal:block>
 </p>
 <br />
-<p class='text-right'><span class='bold'>${currencies.last_item}</span> registros de <span class='bold'>${currencies.item_count}</span> registros encontrados</p>
+<p class='text-right'><span class='bold'>${bancos.last_item}</span> registros de <span class='bold'>${bancos.item_count}</span> registros encontrados</p>
 <div class='clear'></div>
 <table>
 	<tr class='titles'>
-		<th colspan='4'>Generales</th>
+		<th colspan='6'>Generales</th>
 		<th colspan='2'>Acción</th>
 	</tr>
 	<tr class='titles'>
+		<th>Clave</th>
 		<th>Nombre</th>
-		<th>Código</th>
-		<th>Prefijo</th>
+		<th>Sucursal</th>
+		<th>Dirección</th>
+		<th>Telefono</th>
+		<th>Estatus</th>
 		<th class='global-td'>Editar</th>
 		<th class='global-td'>Estado</th>
 	</tr>
 	<?python color = 'trgreen2' ?>
-	<tr tal:repeat="row currencies.items" class='${color}'>
-		<td>${row.name}</td>
-		<td>${row.currency_code}</td>
-		<td>${row.prefix}</td>
-		<td><a href='/monedas/edit/${row.id}'>Editar</a></td>
-		<td><a href='/monedas/delete/${row.id}'>Eliminar<a></td>
+	<tr tal:repeat="row bancos.items" class='${color}'>
+		<td>${row.Clave}</td>
+		<td>${row.Nombre}</td>
+		<td>${row.Sucursal}</td>
+		<td>${row.Direccion}</td>
+		<td>${row.Telefono}</td>
+		<td>${row.Estatus}</td>
+		<td><a href='/bancos/edit/${row.id}'>Editar</a></td>
+		<td><a href='/bancos/delete/${row.id}'>Eliminar<a></td>
 		<?python
 			if color=='trgreen2':
 				color = ''
@@ -46,5 +52,5 @@
 		?>
 	</tr>
 </table>
-</metal:companies_list></body>
+</metal:bancos_list></body>
 </html>
