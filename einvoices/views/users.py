@@ -26,8 +26,8 @@ class ProjectorUsers(Main):
 	def __init__(self, request):
 		self.config_view_name = 'users'
 		super(ProjectorUsers,self).__init__(request)
-		self.DBSession = DBSession()
-		self.tUser = User()
+		self.DBSession = DBSession
+		self.tUser = User
 		self.tCompany = Company
 				                
 	@action(renderer=BASE_TMPL  + "users/index.pt")
